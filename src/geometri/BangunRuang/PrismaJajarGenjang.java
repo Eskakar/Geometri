@@ -10,17 +10,20 @@ import geometri.BangunDatar.JajarGenjang;
  * @author rahadityaputra
  */
 public class PrismaJajarGenjang extends JajarGenjang{
-    private double tinggiAlas;
-    public PrismaJajaranGenjang(double alas, double tinggiAlas, double tinggi) {
-        super(alas,tinggiAlas )
+    public double tinggi;
+    public double volume;
+    public double luasPermukaan;
+    public PrismaJajarGenjang(double alas, double tinggiAlas, double tinggi, double sisiMiringAlas) {
+        super(alas,tinggiAlas, sisiMiringAlas);
         this.tinggi = tinggi;
     }
-    @Override
-    public double hitungVolume() {
-        return super.luas * tinggi;
+    public void hitungVolume() {
+        double luasAlas = super.luas;
+        this.volume = luasAlas * tinggi;
     }
-    @Override
-    public double hitungLuasPermukaan() {
-        return 2 * super.alas * super.tinggiAlas + 2 * (super.alas + super.tinggiAlas) * tinggi;
+    public void hitungLuasPermukaan() {
+        double tinggiAlas = super.tinggi;
+        double alasJajarGenjang = super.alas;
+        this.luasPermukaan = 2 * alasJajarGenjang * tinggiAlas + 2 * (alasJajarGenjang + tinggiAlas) * tinggi;
     }   
 }

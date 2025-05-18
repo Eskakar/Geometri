@@ -12,7 +12,7 @@ import geometri.BangunDatar.LayangLayang;
 public class PrismaLayangLayang extends LayangLayang {
     protected double tinggi;
     public PrismaLayangLayang(double d1, double d2, double tinggi) {
-        super(d1, d2);
+        super(d1, d2, );
         this.tinggi = tinggi;
     }
     @Override

@@ -10,18 +10,21 @@ import geometri.BangunDatar.BelahKetupat;
  * @author rahadityaputra
  */
 public class PrismaBelahKetupat extends BelahKetupat {
-    private double tinggi;
-    public PrismaBelahKetupat(double d1, double d2, double tinggi) {
-        super(double d1, double d2);
+    public double tinggi;
+    public double volume;
+    public double luasPermukaan;
+    public PrismaBelahKetupat(double d1, double d2, double sisiBelahKetupat, double tinggi) {
+        super(d1, d2, sisiBelahKetupat);
         this.tinggi = tinggi;
     }
-    @Override
-    public double hitungVolume() {
-        return 0.5 * super.luas * tinggi;
+    public void hitungVolume() {
+        double luasAlas = super.luas;
+        this.volume = 0.5 * luasAlas * this.luasPermukaan;
     }
-    @Override
-    public double hitungLuasPermukaan() {
-        double sisi = Math.sqrt(Math.pow(d1/2, 2) + Math.pow(d2/2, 2));
-        return 2 * 0.5 * super.d1 * super.d2 + 4 * sisi * tinggi;
+    public void hitungLuasPermukaan() {
+        double diagonalAlas1 = super.diagonal1;
+        double diagonalAlas2 = super.diagonal2;
+        double sisi = Math.sqrt(Math.pow(diagonalAlas1/2, 2) + Math.pow(diagonalAlas2/2, 2));
+        this.luasPermukaan = 2 * 0.5 * diagonalAlas1 * diagonalAlas2 + 4 * sisi * this.tinggi;
     }  
 }
