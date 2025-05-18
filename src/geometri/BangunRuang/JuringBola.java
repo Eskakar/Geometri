@@ -8,18 +8,16 @@ package geometri.BangunRuang;
  *
  * @author rahadityaputra
  */
-
-// ini perlu extend bola
-public class CincinBola {
-    public double r1, r2;
-    public CincinBola(double r1, double r2) {
-        this.r1 = r1;
-        this.r2 = r2;
+public class JuringBola {
+ public double jari, sudut;
+    public JuringBola(double jari, double sudut) {
+        this.jari = jari;
+        this.sudut = sudut;
     }
     public double hitungVolume() {
-        return (4.0/3) * Math.PI * (Math.pow(r1, 3) - Math.pow(r2, 3));
+        return (sudut / 360) * (4.0/3) * Math.PI * Math.pow(jari, 3);
     }
     public double hitungLuasPermukaan() {
-        return 4 * Math.PI * (r1 * r1 - r2 * r2);
-    }
+        return (sudut / 360) * 4 * Math.PI * jari * jari;
+    }   
 }

@@ -9,15 +9,9 @@ public abstract class BangunRuang extends BangunDatar {
     public void BangunRuang() {
     }
 
-    public void hitungVolume() {
+    public abstract void hitungVolume() {
     }
 
-    public void hitungLuasPermukaann() {
-    }
-
-    public void getVolume() {
-    }
-
-    public void getLuasPermukaan() {
+    public abstract void hitungLuasPermukaann() {
     }
 }
