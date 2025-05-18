@@ -2,13 +2,13 @@ package geometri.BangunDatar;
 
 public class TemberengLingkaran extends Lingkaran {
 
-    double busurLingkaran;
-    double sudutLingkaran;
-    double tinggiTembereng;
+    double busur;
+    double sudut;
+    double tinggi;
 
     double taliBusur;
 
-    public void Tembereng(double busurLingkaran, double sudutLingkaran,double tinggiTembereng, double taliBusur) {
+    public void Tembereng(double busur, double sudut,double tinggi, double taliBusur) {
     
     }
 
