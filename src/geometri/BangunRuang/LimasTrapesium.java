@@ -4,18 +4,19 @@
  */
 package geometri.BangunRuang;
 
-/**
- *
- * @author rahadityaputra
- */
-public class LimasTrapesium {
+import geometri.BangunDatar.Trapesium;
+
+
+public class LimasTrapesium extends Trapesium{
     public double volume;
     public double luasPermukaan;
     public double tinggiLimas;
-    public double tinggiJajarGenjang;
-    public double alasJajarGenjang;
+    public double tinggiTrapeisum;
 
-    public LimasTrapesium(double tinggiLimas, double tinggiJajarGenjang, double alasJajarGenjang) {
+
+    public LimasTrapesium(double tinggiLimas, double tinggiTrapesium, double sisiAtas, double sisiBawah, double sisiKanan, double sisiKiri, String Nama) {
+        
+        super(sisiAtas,sisiBawah,  sisiKanan,  sisiKiri, tinggiTrapesium, Nama);
     }
 
     public void hitungVolume() {

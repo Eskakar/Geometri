@@ -8,15 +8,17 @@ package geometri.BangunRuang;
  *
  * @author rahadityaputra
  */
-public class TemberengBola {
-     public double jari, tinggi, volume, luasPermukaan;
-    public TemberengBola(double jari, double tinggi) {
-        this.jari = jari;
+public class TemberengBola extends Bola{
+     public double tinggi, volume, luasPermukaan;
+    public TemberengBola(double jari, double tinggi,double jarijari) {
+        super(jarijari);
         this.tinggi = tinggi;
     }
+    @Override
     public void hitungVolume() {
         this.volume = 0;
     }
+    @Override
     public void hitungLuasPermukaan() {
         this.luasPermukaan = 0;
     }

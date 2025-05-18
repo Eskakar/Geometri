@@ -11,8 +11,8 @@ import geometri.BangunDatar.Trapesium;
  */
 public class PrismaTrapesium extends Trapesium {
     public double tinggi, volume, luasPermukaan;
-    public PrismaTrapesium(double sisiA, double sisiB, double sisiC, double sisiD, double tinggiTrapesium, double tinggi) {
-        super(sisiA, sisiB, sisiC, sisiC, tinggiTrapesium);
+    public PrismaTrapesium(double sisiA, double sisiB, double sisiC, double sisiD, double tinggiTrapesium, double tinggi,String Nama) {
+        super(sisiA, sisiB, sisiC, sisiC, tinggiTrapesium,Nama);
         this.tinggi = tinggi;
     }
     public void hitungVolume() { 

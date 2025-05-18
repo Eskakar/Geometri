@@ -8,8 +8,8 @@ public class Trapesium extends BangunDatar {
     protected double sisiKiri;
     protected double tinggi;
 
-    public Trapesium(double sisiAtas, double sisiBawah, double sisiKanan, double sisiKiri, double tinggi) {
-        super("Trapesium");
+    public Trapesium(double sisiAtas, double sisiBawah, double sisiKanan, double sisiKiri, double tinggi,String Nama) {
+        super(Nama);
 
     }
 

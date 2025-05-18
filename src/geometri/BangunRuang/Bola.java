@@ -12,8 +12,8 @@ import geometri.BangunDatar.Lingkaran;
  */
 public class Bola extends Lingkaran {
     public double jariJari;
-    private double volume;
-    private double luasPermukaan;
+    protected double volume;
+    protected double luasPermukaan;
 
     Bola(double jariJari) {
         super(jariJari);
