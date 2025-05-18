@@ -4,7 +4,8 @@ public class Lingkaran extends BangunDatar {
 
     double jariJari;
 
-    public void Lingkaran(double jariJari) {
+    public Lingkaran(double jariJari) {
+        super("Lingkaran");
     }
     @Override
     public void hitungKeliling() {

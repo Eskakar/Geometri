@@ -8,8 +8,7 @@ public class TemberengLingkaran extends Lingkaran {
 
     double taliBusur;
 
-    public TemberengLingkaran(double busurLingkaran, double sudutLingkaran,double tinggiTembereng, double taliBusur, double  jariJari) {
-        super(jariJari);
+    public void Tembereng(double busurLingkaran, double sudutLingkaran,double tinggiTembereng, double taliBusur) {
     }
 
     @Override

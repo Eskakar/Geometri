@@ -6,8 +6,8 @@ public class LayangLayang extends BangunDatar {
     double sisi1;
     double sisi2;
     
-    public void LayangLayang(double diagoal1,double diagonal2,double sisi1, double sisi2){
-        
+    public LayangLayang(double diagonal1,double diagonal2,double sisi1, double sisi2){
+        super("Layang Layang");
     }
     @Override
     public void hitungKeliling(){

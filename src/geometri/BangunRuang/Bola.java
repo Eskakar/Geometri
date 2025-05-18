@@ -4,23 +4,35 @@
  */
 package geometri.BangunRuang;
 
+import geometri.BangunDatar.Lingkaran;
+
 /**
  *
  * @author rahadityaputra
  */
-public class Bola extends BangunRuang {
-    public double jari;
-    Bola(double jari) {
-        this.jari = jari;
+public class Bola extends Lingkaran {
+    public double jariJari;
+    private double volume;
+    private double luasPermukaan;
+
+    Bola(double jariJari) {
+        super(jariJari);
+        this.jariJari = jariJari;
     }
 
-    @Override
-    public double hitungVolume() {
-        return (4.0/3) * Math.PI * Math.pow(jari, 3);
+    public void hitungVolume() {
+        this.volume = (4.0/3) * Math.PI * Math.pow(jariJari, 3);
     }
 
-    @Override
-    public double hitungLuasPermukaan() {
-        return 4 * Math.PI * jari * jari;
+    public void hitungLuasPermukaan() {
+        this.luasPermukaan = 4 * Math.PI * jariJari * jariJari;
+    }
+    
+    public double getVolume() {
+        return this.volume;
+    }
+
+    public double getLuasPermukaan() {
+        return this.luasPermukaan;
     }
 }

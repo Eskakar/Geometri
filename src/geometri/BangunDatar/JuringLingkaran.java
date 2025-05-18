@@ -7,9 +7,10 @@ public class JuringLingkaran extends BangunDatar {
     double busurLingkaran;
 
 
-    public void JuringLingkaran(double sudutPusat, double busurLingkaran, Lingkaran lingkaran) {
-    
+    public JuringLingkaran(double sudutPusat, double busurLingkaran, Lingkaran lingkaran) {
+        super("JuringLingkaran");
     }
+
     @Override
     public void hitungKeliling(){
     };

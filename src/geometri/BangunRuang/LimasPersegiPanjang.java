@@ -4,10 +4,35 @@
  */
 package geometri.BangunRuang;
 
+import geometri.BangunDatar.PersegiPanjang;
+
 /**
  *
  * @author rahadityaputra
  */
-public class LimasPersegiPanjang {
-    
+public class LimasPersegiPanjang extends PersegiPanjang {
+    private double volume;
+    private double luasPermukaan;
+    private double tinggiLimas;
+
+    public LimasPersegiPanjang(double panjang, double lebar, double tinggiLimas) {
+        super(panjang, lebar);
+        this.tinggiLimas = tinggiLimas;
+    }
+
+    public void hitungVolume() {
+
+    }
+
+    public void hitungLuasPermukaan() {
+
+    }
+
+    public double getVolume() {
+        return this.volume;
+    }
+
+    public double getLuasPermukaan() {
+        return this.luasPermukaan;
+    }
 }

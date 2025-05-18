@@ -12,7 +12,8 @@ public class Trapesium extends BangunDatar {
 
     double tinggi;
 
-    public void Trapesium(double sisiAtas, double sisiBawah, double sisiKanan, double sisiKiri, double tinggi) {
+    public Trapesium(double sisiAtas, double sisiBawah, double sisiKanan, double sisiKiri, double tinggi) {
+        super("Trapesium");
     }
 
     @Override

@@ -8,7 +8,7 @@ public abstract class BangunDatar implements Geometri {
 
     String Nama;
 
-    public void BangunDatar(String Nama) {
+    public BangunDatar(String Nama) {
     }
     @Override
     public String getNama() {

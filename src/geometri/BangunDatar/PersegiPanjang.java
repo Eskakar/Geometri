@@ -6,7 +6,8 @@ public class PersegiPanjang extends BangunDatar {
 
     double lebar;
 
-    public void PersegiPanjang(double panjang, double lebar) {
+    public PersegiPanjang(double panjang, double lebar) {
+        super("Persegi Panjang");
     }
 
     @Override
