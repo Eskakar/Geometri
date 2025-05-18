@@ -11,25 +11,18 @@ import geometri.BangunDatar.JajarGenjang;
  * @author rahadityaputra
  */
 public class LimasJajarGenjang extends JajarGenjang {
-    private double volume;
-    private double luasPermukaan;
-    private double tinggiLimas;
-    private double tinggiJajarGenjang;
-    private double alasJajarGenjang;
+    public double volume;
+    public double luasPermukaan;
 
-    public LimasJajarGenjang(double tinggiLimas, double tinggiJajarGenjang, double alasJajarGenjang, double alas, double tinggi, double sisiMiring) {
-        super(alas, tinggi, sisiMiring);
-        this.tinggiLimas = tinggiLimas;
-        this.tinggiJajarGenjang = tinggiJajarGenjang;
-        this.alasJajarGenjang = alasJajarGenjang;
+    public LimasJajarGenjang(double tinggiJajarGenjang, double alasJajarGenjang, double alas, double tinggi, double sisiMiring) {
+        super(alasJajarGenjang, tinggiJajarGenjang, sisiMiring);
+        this.tinggi = tinggi;
     }
     
     public void hitungVolume() {
-        
     }
 
     public void hitungLuasPermukaan() {
-        
     }
     
     public double getVolume() {

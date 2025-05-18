@@ -11,16 +11,17 @@ import geometri.BangunDatar.LayangLayang;
  */
 public class PrismaLayangLayang extends LayangLayang {
     protected double tinggi;
-    public PrismaLayangLayang(double d1, double d2, double tinggi) {
-        super(d1, d2, );
+    public double volume;
+    public double luasPermukaan;
+    public PrismaLayangLayang(double d1, double d2,double sisi1, double sisi2, double tinggi) {
+        super(d1, d2, sisi1, sisi2);
         this.tinggi = tinggi;
     }
-    @Override
-    public double hitungVolume() {
-        return 0.5 * super.luas * tinggi;
+    public void hitungVolume() {
+        this.volume = 0.5 * super.luas * tinggi;
     }
-    @Override
-    public double hitungLuasPermukaan() {
-        return 2 * 0.5 * super.d1 * super.d2 + 4 * ((super.d1 +super.d2)/4) * tinggi;
+    public void hitungLuasPermukaan() {
+        // rumus belum ditulis
+        this.luasPermukaan = 0;
     }
 }

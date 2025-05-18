@@ -9,11 +9,11 @@ package geometri.BangunRuang;
  * @author rahadityaputra
  */
 public class LimasTrapesium {
-    private double volume;
-    private double luasPermukaan;
-    private double tinggiLimas;
-    private double tinggiJajarGenjang;
-    private double alasJajarGenjang;
+    public double volume;
+    public double luasPermukaan;
+    public double tinggiLimas;
+    public double tinggiJajarGenjang;
+    public double alasJajarGenjang;
 
     public LimasTrapesium(double tinggiLimas, double tinggiJajarGenjang, double alasJajarGenjang) {
     }
@@ -24,13 +24,5 @@ public class LimasTrapesium {
 
     public void hitungLuasPermukaan() {
 
-    }
-
-    public double getVolume() {
-        return this.volume;
-    }
-
-    public double getLuasPermukaan() {
-        return this.luasPermukaan;
     }
 }

@@ -10,17 +10,15 @@ import geometri.BangunDatar.Lingkaran;
  * @author rahadityaputra
  */
 public class Tabung extends Lingkaran {
-    public double jari, tinggi;
-    public Tabung(double jari, double tinggiPrisma) {
-        super(jari)
+    public double tinggi, volume, luasPermukaan;
+    public Tabung(double jari, double tinggiPrisma, double tinggi) {
+        super(jari);
         this.tinggi = tinggi;
     }
-    @Override
-    public double hitungVolume() {
-        return super.luas * tinggi;
+    public void hitungVolume() {
+        this.volume = 0;
     }
-    @Override
-    public double hitungLuasPermukaan() {
-        return 2 * Math.PI * super.jari * (super.jari + tinggi);
+    public void hitungLuasPermukaan() {
+        this.luasPermukaan = 0;
     }
 }

@@ -11,13 +11,13 @@ import geometri.BangunDatar.PersegiPanjang;
  * @author rahadityaputra
  */
 public class LimasPersegiPanjang extends PersegiPanjang {
-    private double volume;
-    private double luasPermukaan;
-    private double tinggiLimas;
+    public double volume;
+    public double luasPermukaan;
+    public double tinggi;
 
-    public LimasPersegiPanjang(double panjang, double lebar, double tinggiLimas) {
+    public LimasPersegiPanjang(double panjang, double lebar, double tinggi) {
         super(panjang, lebar);
-        this.tinggiLimas = tinggiLimas;
+        this.tinggi = tinggi;
     }
 
     public void hitungVolume() {
@@ -26,13 +26,5 @@ public class LimasPersegiPanjang extends PersegiPanjang {
 
     public void hitungLuasPermukaan() {
 
-    }
-
-    public double getVolume() {
-        return this.volume;
-    }
-
-    public double getLuasPermukaan() {
-        return this.luasPermukaan;
     }
 }

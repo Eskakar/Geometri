@@ -12,17 +12,17 @@ import geometri.BangunDatar.LayangLayang;
  */
 
 public class LimasLayangLayang extends LayangLayang {
-    private double volume;
-    private double luasPermukaan;
-    private double tinggiLimas;
-    private double tinggiSisiTegak1;
-    private double tinggiSisiTegak2;
+    public double volume;
+    public double luasPermukaan;
+    public double tinggi;
+    public double tinggiSisiTegak1;
+    public double tinggiSisiTegak2;
 
-    public LimasLayangLayang(double tinggiLimas, double tinggiSisiTegak1, double tinggiSisiTegak2, double diagonal1, double diagonal2, double sisi1, double sisi2) {
+    public LimasLayangLayang(double tinggi, double tinggiSisiTegak1, double tinggiSisiTegak2, double diagonal1, double diagonal2, double sisi1, double sisi2) {
         super(diagonal1, diagonal2, sisi1, sisi2);
         this.tinggiSisiTegak1  = tinggiSisiTegak1;
         this.tinggiSisiTegak2  = tinggiSisiTegak2;
-        this.tinggiLimas = tinggiLimas;
+        this.tinggi = tinggi;
     }
 
     public void hitungVolume() {

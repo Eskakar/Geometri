@@ -10,17 +10,15 @@ import geometri.BangunDatar.Segitiga;
  * @author rahadityaputra
  */
 public class PrismaSegitiga extends Segitiga {
-    public double alas, tinggiSegitiga;
-    public PrismaSegitiga(double alas, double tinggiSegitiga, double tinggi) {
-        super(alas, tinggiSegitiga);
+    public double alas, tinggiSegitiga,tinggi, volume, luasPermukaan;
+    public PrismaSegitiga(double alas, double tinggiSegitiga, double tinggi, double sisiA, double sisiB, double sisiC) {
+        super(alas, tinggiSegitiga, sisiA, sisiB, sisiC);
         this.tinggi = tinggi;
     }
-    @Override
-    public double hitungVolume() {
-        return 0.5 * super.luas * tinggi;
+    public void hitungVolume() { 
+        this.volume = 0;
     }
-    @Override
-    public double hitungLuasPermukaan() {
-        return 2 * (0.5 * super.alas * super.tinggiSegitiga) + 3 * (super.alas * super.tinggi);
+    public void hitungLuasPermukaan() {
+        this.luasPermukaan = 0;
     }
 }

@@ -2,9 +2,7 @@ package geometri.BangunDatar;
 
 public class JuringLingkaran extends Lingkaran {
 
-    private double sudutPusat;
-
-    private double busur;
+    protected double sudutPusat, busur;
 
 
 

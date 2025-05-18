@@ -2,12 +2,7 @@ package geometri.BangunDatar;
 
 public class TemberengLingkaran extends Lingkaran {
 
-    private double busur;
-    private double sudut;
-    private double tinggi;
-
-    private double taliBusur;
-
+    protected double busur, sudut, tinggi, taliBusur;
 
     public TemberengLingkaran(double busurLingkaran, double sudutLingkaran,double tinggiTembereng, double taliBusur, double  jariJari) {
         super(jariJari);

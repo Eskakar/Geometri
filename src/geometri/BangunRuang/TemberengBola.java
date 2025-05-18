@@ -9,15 +9,15 @@ package geometri.BangunRuang;
  * @author rahadityaputra
  */
 public class TemberengBola {
-     private double jari, tinggi;
+     public double jari, tinggi, volume, luasPermukaan;
     public TemberengBola(double jari, double tinggi) {
         this.jari = jari;
         this.tinggi = tinggi;
     }
-    public double hitungVolume() {
-        return (Math.PI * tinggi * tinggi * (3*jari - tinggi)) / 3;
+    public void hitungVolume() {
+        this.volume = 0;
     }
-    public double hitungLuasPermukaan() {
-        return 2 * Math.PI * jari * tinggi;
+    public void hitungLuasPermukaan() {
+        this.luasPermukaan = 0;
     }
 }

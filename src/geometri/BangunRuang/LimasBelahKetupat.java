@@ -12,13 +12,13 @@ import geometri.BangunDatar.BelahKetupat;
  */
 
 public class LimasBelahKetupat extends BelahKetupat {
-    private double volume;
-    private double luasPermukaan;
-    private double tinggiLimas;
-    private double tinggiBelahKetupat;
+    public double volume;
+    public double luasPermukaan;
+    public double tinggi;
 
     public LimasBelahKetupat(double diagonal1, double diagonal2, double tinggiLimas, double tinggiBelahKetupat, double sisi) {
         super(diagonal1, diagonal2, sisi);
+        this.tinggi = tinggiLimas;
     }
     
     public void hitungVolume() {
@@ -27,13 +27,5 @@ public class LimasBelahKetupat extends BelahKetupat {
 
     public void hitungLuasPermukaan() {
         
-    }
-    
-    public double getVolume() {
-        return this.volume;
-    }
-
-    public double getLuasPermukaan() {
-        return this.luasPermukaan;
     }
 }

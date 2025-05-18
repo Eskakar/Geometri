@@ -2,9 +2,7 @@ package geometri.BangunDatar;
 
 public class PersegiPanjang extends BangunDatar {
 
-    private double panjang;
-
-    private double lebar;
+    protected double panjang, lebar;
 
     public PersegiPanjang(double panjang, double lebar) {
         super("Persegi Panjang");

@@ -11,15 +11,13 @@ import geometri.BangunDatar.Segitiga;
  * @author rahadityaputra
  */
 public class LimasSegitiga extends Segitiga {
-    private double volume;
-    private double luasPermukaan;
-    private double tinggiLimas;
-    private double alas;
+    public double volume;
+    public double luasPermukaan;
+    public double tinggi;
 
     public LimasSegitiga(double alas, double tinggiLimas, double tinggi, double sisiA, double sisiB, double  sisiC) {
         super(alas, tinggi, sisiA, sisiB, sisiC);
-        this.tinggiLimas = tinggiLimas;
-        this.alas = alas;
+        this.tinggi = tinggi;
     }
 
     public void hitungVolume() {
@@ -28,13 +26,5 @@ public class LimasSegitiga extends Segitiga {
 
     public void hitungLuasPermukaan() {
 
-    }
-
-    public double getVolume() {
-        return this.volume;
-    }
-
-    public double getLuasPermukaan() {
-        return this.luasPermukaan;
     }
 }
