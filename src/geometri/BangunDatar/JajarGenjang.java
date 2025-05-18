@@ -2,11 +2,11 @@ package geometri.BangunDatar;
 
 public class JajarGenjang extends BangunDatar {
 
-    double alas;
+    private double alas;
 
-    double tinggi;
+    private double tinggi;
 
-    double sisiMiring;
+    private double sisiMiring;
 
     public JajarGenjang(double alas, double tinggi, double sisiMiring) {
         super("Jajar Genjang");

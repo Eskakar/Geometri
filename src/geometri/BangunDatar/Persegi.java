@@ -1,6 +1,7 @@
 package geometri.BangunDatar;
 
 public class Persegi extends BangunDatar {
+
     protected double sisi;
 
     public Persegi(double sisi) {
@@ -14,4 +15,5 @@ public class Persegi extends BangunDatar {
     @Override
     public void hitungLuas() {
     }
+
 }

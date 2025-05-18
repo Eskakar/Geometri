@@ -2,18 +2,19 @@ package geometri.BangunDatar;
 
 public class Segitiga extends BangunDatar {
 
-    double alas;
+    private double alas;
 
-    double tinggi;
+    private double tinggi;
 
-    double sisiA;
+    private double sisiA;
 
-    double sisiB;
+    private double sisiB;
 
-    double sisiC;
+    private double sisiC;
 
     public Segitiga(double alas, double tinggi, double sisiA, double sisiB, double sisiC) {
         super("Segitiga");
+
     }
 
    @Override

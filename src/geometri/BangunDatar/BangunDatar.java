@@ -2,13 +2,14 @@ package geometri.BangunDatar;
 import geometri.Geometri;
 public abstract class BangunDatar implements Geometri {
 
-    double keliling;
+    protected double keliling;
 
-    double luas;
+    protected double luas;
 
-    String Nama;
+    protected String nama;
 
-    public BangunDatar(String Nama) {
+    public  BangunDatar(String nama) {
+
     }
     @Override
     public String getNama() {
