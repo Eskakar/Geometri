@@ -10,8 +10,11 @@ import geometri.BangunDatar.PersegiPanjang;
  * @author rahadityaputra
  */
 public class PrismaPersegiPanjang extends PersegiPanjang {
-    public double panjang, lebar, tinggi;
-    public double volume, luasPermukaan;
+    public double panjang;
+    public double lebar;
+    public double tinggi;
+    public double volume;
+    public double luasPermukaan;
     public PrismaPersegiPanjang(double panjang, double lebar, double tinggi) {
         super(panjang, lebar);
         this.tinggi = tinggi;

@@ -2,9 +2,8 @@ package geometri.BangunDatar;
 
 public class JuringLingkaran extends Lingkaran {
 
-    protected double sudutPusat, busur;
-
-
+    protected double sudutPusat; 
+    protected double busur;
 
     public JuringLingkaran(double sudutPusat, double busurLingkaran, Lingkaran lingkaran) {
         super(14);

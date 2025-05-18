@@ -9,18 +9,18 @@ package geometri.BangunRuang;
  * @author rahadityaputra
  */
 public class JuringBola extends Bola{
- public double jari, sudut;
-    public JuringBola(double jari, double sudut,double jarijari) {
+    public double  sudut;
+    public JuringBola( double sudut,double jarijari) {
         super(jarijari);
-        this.jari = jari;
+        
         this.sudut = sudut;
     }
     @Override
     public void hitungVolume() {
-        this.volume = (sudut / 360) * (4.0/3) * Math.PI * Math.pow(jari, 3);
+        this.volume = (sudut / 360) * (4.0/3) * Math.PI * Math.pow(this.jariJari, 3);
     }
     @Override
     public void hitungLuasPermukaan() {
-        this.luasPermukaan = (sudut / 360) * 4 * Math.PI * jari * jari;
+        this.luasPermukaan = (sudut / 360) * 4 * Math.PI * this.jariJari * this.jariJari;
     }   
 }

@@ -11,7 +11,8 @@ package geometri.BangunRuang;
 
 // ini perlu extend bola
 public class CincinBola extends Bola{
-    public double r1, r2;
+    public double r1;
+    public double r2;
     public CincinBola(double r1, double r2,double jarijari) {
         super(jarijari);
         this.r1 = r1;

@@ -10,7 +10,11 @@ import geometri.BangunDatar.Segitiga;
  * @author rahadityaputra
  */
 public class PrismaSegitiga extends Segitiga {
-    public double alas, tinggiSegitiga,tinggi, volume, luasPermukaan;
+    public double alas;
+    public double tinggiSegitiga; 
+    public double tinggi; 
+    public double volume;
+    public double luasPermukaan;
     public PrismaSegitiga(double alas, double tinggiSegitiga, double tinggi, double sisiA, double sisiB, double sisiC) {
         super(alas, tinggiSegitiga, sisiA, sisiB, sisiC);
         this.tinggi = tinggi;

@@ -9,7 +9,9 @@ package geometri.BangunRuang;
  * @author rahadityaputra
  */
 public class TemberengBola extends Bola{
-     public double tinggi, volume, luasPermukaan;
+     public double tinggi;
+     public double volume;
+     public double luasPermukaan;
     public TemberengBola(double jari, double tinggi,double jarijari) {
         super(jarijari);
         this.tinggi = tinggi;

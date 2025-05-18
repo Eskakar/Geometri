@@ -10,7 +10,9 @@ import geometri.BangunDatar.Lingkaran;
  * @author rahadityaputra
  */
 public class Tabung extends Lingkaran {
-    public double tinggi, volume, luasPermukaan;
+    public double tinggi;
+    public double volume;
+    public double luasPermukaan;
     public Tabung(double jari, double tinggiPrisma, double tinggi) {
         super(jari);
         this.tinggi = tinggi;

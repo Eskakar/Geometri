@@ -10,7 +10,9 @@ import geometri.BangunDatar.Trapesium;
  * @author rahadityaputra
  */
 public class PrismaTrapesium extends Trapesium {
-    public double tinggi, volume, luasPermukaan;
+    public double tinggi;
+    public double volume;
+    public double luasPermukaan;
     public PrismaTrapesium(double sisiA, double sisiB, double sisiC, double sisiD, double tinggiTrapesium, double tinggi,String Nama) {
         super(sisiA, sisiB, sisiC, sisiC, tinggiTrapesium,Nama);
         this.tinggi = tinggi;
