@@ -8,18 +8,19 @@ package geometri.BangunRuang;
  *
  * @author rahadityaputra
  */
-public class PrismaPersegi extends PrismaPersegiPanjang {
-     private double sisi;
+public class PrismaPersegi extends Persegi {
+     private double tinggi;
     public PrismaPersegi(double sisi, double tinggi) {
-        super(tinggi);
-        this.sisi = sisi;
+        super(sisi);
+        this.tinggi = tinggi;
     }
+
     @Override
     public double hitungVolume() {
-        return sisi * sisi * tinggi;
+        return super.luas * tinggi;
     }
     @Override
     public double hitungLuasPermukaan() {
-        return 2 * sisi * sisi + 4 * sisi * tinggi;
+        return 2 * super.sisi * super.sisi + 4 * super.sisi * tinggi;
     }
 }

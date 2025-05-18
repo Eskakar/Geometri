@@ -3,25 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package geometri.BangunRuang;
+import geometri.BangunDatar.BelahKetupat;
 
 /**
  *
  * @author rahadityaputra
  */
-public class PrismaBelahKetupat {
-    public double d1, d2;
+public class PrismaBelahKetupat extends BelahKetupat {
+    private double tinggi;
     public PrismaBelahKetupat(double d1, double d2, double tinggi) {
-        super(tinggi);
-        this.d1 = d1;
-        this.d2 = d2;
+        super(double d1, double d2);
+        this.tinggi = tinggi;
     }
     @Override
     public double hitungVolume() {
-        return 0.5 * d1 * d2 * tinggi;
+        return 0.5 * super.luas * tinggi;
     }
     @Override
     public double hitungLuasPermukaan() {
         double sisi = Math.sqrt(Math.pow(d1/2, 2) + Math.pow(d2/2, 2));
-        return 2 * 0.5 * d1 * d2 + 4 * sisi * tinggi;
+        return 2 * 0.5 * super.d1 * super.d2 + 4 * sisi * tinggi;
     }  
 }

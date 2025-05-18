@@ -3,24 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package geometri.BangunRuang;
+import geometri.BangunDatar.Persegi;
 
 /**
  *
  * @author rahadityaputra
  */
-public class PrismaPersegiPanjang {
+public class PrismaPersegiPanjang extends PersegiPanjang {
     public double panjang, lebar;
     public PrismaPersegiPanjang(double panjang, double lebar, double tinggi) {
-        super(tinggi);
-        this.panjang = panjang;
-        this.lebar = lebar;
+        super(panjang, lebar);
+        this.tinggi = tinggi;
     }
     @Override
     public double hitungVolume() {
-        return panjang * lebar * tinggi;
+        return super.luas * tinggi;
     }
     @Override
     public double hitungLuasPermukaan() {
-        return 2 * panjang * lebar + 2 * (panjang + lebar) * tinggi;
+        return 2 * super.panjang * super.lebar + 2 * (super.panjang + super.lebar) * tinggi;
     }
 }
