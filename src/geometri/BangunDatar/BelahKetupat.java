@@ -2,13 +2,14 @@ package geometri.BangunDatar;
 import geometri.Geometri;
 public class BelahKetupat extends BangunDatar {
 
-    double diagonal1;
+    private double diagonal1;
 
-    double diagonal2;
+    private double diagonal2;
 
-    double sisi;
+    private double sisi;
 
-    public void BelahKetupat(double diagonal1, double diagonal2, double sisi) {
+    public BelahKetupat(double diagonal1, double diagonal2, double sisi) {
+        super("");
     }
     @Override
     public void hitungKeliling() {

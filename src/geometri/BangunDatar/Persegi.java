@@ -2,9 +2,10 @@ package geometri.BangunDatar;
 
 public class Persegi extends BangunDatar {
 
-    double sisi;
+    private double sisi;
 
-    public void Persegi(double sisi) {
+    public Persegi(double sisi) {
+        super("");
     }
     @Override
     public void hitungKeliling() {

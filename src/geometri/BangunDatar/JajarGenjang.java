@@ -2,13 +2,14 @@ package geometri.BangunDatar;
 
 public class JajarGenjang extends BangunDatar {
 
-    double alas;
+    private double alas;
 
-    double tinggi;
+    private double tinggi;
 
-    double sisiMiring;
+    private double sisiMiring;
 
-    public void JajarGenjang(double alas, double tinggi, double sisiMiring) {
+    public JajarGenjang(double alas, double tinggi, double sisiMiring) {
+        super("");
     }
     @Override
     public void hitungKeliling() {

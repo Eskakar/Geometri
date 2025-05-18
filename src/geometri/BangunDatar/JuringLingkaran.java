@@ -2,13 +2,13 @@ package geometri.BangunDatar;
 
 public class JuringLingkaran extends Lingkaran {
 
-    double sudutPusat;
+    private double sudutPusat;
 
-    double busur;
+    private double busur;
 
 
-    public void JuringLingkaran(double sudutPusat, double busur) {
-    
+    public  JuringLingkaran(double sudutPusat, double busur) {
+        super(12);
     }
     @Override
     public void hitungKeliling(){

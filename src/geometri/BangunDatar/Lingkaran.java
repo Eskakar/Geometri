@@ -2,9 +2,10 @@ package geometri.BangunDatar;
 
 public class Lingkaran extends BangunDatar {
 
-    double jariJari;
+    private double jariJari;
 
-    public void Lingkaran(double jariJari) {
+    public  Lingkaran(double jariJari) {
+        super("");
     }
     @Override
     public void hitungKeliling() {
