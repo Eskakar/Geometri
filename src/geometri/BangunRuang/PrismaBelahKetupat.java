@@ -9,5 +9,19 @@ package geometri.BangunRuang;
  * @author rahadityaputra
  */
 public class PrismaBelahKetupat {
-    
+    public double d1, d2;
+    public PrismaBelahKetupat(double d1, double d2, double tinggi) {
+        super(tinggi);
+        this.d1 = d1;
+        this.d2 = d2;
+    }
+    @Override
+    public double hitungVolume() {
+        return 0.5 * d1 * d2 * tinggi;
+    }
+    @Override
+    public double hitungLuasPermukaan() {
+        double sisi = Math.sqrt(Math.pow(d1/2, 2) + Math.pow(d2/2, 2));
+        return 2 * 0.5 * d1 * d2 + 4 * sisi * tinggi;
+    }  
 }
