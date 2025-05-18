@@ -1,9 +1,19 @@
 package geometri.BangunDatar;
 
-public class Persegi extends PersegiPanjang {
+public class Persegi extends BangunDatar {
 
-    private double sisi;
+    protected double sisi;
 
-    public void Persegi(double sisi) {
+    public Persegi(double sisi) {
+        super("Persegi");
     }
+    
+    @Override
+    public void hitungKeliling() {
+        
+    }
+    @Override
+    public void hitungLuas() {
+    }
+
 }
