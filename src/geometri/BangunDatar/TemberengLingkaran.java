@@ -1,21 +1,21 @@
 package geometri.BangunDatar;
 
-public class TemberengLingkaran extends BangunDatar {
+public class TemberengLingkaran extends Lingkaran {
 
-    private double busurLingkaran;
+    double busurLingkaran;
+    double sudutLingkaran;
+    double tinggiTembereng;
 
-    private double tinggiTembereng;
+    double taliBusur;
 
-    private double taliBusur;
-
-    private Lingkaran lingkaran;
-
-    public void Tembereng(double busurLingkaran, double tinggiTembereng, double taliBusur, Lingkaran lingkaran) {
+    public void Tembereng(double busurLingkaran, double sudutLingkaran,double tinggiTembereng, double taliBusur) {
+    
     }
 
+    @Override
     public void hitungKeliling() {
     }
-
+     @Override
     public void hitungLuas() {
     }
 }

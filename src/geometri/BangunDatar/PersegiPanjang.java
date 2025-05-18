@@ -2,16 +2,17 @@ package geometri.BangunDatar;
 
 public class PersegiPanjang extends BangunDatar {
 
-    private double panjang;
+    double panjang;
 
-    private double lebar;
+    double lebar;
 
     public void PersegiPanjang(double panjang, double lebar) {
     }
 
+    @Override
     public void hitungKeliling() {
     }
-
+     @Override
     public void hitungLuas() {
     }
 }

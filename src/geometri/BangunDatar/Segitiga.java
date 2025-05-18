@@ -2,22 +2,23 @@ package geometri.BangunDatar;
 
 public class Segitiga extends BangunDatar {
 
-    private double alas;
+    double alas;
 
-    private double tinggi;
+    double tinggi;
 
-    private double sisiA;
+    double sisiA;
 
-    private double sisiB;
+    double sisiB;
 
-    private double sisiC;
+    double sisiC;
 
     public void Segitiga(double alas, double tinggi, double sisiA, double sisiB, double sisiC) {
     }
 
+   @Override
     public void hitungKeliling() {
     }
-
+    @Override
     public void hitungLuas() {
     }
 }

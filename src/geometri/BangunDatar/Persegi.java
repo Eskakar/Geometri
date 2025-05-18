@@ -2,8 +2,9 @@ package geometri.BangunDatar;
 
 public class Persegi extends PersegiPanjang {
 
-    private double sisi;
+    double sisi;
 
     public void Persegi(double sisi) {
     }
+    
 }

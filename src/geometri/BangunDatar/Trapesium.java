@@ -2,22 +2,23 @@ package geometri.BangunDatar;
 
 public class Trapesium extends BangunDatar {
 
-    private double sisiAtas;
+    double sisiAtas;
 
-    private double sisiBawah;
+    double sisiBawah;
 
-    private double sisiKanan;
+    double sisiKanan;
 
-    private double sisiKiri;
+    double sisiKiri;
 
-    private double tinggi;
+    double tinggi;
 
     public void Trapesium(double sisiAtas, double sisiBawah, double sisiKanan, double sisiKiri, double tinggi) {
     }
 
+    @Override
     public void hitungKeliling() {
     }
-
+     @Override
     public void hitungLuas() {
     }
 }
