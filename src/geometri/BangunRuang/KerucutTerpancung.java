@@ -9,7 +9,7 @@ package geometri.BangunRuang;
  * @author rahadityaputra
  */
 public class KerucutTerpancung extends Kerucut{
-    private double jarijariAtas;
+    protected double jarijariAtas;
     public KerucutTerpancung(double tinggi,double jarijari,double jarijariAtas){
         super(tinggi,jarijari);
         this.jarijariAtas = jarijariAtas;
@@ -17,10 +17,10 @@ public class KerucutTerpancung extends Kerucut{
     
     @Override
     public void hitungVolume() {
-        this.volume = 0;
+
     }
     @Override
     public void hitungLuasPermukaan() {
-        this.luasPermukaan = 0;
+
     }
 }

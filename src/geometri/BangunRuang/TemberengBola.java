@@ -18,10 +18,10 @@ public class TemberengBola extends Bola{
     }
     @Override
     public void hitungVolume() {
-        this.volume = 0;
+
     }
     @Override
     public void hitungLuasPermukaan() {
-        this.luasPermukaan = 0;
+
     }
 }
