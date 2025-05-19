@@ -23,4 +23,5 @@ public class KerucutTerpancung extends Kerucut{
     public void hitungLuasPermukaan() {
 
     }
+
 }

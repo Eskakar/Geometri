@@ -26,4 +26,11 @@ public class PrismaJajarGenjang extends JajarGenjang{
         double alasJajarGenjang = super.alas;
         this.luasPermukaan = 2 * alasJajarGenjang * tinggiAlas + 2 * (alasJajarGenjang + tinggiAlas) * tinggi;
     }   
+    public double getVolume() {
+        return this.volume;
+    }
+
+    public double getLuasPermukaan() {
+        return this.luasPermukaan;
+    }
 }

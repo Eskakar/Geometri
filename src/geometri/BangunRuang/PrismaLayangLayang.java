@@ -24,4 +24,11 @@ public class PrismaLayangLayang extends LayangLayang {
         // rumus belum ditulis
         this.luasPermukaan = 0;
     }
+     public double getVolume() {
+        return this.volume;
+    }
+
+    public double getLuasPermukaan() {
+        return this.luasPermukaan;
+    }
 }

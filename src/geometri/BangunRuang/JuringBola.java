@@ -23,4 +23,5 @@ public class JuringBola extends Bola{
     public void hitungLuasPermukaan() {
         this.luasPermukaan = (sudut / 360) * 4 * Math.PI * this.jariJari * this.jariJari;
     }   
+
 }

@@ -25,4 +25,12 @@ public class LimasPersegi extends Persegi {
     public void hitungLuasPermukaan() {
 
     }
+
+    public double getVolume() {
+        return this.volume;
+    }
+
+    public double getLuasPermukaan() {
+        return this.luasPermukaan;
+    }
 }

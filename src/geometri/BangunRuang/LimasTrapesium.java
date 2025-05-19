@@ -26,4 +26,11 @@ public class LimasTrapesium extends Trapesium{
     public void hitungLuasPermukaan() {
 
     }
+    public double getVolume() {
+        return this.volume;
+    }
+
+    public double getLuasPermukaan() {
+        return this.luasPermukaan;
+    }
 }

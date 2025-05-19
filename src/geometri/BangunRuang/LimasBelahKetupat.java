@@ -28,4 +28,12 @@ public class LimasBelahKetupat extends BelahKetupat {
     public void hitungLuasPermukaan() {
         
     }
+
+    public double getVolume() {
+        return this.volume;
+    }
+
+    public double getLuasPermukaan() {
+        return this.luasPermukaan;
+    }
 }

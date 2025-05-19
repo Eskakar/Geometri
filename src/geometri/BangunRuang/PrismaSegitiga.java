@@ -25,4 +25,11 @@ public class PrismaSegitiga extends Segitiga {
     public void hitungLuasPermukaan() {
         this.luasPermukaan = 0;
     }
+    public double getVolume() {
+        return this.volume;
+    }
+
+    public double getLuasPermukaan() {
+        return this.luasPermukaan;
+    }
 }
