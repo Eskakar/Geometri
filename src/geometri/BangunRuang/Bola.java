@@ -11,13 +11,11 @@ import geometri.BangunDatar.Lingkaran;
  * @author rahadityaputra
  */
 public class Bola extends Lingkaran {
-    public double jariJari;
     protected double volume;
     protected double luasPermukaan;
 
     Bola(double jariJari) {
         super(jariJari);
-        this.jariJari = jariJari;
     }
 
     public void hitungVolume() {
