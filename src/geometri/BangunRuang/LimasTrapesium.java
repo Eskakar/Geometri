@@ -13,14 +13,17 @@ public class LimasTrapesium extends Trapesium{
     public double tinggi;
 
 
-    public LimasTrapesium(double tinggi, double tinggiTrapesium, double sisiAtas, double sisiBawah, double sisiKanan, double sisiKiri, String Nama) {
+    public LimasTrapesium(double tinggi, double tinggiTrapesium, double sisiAtas, double sisiBawah, double sisiKanan, double sisiKiri) {
         
-        super(sisiAtas,sisiBawah,  sisiKanan,  sisiKiri, tinggiTrapesium, Nama);
+        super(sisiAtas,sisiBawah,  sisiKanan,  sisiKiri, tinggiTrapesium, "Limas Trapesium");
         this.tinggi = tinggi;
+        this.hitungLuas();
+        this.hitungKeliling();
     }
 
     public void hitungVolume() {
 
+        this.volume = 1.0/3 * this.luas * this.tinggi;
     }
 
     public void hitungLuasPermukaan() {

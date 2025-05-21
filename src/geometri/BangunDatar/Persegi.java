@@ -3,17 +3,24 @@ package geometri.BangunDatar;
 public class Persegi extends BangunDatar {
 
     protected double sisi;
-
     public Persegi(double sisi) {
-        super("Persegi");
+        this(sisi, "Persegi");
+    }
+    public Persegi(double sisi, String nama) {
+        super(nama);
+        this.sisi = sisi;
+        hitungLuas();
+        hitungKeliling();
     }
     
     @Override
-    public void hitungKeliling() {
+    public void hitungLuas() {
+        this.luas = this.sisi * this.sisi;
         
     }
     @Override
-    public void hitungLuas() {
+    public void hitungKeliling() {
+        this.keliling = 4 * this.sisi;
     }
 
 }

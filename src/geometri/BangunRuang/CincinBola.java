@@ -14,17 +14,19 @@ public class CincinBola extends Bola{
     public double r1;
     public double r2;
     public CincinBola(double r1, double r2,double jarijari) {
-        super(jarijari);
+        super(jarijari, "Cincin Bola");
         this.r1 = r1;
         this.r2 = r2;
+        this.hitungVolume();
+        this.hitungLuasPermukaan();
     }
     @Override
     public void hitungVolume() {
-        this.volume = (4.0/3) * Math.PI * (Math.pow(r1, 3) - Math.pow(r2, 3));
+        this.volume = (4.0/3) * this.PI * (Math.pow(this.r1, 3) - Math.pow(this.r2, 3));
     }
     @Override
     public void hitungLuasPermukaan() {
-        this.luasPermukaan= 4 * Math.PI * (r1 * r1 - r2 * r2);
+        this.luasPermukaan= 4 * this.PI * (this.r1 * this.r1 - this.r2 * this.r2);
     }
     
 }

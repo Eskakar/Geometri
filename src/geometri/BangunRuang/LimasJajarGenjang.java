@@ -15,11 +15,14 @@ public class LimasJajarGenjang extends JajarGenjang {
     public double luasPermukaan;
 
     public LimasJajarGenjang(double tinggiJajarGenjang, double alasJajarGenjang, double alas, double tinggi, double sisiMiring) {
-        super(alasJajarGenjang, tinggiJajarGenjang, sisiMiring);
+        super(alasJajarGenjang, tinggiJajarGenjang, sisiMiring, "Limas Jajar Genjang");
         this.tinggi = tinggi;
+        this.hitungLuas();
+        this.hitungKeliling();
     }
     
     public void hitungVolume() {
+        this.volume = 1.0/3 * this.luas * this.tinggi;
     }
 
     public void hitungLuasPermukaan() {

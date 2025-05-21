@@ -16,12 +16,14 @@ public class LimasSegitiga extends Segitiga {
     public double tinggi;
 
     public LimasSegitiga(double alas, double tinggiLimas, double tinggi, double sisiA, double sisiB, double  sisiC) {
-        super(alas, tinggi, sisiA, sisiB, sisiC);
+        super(alas, tinggi, sisiA, sisiB, sisiC, "Limas Segitiga");
         this.tinggi = tinggi;
+        this.hitungLuas();
+        this.hitungKeliling();
     }
 
     public void hitungVolume() {
-
+        this.volume = 1.0/3 * this.luas * this.tinggi;
     }
 
     public void hitungLuasPermukaan() {

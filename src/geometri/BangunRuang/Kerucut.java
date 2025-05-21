@@ -15,15 +15,22 @@ public class Kerucut extends Lingkaran{
     protected double volume;
     protected double luasPermukaan;
     public Kerucut(double tinggi,double jarijari){
-        super(jarijari);
+        this(tinggi, jarijari, "Kerucut");
+
+    }
+    public Kerucut(double tinggi,double jarijari, String nama){
+        super(jarijari, nama);
         this.tinggi = tinggi;
+        this.hitungVolume();
+        this.hitungLuasPermukaan();
 
     }
     public void hitungVolume() {
-        this.volume = 0;
+        this.volume = 1.0/3 * this.luas * this.tinggi;
     }
     public void hitungLuasPermukaan() {
-        this.luasPermukaan = 0;
+        double sisiMiring = Math.sqrt(this.jariJari * this.jariJari + this.tinggi * this.tinggi);
+        this.luasPermukaan = this.PI * this.jariJari * (this.jariJari + sisiMiring);
     }
 
     public double getVolume() {

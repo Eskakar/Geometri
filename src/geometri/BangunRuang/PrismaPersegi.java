@@ -17,14 +17,14 @@ public class PrismaPersegi extends Persegi {
     public PrismaPersegi(double sisi, double tinggi) {
         super(sisi);
         this.tinggi = tinggi;
+        this.hitungLuas();
+        this.hitungKeliling();
     }
     public void hitungVolume() {
-        //belum diimplentasikan
-        this.volume = 0;
+        this.volume = this.luas * this.tinggi;
     }
     public void hitungLuasPermukaan() {
-        //belum diimplementasikan
-        this.luasPermukaan =  0;
+        this.luasPermukaan = 2 * this.luas + 4 * this.tinggi * this.sisi;
     }
     public double getVolume() {
         return this.volume;

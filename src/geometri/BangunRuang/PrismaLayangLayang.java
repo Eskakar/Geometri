@@ -16,13 +16,14 @@ public class PrismaLayangLayang extends LayangLayang {
     public PrismaLayangLayang(double d1, double d2,double sisi1, double sisi2, double tinggi) {
         super(d1, d2, sisi1, sisi2);
         this.tinggi = tinggi;
+        this.hitungLuas();
+        this.hitungKeliling();
     }
     public void hitungVolume() {
-        this.volume = 0.5 * super.luas * tinggi;
+        this.volume = this.luas * this.tinggi;
     }
     public void hitungLuasPermukaan() {
-        // rumus belum ditulis
-        this.luasPermukaan = 0;
+        this.luasPermukaan = 2 * this.luas + 2 * this.tinggi * this.sisiA + 2 * this.tinggi * this.sisiB;
     }
      public double getVolume() {
         return this.volume;

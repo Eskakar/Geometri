@@ -13,15 +13,17 @@ public class PrismaTrapesium extends Trapesium {
     public double tinggi;
     public double volume;
     public double luasPermukaan;
-    public PrismaTrapesium(double sisiA, double sisiB, double sisiC, double sisiD, double tinggiTrapesium, double tinggi,String Nama) {
-        super(sisiA, sisiB, sisiC, sisiC, tinggiTrapesium,Nama);
+    public PrismaTrapesium(double sisiAtas, double sisiBawah, double sisiKanan, double sisiKiri, double tinggiTrapesium, double tinggi,String Nama) {
+        super(sisiAtas, sisiBawah, sisiKanan, sisiKiri, tinggiTrapesium,Nama);
         this.tinggi = tinggi;
+        this.hitungLuas();
+        this.hitungKeliling();
     }
     public void hitungVolume() { 
-        this.volume = 0;
+        this.volume = this.luas * this.tinggi;
     }
     public void hitungLuasPermukaan() {
-        this.luasPermukaan = 0;
+        this.luasPermukaan = 2 * this.luas + this.sisiAtas * this.tinggi + this.tinggi * this.sisiBawah + this.sisiKanan * this.tinggi + this.sisiKiri * this.tinggi;
     }
 
     public double getVolume() {

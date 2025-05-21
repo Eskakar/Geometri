@@ -10,22 +10,20 @@ import geometri.BangunDatar.PersegiPanjang;
  * @author rahadityaputra
  */
 public class PrismaPersegiPanjang extends PersegiPanjang {
-    public double panjang;
-    public double lebar;
-    public double tinggi;
-    public double volume;
-    public double luasPermukaan;
+    protected double tinggi;
+    protected double volume;
+    protected double luasPermukaan;
     public PrismaPersegiPanjang(double panjang, double lebar, double tinggi) {
         super(panjang, lebar);
         this.tinggi = tinggi;
+        this.hitungLuas();
+        this.hitungKeliling();
     }
     public void hitungVolume() {
-        //belum diimplentasikan
-        this.volume = 0;
+        this.volume = this.luas * this.tinggi;
     }
     public void hitungLuasPermukaan() {
-        //belum diimplementasikan
-        this.luasPermukaan =  0;
+        this.luasPermukaan = 2 * this.luas + 2 * this.tinggi * this.panjang + 2 * this.tinggi * this.lebar;
     }
     public double getVolume() {
         return this.volume;

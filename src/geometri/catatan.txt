@@ -1,0 +1,2 @@
+- aku masih bingung soal mencari luas permukaan  limas trapesium, limas belahketupat, limas jajargenjang, limas layang layang. rumus luas permukaan ga ku isi
+- ada class yang ku tambahin atribut baru lagi

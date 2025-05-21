@@ -19,14 +19,16 @@ public class LimasLayangLayang extends LayangLayang {
     public double tinggiSisiTegak2;
 
     public LimasLayangLayang(double tinggi, double tinggiSisiTegak1, double tinggiSisiTegak2, double diagonal1, double diagonal2, double sisi1, double sisi2) {
-        super(diagonal1, diagonal2, sisi1, sisi2);
+        super(diagonal1, diagonal2, sisi1, sisi2, "Limas Layang Layang");
         this.tinggiSisiTegak1  = tinggiSisiTegak1;
         this.tinggiSisiTegak2  = tinggiSisiTegak2;
         this.tinggi = tinggi;
+        this.hitungLuas();
+        this.hitungKeliling();
     }
 
     public void hitungVolume() {
-
+        this.volume = 1.0/3 * this.luas * this.tinggi;
     }
 
     public void hitungLuasPermukaan() {

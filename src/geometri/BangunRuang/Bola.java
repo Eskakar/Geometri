@@ -15,15 +15,20 @@ public class Bola extends Lingkaran {
     protected double luasPermukaan;
 
     Bola(double jariJari) {
-        super(jariJari);
+        this(jariJari, "Bola");
     }
 
+    Bola(double jariJari, String nama) {
+        super(jariJari, nama);
+        this.hitungVolume();
+        this.hitungLuasPermukaan();
+    }
     public void hitungVolume() {
-        this.volume = (4.0/3) * Math.PI * Math.pow(jariJari, 3);
+        this.volume = (4.0/3) * this.PI * Math.pow(this.jariJari, 3);
     }
 
     public void hitungLuasPermukaan() {
-        this.luasPermukaan = 4 * Math.PI * jariJari * jariJari;
+        this.luasPermukaan = 4 * this.PI * this.jariJari * this.jariJari;
     }
     
     public double getVolume() {
