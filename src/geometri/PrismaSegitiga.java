@@ -9,20 +9,20 @@ package geometri;
  * @author rahadityaputra
  */
 public class PrismaSegitiga extends Segitiga {
-    protected double tinggi; 
+    protected double tinggiPrisma; 
     protected double volume;
     protected double luasPermukaan;
-    public PrismaSegitiga(double alas, double tinggiSegitiga, double tinggi, double sisiA, double sisiB, double sisiC) {
+    public PrismaSegitiga(double alas, double tinggiSegitiga, double tinggiPrisma, double sisiA, double sisiB, double sisiC) {
         super(alas, tinggiSegitiga, sisiA, sisiB, sisiC);
-        this.tinggi = tinggi;
-        this.hitungLuas();
-        this.hitungKeliling();
+        this.tinggiPrisma = tinggiPrisma;
+        this.hitungVolume();
+        this.hitungLuasPermukaan();
     }
     public void hitungVolume() { 
-        this.volume = this.luas * this.tinggi;
+        this.volume = this.luas * this.tinggiPrisma;
     }
     public void hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * this.luas + this.sisiA * this.tinggi + this.tinggi * this.sisiB + this.sisiC * this.tinggi;
+        this.luasPermukaan = 2 * this.luas + this.sisiA * this.tinggiPrisma + this.tinggiPrisma * this.sisiB + this.sisiC * this.tinggiPrisma;
     }
     public double getVolume() {
         return this.volume;

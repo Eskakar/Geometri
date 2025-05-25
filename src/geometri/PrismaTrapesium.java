@@ -9,22 +9,23 @@ package geometri;
  * @author rahadityaputra
  */
 public class PrismaTrapesium extends Trapesium {
-    public double tinggi;
+    public double tinggiPrisma;
     public double volume;
     public double luasPermukaan;
-    public PrismaTrapesium(double sisiAtas, double sisiBawah, double sisiKanan, double sisiKiri, double tinggiTrapesium, double tinggi,String Nama) {
+    public PrismaTrapesium(double sisiAtas, double sisiBawah, double sisiKanan, double sisiKiri, double tinggiTrapesium, double tinggiPrisma,String Nama) {
         super(sisiAtas, sisiBawah, sisiKanan, sisiKiri, tinggiTrapesium,Nama);
-        this.tinggi = tinggi;
-        this.hitungLuas();
-        this.hitungKeliling();
+        this.tinggiPrisma = tinggiPrisma;
+        this.hitungVolume();
+        this.hitungLuasPermukaan();
+
     }
     public void hitungVolume() { 
-        this.volume = this.luas * this.tinggi;
+        this.volume = this.luas * this.tinggiPrisma;
     }
     public void hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * this.luas + this.sisiAtas * this.tinggi + this.tinggi * this.sisiBawah + this.sisiKanan * this.tinggi + this.sisiKiri * this.tinggi;
+        this.luasPermukaan = 2 * this.luas + this.sisiAtas * this.tinggiPrisma + this.tinggiPrisma * this.sisiBawah + this.sisiKanan * this.tinggiPrisma + this.sisiKiri * this.tinggiPrisma;
     }
-
+    //hitung luas dari trapesium sudah dipakai
     public double getVolume() {
         return this.volume;
     }

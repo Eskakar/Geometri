@@ -1,2 +1,8 @@
 - aku masih bingung soal mencari luas permukaan  limas trapesium, limas belahketupat, limas jajargenjang, limas layang layang. rumus luas permukaan ga ku isi
 - ada class yang ku tambahin atribut baru lagi
+
+Nabil
+-catatan semua 3d class di constructor ada hitung keliling sama itubng luas
+ganti ke hitung volume sama hitung Luas permukaan
+- pengen ganti hitungKeliling menjadi private (malas)
+- merubah semua tinggi 3d menjadi tinggiLimas atau tinggiPrisma

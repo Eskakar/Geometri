@@ -15,8 +15,8 @@ public class TemberengBola extends Bola{
     public TemberengBola(double jari, double tinggi,double jarijari) {
         super(jarijari);
         this.tinggi = tinggi;
-        this.hitungLuas();
-        this.hitungKeliling();
+        this.hitungVolume();
+        this.hitungLuasPermukaan();
     }
 
     @Override

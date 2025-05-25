@@ -10,8 +10,8 @@ package geometri;
  */
 public class KerucutTerpancung extends Kerucut{
     protected double jarijariAtas;
-    public KerucutTerpancung(double tinggi,double jarijari,double jarijariAtas){
-        super(tinggi,jarijari, "Kerucut Terpancung");
+    public KerucutTerpancung(double tinggiKerucut,double jarijari,double jarijariAtas){
+        super(tinggiKerucut,jarijari, "Kerucut Terpancung");
         this.jarijariAtas = jarijariAtas;
         this.hitungVolume();
         this.hitungLuasPermukaan();
@@ -19,12 +19,12 @@ public class KerucutTerpancung extends Kerucut{
     
     @Override
     public void hitungVolume() {
-        this.volume = (1.0 / 3) * this.PI * this.tinggi *
+        this.volume = (1.0 / 3) * this.PI * this.tinggiKerucut *
                 (this.jariJari * this.jariJari + this.jariJari * this.jarijariAtas + this.jarijariAtas * this.jarijariAtas);
     }
     @Override
     public void hitungLuasPermukaan() {
-        double s = Math.sqrt((this.jariJari - this.jarijariAtas) * (this.jariJari - this.jarijariAtas) + this.tinggi * this.tinggi);
+        double s = Math.sqrt((this.jariJari - this.jarijariAtas) * (this.jariJari - this.jarijariAtas) + this.tinggiKerucut * this.tinggiKerucut);
         double luasSelimut = this.PI * (this.jariJari + this.jarijariAtas) * s;
         double luasAlasBawah = this.PI * this.jariJari * this.jariJari;
         double luasAlasAtas = this.PI * this.jarijariAtas * this.jarijariAtas;

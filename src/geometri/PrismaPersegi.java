@@ -9,21 +9,21 @@ package geometri;
  * @author rahadityaputra
  */
 public class PrismaPersegi extends Persegi {
-    public double tinggi;
+    public double tinggiPrisma;
     public double volume;
     public double luasPermukaan;
 
-    public PrismaPersegi(double sisi, double tinggi) {
+    public PrismaPersegi(double sisi, double tinggiPrisma) {
         super(sisi);
-        this.tinggi = tinggi;
-        this.hitungLuas();
-        this.hitungKeliling();
+        this.tinggiPrisma = tinggiPrisma;
+        this.hitungVolume();
+        this.hitungLuasPermukaan();
     }
     public void hitungVolume() {
-        this.volume = this.luas * this.tinggi;
+        this.volume = this.luas * this.tinggiPrisma;
     }
     public void hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * this.luas + 4 * this.tinggi * this.sisi;
+        this.luasPermukaan = 2 * this.luas + 4 * this.tinggiPrisma * this.sisi;
     }
     public double getVolume() {
         return this.volume;

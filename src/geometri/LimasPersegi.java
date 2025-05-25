@@ -11,12 +11,12 @@ package geometri;
 public class LimasPersegi extends Persegi {
     public double volume;
     public double luasPermukaan;
-    public double tinggi;
+    public double tinggiLimas;
     protected double tinggiSisiMiring;
 
-    public LimasPersegi(double sisi, double tinggi) {
+    public LimasPersegi(double sisi, double tinggiLimas) {
         super(sisi, "Limas Persegi");
-        this.tinggi = tinggi;
+        this.tinggiLimas = tinggiLimas;
         this.hitungTinggiSisiMiring();
         this.hitungVolume();
         this.hitungLuasPermukaan();
@@ -24,11 +24,11 @@ public class LimasPersegi extends Persegi {
 
 
     private void hitungTinggiSisiMiring() {
-        this.tinggiSisiMiring = Math.sqrt(Math.pow(this.tinggi, 2) + Math.pow(this.sisi / 2, 2));
+        this.tinggiSisiMiring = Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(this.sisi / 2, 2));
     }
 
     public void hitungVolume() {
-        this.volume = 1.0/3 * this.luas * this.tinggi;
+        this.volume = 1.0/3 * this.luas * this.tinggiLimas;
     }
 
     public void hitungLuasPermukaan() {

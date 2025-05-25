@@ -9,22 +9,22 @@ package geometri;
  * @author rahadityaputra
  */
 public class PrismaJajarGenjang extends JajarGenjang{
-    public double tinggi;
+    public double tinggiPrisma;
     public double volume;
     public double luasPermukaan;
-    public PrismaJajarGenjang(double alas, double tinggiAlas, double tinggi, double sisiMiringAlas) {
+    public PrismaJajarGenjang(double alas, double tinggiAlas, double tinggiPrisma, double sisiMiringAlas) {
         super(alas,tinggiAlas, sisiMiringAlas);
-        this.tinggi = tinggi;
-        this.hitungLuas();
-        this.hitungKeliling();
+        this.tinggiPrisma = tinggiPrisma;
+        this.hitungVolume();
+        this.hitungLuasPermukaan();
     }
     public void hitungVolume() {
-        this.volume = this.luas * this.tinggi;
+        this.volume = this.luas * this.tinggiPrisma;
     }
     public void hitungLuasPermukaan() {
         double tinggiAlas = super.tinggi;
         double alasJajarGenjang = super.alas;
-        this.luasPermukaan = 2 * alasJajarGenjang * tinggiAlas + 2 * (alasJajarGenjang + tinggiAlas) * tinggi;
+        this.luasPermukaan = 2 * alasJajarGenjang * tinggiAlas + 2 * (alasJajarGenjang + tinggiAlas) * tinggiPrisma;
     }   
     public double getVolume() {
         return this.volume;

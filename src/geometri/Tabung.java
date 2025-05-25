@@ -9,21 +9,21 @@ package geometri;
  * @author rahadityaputra
  */
 public class Tabung extends Lingkaran {
-    protected double tinggi;
+    protected double tinggiPrisma;
     protected double volume;
     protected double luasPermukaan;
-    public Tabung(double jari, double tinggiPrisma, double tinggi) {
+    public Tabung(double jari, double tinggiPrisma) {
         super(jari, "Tabung");
-        this.tinggi = tinggi;
-        this.hitungLuas();
-        this.hitungKeliling();
+        this.tinggiPrisma = tinggiPrisma;
+        this.hitungVolume();
+        this.hitungLuasPermukaan();
     }
     public void hitungVolume() {
-        this.volume = this.luas * this.tinggi;
+        this.volume = this.luas * this.tinggiPrisma;
 
     }
     public void hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * this.luas + (2 * this.PI * this.jariJari * this.tinggi) ;
+        this.luasPermukaan = 2 * this.luas + (2 * this.PI * this.jariJari * this.tinggiPrisma) ;
     }
     public double getVolume() {
         return this.volume;

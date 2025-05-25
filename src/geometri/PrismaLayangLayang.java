@@ -9,20 +9,20 @@ package geometri;
  * @author rahadityaputra
  */
 public class PrismaLayangLayang extends LayangLayang {
-    protected double tinggi;
+    protected double tinggiPrisma;
     public double volume;
     public double luasPermukaan;
-    public PrismaLayangLayang(double d1, double d2,double sisi1, double sisi2, double tinggi) {
+    public PrismaLayangLayang(double d1, double d2,double sisi1, double sisi2, double tinggiPrisma) {
         super(d1, d2, sisi1, sisi2);
-        this.tinggi = tinggi;
-        this.hitungLuas();
-        this.hitungKeliling();
+        this.tinggiPrisma = tinggiPrisma;
+        this.hitungVolume();
+        this.hitungLuasPermukaan();
     }
     public void hitungVolume() {
-        this.volume = this.luas * this.tinggi;
+        this.volume = this.luas * this.tinggiPrisma;
     }
     public void hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * this.luas + 2 * this.tinggi * this.sisiA + 2 * this.tinggi * this.sisiB;
+        this.luasPermukaan = 2 * this.luas + 2 * this.tinggiPrisma * this.sisiA + 2 * this.tinggiPrisma * this.sisiB;
     }
      public double getVolume() {
         return this.volume;

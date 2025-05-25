@@ -10,25 +10,25 @@ package geometri;
  * @author rahadityaputra
  */
 public class Kerucut extends Lingkaran{
-    protected double tinggi;
+    protected double tinggiKerucut;
     protected double volume;
     protected double luasPermukaan;
     public Kerucut(double tinggi,double jarijari){
         this(tinggi, jarijari, "Kerucut");
 
     }
-    public Kerucut(double tinggi,double jarijari, String nama){
+    public Kerucut(double tinggiKerucut,double jarijari, String nama){
         super(jarijari, nama);
-        this.tinggi = tinggi;
+        this.tinggiKerucut = tinggiKerucut;
         this.hitungVolume();
         this.hitungLuasPermukaan();
 
     }
     public void hitungVolume() {
-        this.volume = 1.0/3 * this.luas * this.tinggi;
+        this.volume = 1.0/3 * this.luas * this.tinggiKerucut;
     }
     public void hitungLuasPermukaan() {
-        double sisiMiring = Math.sqrt(this.jariJari * this.jariJari + this.tinggi * this.tinggi);
+        double sisiMiring = Math.sqrt(this.jariJari * this.jariJari + this.tinggiKerucut * this.tinggiKerucut);
         this.luasPermukaan = this.PI * this.jariJari * (this.jariJari + sisiMiring);
     }
 
