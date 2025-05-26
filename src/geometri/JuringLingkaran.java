@@ -12,13 +12,14 @@ public class JuringLingkaran extends Lingkaran {
     }
 
     @Override
-    public void hitungKeliling(){
+    public double hitungKeliling(){
         this.keliling = 2 * this.jariJari + (this.sudutPusat / 360.0) * 2 * this.PI * this.jariJari;
+        return this.keliling;
         
     };
     @Override
-    public void hitungLuas(){
-        // bingung cuy 
+    public double hitungLuas(){
         this.luas = (this.sudutPusat / 360.0) * this.luas;
+        return this.luas;
     };
 }

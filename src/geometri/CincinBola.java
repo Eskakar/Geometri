@@ -1,15 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package geometri;
 
-/**
- *
- * @author rahadityaputra
- */
-
-// ini perlu extend bola
 public class CincinBola extends Bola{
     public double r1;
     public double r2;
@@ -19,12 +9,14 @@ public class CincinBola extends Bola{
         this.r2 = r2;
     }
     @Override
-    public void hitungVolume() {
+    public double hitungVolume() {
         this.volume = (4.0/3) * this.PI * (Math.pow(this.r1, 3) - Math.pow(this.r2, 3));
+        return this.volume;
     }
     @Override
-    public void hitungLuasPermukaan() {
+    public double hitungLuasPermukaan() {
         this.luasPermukaan= 4 * this.PI * (this.r1 * this.r1 - this.r2 * this.r2);
+        return this.luasPermukaan;
     }
     
 }

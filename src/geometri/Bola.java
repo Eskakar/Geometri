@@ -4,35 +4,26 @@
  */
 package geometri;
 
-
-/**
- *
- * @author rahadityaputra
- */
 public class Bola extends Lingkaran {
-    protected double volume;
-    protected double luasPermukaan;
+  protected double volume;
+  protected double luasPermukaan;
 
-    Bola(double jariJari) {
-        this(jariJari, "Bola");
-    }
+  Bola(double jariJari) {
+    this(jariJari, "Bola");
+  }
 
-    Bola(double jariJari, String nama) {
-        super(jariJari, nama);
-    }
-    public void hitungVolume() {
-        this.volume = (4.0/3) * this.PI * Math.pow(this.jariJari, 3);
-    }
+  Bola(double jariJari, String nama) {
+    super(jariJari, nama);
+  }
 
-    public void hitungLuasPermukaan() {
-        this.luasPermukaan = 4 * this.PI * this.jariJari * this.jariJari;
-    }
-    
-    public double getVolume() {
-        return this.volume;
-    }
+  public double hitungVolume() {
+    this.volume = (4.0 / 3) * this.PI * Math.pow(this.jariJari, 3);
+    return this.volume;
+  }
 
-    public double getLuasPermukaan() {
-        return this.luasPermukaan;
-    }
+  public double hitungLuasPermukaan() {
+    this.luasPermukaan = 4 * this.PI * this.jariJari * this.jariJari;
+    return this.luasPermukaan;
+  }
+
 }

@@ -13,11 +13,13 @@ public class JajarGenjang extends BangunDatar {
         super(nama);
     }
     @Override
-    public void hitungKeliling() {
+    public double hitungKeliling() {
         this.keliling =  2 * (this.alas + this.sisiMiring);
+        return this.keliling;
     }
     @Override
-    public void hitungLuas() {
+    public double hitungLuas() {
         this.luas =  this.alas * this.tinggi;
+        return this.luas;
     }
 }

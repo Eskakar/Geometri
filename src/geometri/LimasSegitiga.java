@@ -19,24 +19,11 @@ public class LimasSegitiga extends Segitiga {
     }
     
     
-    public void hitungLuasPermukaan() {
-         // Luas sisi tegak A
+    public double hitungLuasPermukaan() {
         double luasA = 0.5 * this.sisiA * hitungTinggiSisiMiring(this.sisiA);
-
-        // Luas sisi tegak B
         double luasB = 0.5 * this.sisiB * hitungTinggiSisiMiring(this.sisiB);
-
-        // Luas sisi tegak C
         double luasC = 0.5 * this.sisiC * hitungTinggiSisiMiring(this.sisiC);
-
-        // Total luas permukaan = alas + 3 sisi tegak
         this.luasPermukaan = this.luas + luasA + luasB + luasC;
-    }
-    public double getVolume() {
-        return this.volume;
-    }
-
-    public double getLuasPermukaan() {
         return this.luasPermukaan;
     }
 }

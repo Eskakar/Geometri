@@ -10,20 +10,14 @@ public class Tabung extends Lingkaran {
         this.tinggiPrisma = tinggiPrisma;
     }
 
-    public void hitungVolume() {
+    public double hitungVolume() {
         this.volume = this.luas * this.tinggiPrisma;
-
-    }
-
-    public void hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * this.luas + (2 * this.PI * this.jariJari * this.tinggiPrisma) ;
-    }
-
-    public double getVolume() {
         return this.volume;
+
     }
 
-    public double getLuasPermukaan() {
+    public double hitungLuasPermukaan() {
+        this.luasPermukaan = 2 * this.luas + (2 * this.PI * this.jariJari * this.tinggiPrisma) ;
         return this.luasPermukaan;
     }
 }

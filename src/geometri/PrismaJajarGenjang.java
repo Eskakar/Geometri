@@ -10,21 +10,15 @@ public class PrismaJajarGenjang extends JajarGenjang{
         this.tinggiPrisma = tinggiPrisma;
     }
 
-    public void hitungVolume() {
+    public double hitungVolume() {
         this.volume = this.luas * this.tinggiPrisma;
-    }
-
-    public void hitungLuasPermukaan() {
-        double tinggiAlas = super.tinggi;
-        double alasJajarGenjang = super.alas;
-        this.luasPermukaan = 2 * alasJajarGenjang * tinggiAlas + 2 * (alasJajarGenjang + tinggiAlas) * tinggiPrisma;
-    }   
-
-    public double getVolume() {
         return this.volume;
     }
 
-    public double getLuasPermukaan() {
+    public double hitungLuasPermukaan() {
+        double tinggiAlas = super.tinggi;
+        double alasJajarGenjang = super.alas;
+        this.luasPermukaan = 2 * alasJajarGenjang * tinggiAlas + 2 * (alasJajarGenjang + tinggiAlas) * tinggiPrisma;
         return this.luasPermukaan;
-    }
+    }   
 }

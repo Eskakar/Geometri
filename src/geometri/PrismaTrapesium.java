@@ -10,20 +10,14 @@ public class PrismaTrapesium extends Trapesium {
         this.tinggiPrisma = tinggiPrisma;
     }
 
-    public void hitungVolume() { 
+    public double hitungVolume() { 
         this.volume = this.luas * this.tinggiPrisma;
-    }
-
-    public void hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * this.luas + this.sisiAtas * this.tinggiPrisma + this.tinggiPrisma * this.sisiBawah + this.sisiKanan * this.tinggiPrisma + this.sisiKiri * this.tinggiPrisma;
-    }
-
-    //hitung luas dari trapesium sudah dipakai
-    public double getVolume() {
         return this.volume;
     }
 
-    public double getLuasPermukaan() {
+    public double hitungLuasPermukaan() {
+        this.luasPermukaan = 2 * this.luas + this.sisiAtas * this.tinggiPrisma + this.tinggiPrisma * this.sisiBawah + this.sisiKanan * this.tinggiPrisma + this.sisiKiri * this.tinggiPrisma;
         return this.luasPermukaan;
     }
+
 }

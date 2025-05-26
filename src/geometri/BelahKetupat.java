@@ -14,17 +14,20 @@ public class BelahKetupat extends BangunDatar {
         this.diagonal2 = diagonal2;
     }
 
-    private void hitungSisi() {
+    private double hitungSisi() {
         double setengahD1 = this.diagonal1 / 2.0;
         double setengahD2 = this.diagonal2 / 2.0;
         this.sisi = Math.sqrt(setengahD1 * setengahD1 + setengahD2 * setengahD2);
+        return this.sisi;
     }
     @Override
-    public void hitungLuas() {
+    public double hitungLuas() {
         this.luas = 0.5 * diagonal1 * diagonal2;
+        return this.luas;
     }
     @Override
-    public void hitungKeliling() {
-        this.keliling = 4 * this.sisi;
+    public double hitungKeliling() {
+        this.keliling = 4 * this.hitungSisi();
+        return this.keliling;
     }
 }

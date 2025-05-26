@@ -15,13 +15,15 @@ public class Persegi extends BangunDatar implements Runnable {
     }
     
     @Override
-    public void hitungLuas() {
+    public double hitungLuas() {
         this.luas = this.sisi * this.sisi;
-        
+        return this.luas;
     }
+
     @Override
-    public void hitungKeliling() {
+    public double hitungKeliling() {
         this.keliling = 4 * this.sisi;
+        return this.keliling;
     }
 
     @Override

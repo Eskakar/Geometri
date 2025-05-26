@@ -8,9 +8,9 @@ public abstract class BangunDatar implements Geometri {
     public BangunDatar(String nama) {
         this.nama = nama;
     }
-    public abstract void hitungKeliling();
+    public abstract double hitungKeliling();
     @Override
-    public abstract void hitungLuas();
+    public abstract double hitungLuas();
 
     public double getLuas() {
         return this.luas;

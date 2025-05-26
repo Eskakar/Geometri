@@ -25,12 +25,16 @@ public class Segitiga extends BangunDatar implements Runnable {
     }
 
    @Override
-    public void hitungKeliling() {
+
+    public double hitungKeliling() {
         this.keliling = this.sisiA + this.sisiB + this.sisiC;
+        return this.luas;
     }
+
     @Override
-    public void hitungLuas() {
+    public double hitungLuas() {
         this.luas = 0.5 * this.alas * this.tinggi;
+        return this.luas;
     }
     
     @Override

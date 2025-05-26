@@ -13,26 +13,20 @@ public class LimasBelahKetupat extends BelahKetupat {
         this.hitungVolume();
     }
     
-    public void hitungVolume() {
+    public double hitungVolume() {
         this.volume = 1.0/3 * this.luas * this.tinggiLimas;
+        return this.volume;
     }
 
     private double hitungTinggiSegitigaSisiTegak(){
         return Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(this.sisi / 2, 2));
     }
             
-    public void hitungLuasPermukaan() {
+    public double hitungLuasPermukaan() {
         double luasSegitiga = 0.5 * this.sisi * hitungTinggiSegitigaSisiTegak();
         double luasSeluruhSegitiga = 4 * luasSegitiga;
-        
         this.luasPermukaan = this.luas + luasSeluruhSegitiga;
-    }
-
-    public double getVolume() {
-        return this.volume;
-    }
-
-    public double getLuasPermukaan() {
         return this.luasPermukaan;
     }
+
 }

@@ -11,24 +11,18 @@ public class LimasPersegi extends Persegi {
         this.tinggiLimas = tinggiLimas;
     }
 
-
-    private void hitungTinggiSisiMiring() {
+    private double hitungTinggiSisiMiring() {
         this.tinggiSisiMiring = Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(this.sisi / 2, 2));
+        return this.tinggiSisiMiring;
     }
 
-    public void hitungVolume() {
+    public double hitungVolume() {
         this.volume = 1.0/3 * this.luas * this.tinggiLimas;
-    }
-
-    public void hitungLuasPermukaan() {
-        this.luasPermukaan = this.luas + (4 * 0.5 * this.sisi * this.tinggiSisiMiring);
-    }
-
-    public double getVolume() {
         return this.volume;
     }
 
-    public double getLuasPermukaan() {
+    public double hitungLuasPermukaan() {
+        this.luasPermukaan = this.luas + (4 * 0.5 * this.sisi * this.hitungTinggiSisiMiring());
         return this.luasPermukaan;
     }
 }

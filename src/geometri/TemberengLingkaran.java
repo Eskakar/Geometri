@@ -14,13 +14,14 @@ public class TemberengLingkaran extends Lingkaran {
     }
 
     @Override
-    public void hitungKeliling() {
+    public double hitungKeliling() {
         this.sudut = 2 * Math.acos((this.jariJari - this.tinggi) / this.jariJari);
         this.keliling = sudut * this.jariJari + 2 * Math.sqrt(2 * this.jariJari * this.tinggi - this.tinggi * this.tinggi);
-
+        return this.keliling;
     }
      @Override
-    public void hitungLuas() {
+    public double hitungLuas() {
         this.luas = (this.jariJari * this.jariJari * Math.acos((this.jariJari - this.tinggi) / this.jariJari) - (this.jariJari - this.tinggi) * Math.sqrt(2 * this.jariJari * this.tinggi - this.tinggi * this.tinggi));
+        return this.luas;
     }
 }

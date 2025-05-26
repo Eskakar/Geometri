@@ -10,19 +10,13 @@ public class PrismaLayangLayang extends LayangLayang {
         this.tinggiPrisma = tinggiPrisma;
     }
 
-    public void hitungVolume() {
+    public double hitungVolume() {
         this.volume = this.luas * this.tinggiPrisma;
-    }
-
-    public void hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * this.luas + 2 * this.tinggiPrisma * this.sisiA + 2 * this.tinggiPrisma * this.sisiB;
-    }
-
-    public double getVolume() {
         return this.volume;
     }
 
-    public double getLuasPermukaan() {
+    public double hitungLuasPermukaan() {
+        this.luasPermukaan = 2 * this.luas + 2 * this.tinggiPrisma * this.sisiA + 2 * this.tinggiPrisma * this.sisiB;
         return this.luasPermukaan;
     }
 }

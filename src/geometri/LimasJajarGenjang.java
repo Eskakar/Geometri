@@ -37,11 +37,4 @@ public class LimasJajarGenjang extends JajarGenjang {
         this.luasPermukaan = this.luas + (2 * luasSegitigaPanjang) + (2 * luasSegitigaPendek);
     }
     
-    public double getVolume() {
-        return this.volume;
-    }
-
-    public double getLuasPermukaan() {
-        return this.luasPermukaan;
-    }
 }

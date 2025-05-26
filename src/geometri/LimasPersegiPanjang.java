@@ -10,22 +10,16 @@ public class LimasPersegiPanjang extends PersegiPanjang {
         this.tinggiLimas = tinggiLimas;
     }
 
-    public void hitungVolume() {
+    public double hitungVolume() {
         this.volume = 1.0/3 * this.luas * this.tinggiLimas;
+        return this.volume;
 
     }
 
-    public void hitungLuasPermukaan() {
+    public double hitungLuasPermukaan() {
         double tinggiSisiMiring1 = Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(this.panjang / 2, 2));
         double tinggiSisiMiring2 = Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(this.lebar / 2, 2));
         this.luasPermukaan = this.luas + (tinggiSisiMiring1 * this.panjang ) + (tinggiSisiMiring2 * this.lebar);
-
-    }
-    public double getVolume() {
-        return this.volume;
-    }
-
-    public double getLuasPermukaan() {
         return this.luasPermukaan;
     }
 }

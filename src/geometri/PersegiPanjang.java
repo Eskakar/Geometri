@@ -15,12 +15,14 @@ public class PersegiPanjang extends BangunDatar {
     }
 
     @Override
-    public void hitungKeliling() {
+    public double hitungKeliling() {
         this.keliling = 2 * (this.panjang + this.lebar);
+        return this.keliling;
     }
 
     @Override
-    public void hitungLuas() {
+    public double hitungLuas() {
         this.luas = this.panjang * this.lebar;
+        return this.luas;
     }
 }

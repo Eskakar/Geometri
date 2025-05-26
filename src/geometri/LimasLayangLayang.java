@@ -25,12 +25,4 @@ public class LimasLayangLayang extends LayangLayang {
         // Total luas permukaan = luas alas + jumlah luas semua sisi tegak
         this.luasPermukaan = this.luas + (2 * luasSegitiga1) + (2 * luasSegitiga2);
     }
-
-    public double getVolume() {
-        return this.volume;
-    }
-
-    public double getLuasPermukaan() {
-        return this.luasPermukaan;
-    }
 }

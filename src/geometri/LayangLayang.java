@@ -18,12 +18,16 @@ public class LayangLayang extends BangunDatar {
         this.hitungLuas();
         this.hitungKeliling();
     }
+
     @Override
-    public void hitungKeliling(){
+    public double hitungKeliling(){
         this.keliling = 2 * (this.sisiA + this.sisiB);
+        return this.keliling;
     }
+
     @Override
-    public void hitungLuas(){
+    public double hitungLuas(){
         this.luas = 0.5 * diagoal1 * diagonal2;
+        return this.luas;
     }
 }
