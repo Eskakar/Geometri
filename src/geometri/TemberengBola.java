@@ -1,28 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package geometri;
 
-/**
- *
- * @author rahadityaputra
- */
-public class TemberengBola extends Bola{
-     protected double tinggi;
-     protected double volume;
-     protected double luasPermukaan;
+public class TemberengBola extends Bola {
+    protected double tinggi;
+    protected double volume;
+    protected double luasPermukaan;
+
     public TemberengBola(double jari, double tinggi,double jarijari) {
         super(jarijari);
         this.tinggi = tinggi;
-        this.hitungVolume();
-        this.hitungLuasPermukaan();
     }
 
     @Override
     public void hitungVolume() {
         this.volume = (this.PI * this.tinggi * this.tinggi * (3 * this.jariJari - this.tinggi)) / 3;
     }
+
     @Override
     public void hitungLuasPermukaan() {
         double luasSelimut = 2 * this.PI * this.jariJari * this.tinggi;
@@ -31,6 +23,7 @@ public class TemberengBola extends Bola{
         this.luasPermukaan = luasSelimut + luasALas;
 
     }
+
     public double getVolume() {
         return this.volume;
     }

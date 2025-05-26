@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package geometri;
 
-/**
- *
- * @author rahadityaputra
- */
 public class LimasPersegi extends Persegi {
     public double volume;
     public double luasPermukaan;
@@ -17,9 +9,6 @@ public class LimasPersegi extends Persegi {
     public LimasPersegi(double sisi, double tinggiLimas) {
         super(sisi, "Limas Persegi");
         this.tinggiLimas = tinggiLimas;
-        this.hitungTinggiSisiMiring();
-        this.hitungVolume();
-        this.hitungLuasPermukaan();
     }
 
 

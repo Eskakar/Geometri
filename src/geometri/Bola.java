@@ -19,8 +19,6 @@ public class Bola extends Lingkaran {
 
     Bola(double jariJari, String nama) {
         super(jariJari, nama);
-        this.hitungVolume();
-        this.hitungLuasPermukaan();
     }
     public void hitungVolume() {
         this.volume = (4.0/3) * this.PI * Math.pow(this.jariJari, 3);

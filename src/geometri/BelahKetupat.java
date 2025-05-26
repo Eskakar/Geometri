@@ -12,9 +12,6 @@ public class BelahKetupat extends BangunDatar {
         super(nama);
         this.diagonal1 = diagonal1;
         this.diagonal2 = diagonal2;
-        this.hitungSisi();
-        this.hitungLuas();
-        this.hitungKeliling();
     }
 
     private void hitungSisi() {

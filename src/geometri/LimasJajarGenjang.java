@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package geometri;
 
-/**
- *
- * @author rahadityaputra
- */
 public class LimasJajarGenjang extends JajarGenjang {
     public double volume;
     public double luasPermukaan;
@@ -18,8 +10,6 @@ public class LimasJajarGenjang extends JajarGenjang {
     public LimasJajarGenjang(double tinggiJajarGenjang, double alasJajarGenjang, double alas, double tinggi, double sisiMiring, double tinggiSegitigaPanjang, double tinggiSegitigaPendek) {
         super(alasJajarGenjang, tinggiJajarGenjang, sisiMiring, "Limas Jajar Genjang");
         this.tinggiLimas = tinggi;
-        this.hitungLuasPermukaan();
-        this.hitungVolume();
     }
     
     public void hitungVolume() {

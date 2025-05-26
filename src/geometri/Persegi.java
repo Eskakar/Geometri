@@ -1,6 +1,7 @@
 package geometri;
 
-public class Persegi extends BangunDatar {
+public class Persegi extends BangunDatar implements Runnable {
+    private Thread thread;
 
     protected double sisi;
     public Persegi(double sisi) {
@@ -9,8 +10,8 @@ public class Persegi extends BangunDatar {
     public Persegi(double sisi, String nama) {
         super(nama);
         this.sisi = sisi;
-        hitungLuas();
-        hitungKeliling();
+        thread = new Thread(this);
+        thread.start();
     }
     
     @Override
@@ -23,4 +24,17 @@ public class Persegi extends BangunDatar {
         this.keliling = 4 * this.sisi;
     }
 
+    @Override
+    public void run() {
+        hitungKeliling();
+        hitungLuas();
+    }
+    
+    public void waitDone() {
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

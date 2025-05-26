@@ -1,10 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package geometri;
-
-
 
 public final class LimasTrapesium extends Trapesium{
     public double volume;
@@ -16,8 +10,6 @@ public final class LimasTrapesium extends Trapesium{
         
         super(sisiAtas,sisiBawah,  sisiKanan,  sisiKiri, tinggiTrapesium, "Limas Trapesium");
         this.tinggi = tinggi;
-        this.hitungLuasPermukaan();
-        this.hitungVolume();
     }
 
     public void hitungVolume() {

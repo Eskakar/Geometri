@@ -1,14 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package geometri;
-
-
-/**
- *
- * @author rahadityaputra
- */
 
 public class LimasLayangLayang extends LayangLayang {
     public double volume;
@@ -22,8 +12,6 @@ public class LimasLayangLayang extends LayangLayang {
         this.tinggiSisiTegak1  = tinggiSisiTegak1;
         this.tinggiSisiTegak2  = tinggiSisiTegak2;
         this.tinggiLimas = tinggiLimas;
-        this.hitungLuasPermukaan();
-        this.hitungVolume();
     }
 
     public void hitungVolume() {

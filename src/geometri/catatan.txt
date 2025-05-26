@@ -6,3 +6,13 @@ Nabil
 ganti ke hitung volume sama hitung Luas permukaan
 - pengen ganti hitungKeliling menjadi private (malas)
 - merubah semua tinggi 3d menjadi tinggiLimas atau tinggiPrisma
+
+Yoda
+-persegi, sam segitiga udh implemen thread, tapi segitiga cm coba2
+
+todo
+-benerin interface geometri
+-bedain this sama super
+-constructor gaboleh ngitung (udah)
+-main di luar package (sementara ku hapus)
+-tabel materi bab2

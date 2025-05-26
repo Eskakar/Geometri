@@ -17,8 +17,6 @@ public class CincinBola extends Bola{
         super(jarijari, "Cincin Bola");
         this.r1 = r1;
         this.r2 = r2;
-        this.hitungVolume();
-        this.hitungLuasPermukaan();
     }
     @Override
     public void hitungVolume() {

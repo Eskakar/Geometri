@@ -1,20 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package geometri;
 
-/**
- *
- * @author rahadityaputra
- */
 public class KerucutTerpancung extends Kerucut{
     protected double jarijariAtas;
     public KerucutTerpancung(double tinggiKerucut,double jarijari,double jarijariAtas){
         super(tinggiKerucut,jarijari, "Kerucut Terpancung");
         this.jarijariAtas = jarijariAtas;
-        this.hitungVolume();
-        this.hitungLuasPermukaan();
     }
     
     @Override

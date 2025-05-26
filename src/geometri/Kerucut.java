@@ -1,14 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package geometri;
 
-
-/**
- *
- * @author rahadityaputra
- */
 public class Kerucut extends Lingkaran{
     protected double tinggiKerucut;
     protected double volume;
@@ -20,8 +11,6 @@ public class Kerucut extends Lingkaran{
     public Kerucut(double tinggiKerucut,double jarijari, String nama){
         super(jarijari, nama);
         this.tinggiKerucut = tinggiKerucut;
-        this.hitungVolume();
-        this.hitungLuasPermukaan();
 
     }
     public void hitungVolume() {

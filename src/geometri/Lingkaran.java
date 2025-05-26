@@ -4,14 +4,14 @@ public class Lingkaran extends BangunDatar {
 
     protected double jariJari;
     protected final double PI = 3.14;
+
     public Lingkaran(double jariJari) {
         this(jariJari, "Lingkaran");
     }
+
     public Lingkaran(double jariJari, String nama) {
         super(nama);
         this.jariJari = jariJari;
-        this.hitungLuas();
-        this.hitungKeliling();
     }
 
     @Override

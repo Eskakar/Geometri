@@ -1,13 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package geometri;
-
-/**
- *
- * @author rahadityaputra
- */
 
 public class LimasBelahKetupat extends BelahKetupat {
     protected double volume;
@@ -27,8 +18,7 @@ public class LimasBelahKetupat extends BelahKetupat {
     }
 
     private double hitungTinggiSegitigaSisiTegak(){
-        double tinggiSegitigaTegak; 
-        return tinggiSegitigaTegak = Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(this.sisi / 2, 2));
+        return Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(this.sisi / 2, 2));
     }
             
     public void hitungLuasPermukaan() {

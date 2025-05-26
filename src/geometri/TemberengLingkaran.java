@@ -1,7 +1,6 @@
 package geometri;
 
 public class TemberengLingkaran extends Lingkaran {
-
     protected double busur;
     protected double tinggi;
     protected double taliBusur;
@@ -12,8 +11,6 @@ public class TemberengLingkaran extends Lingkaran {
         this.busur = busur;
         this.tinggi = tinggi;
         this.taliBusur = taliBusur;
-        this.hitungLuas();
-        this.hitungKeliling();
     }
 
     @Override

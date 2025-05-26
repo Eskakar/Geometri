@@ -11,8 +11,6 @@ public class JajarGenjang extends BangunDatar {
     }
     public JajarGenjang(double alas, double tinggi, double sisiMiring, String nama) {
         super(nama);
-        this.hitungLuas();
-        this.hitungKeliling();
     }
     @Override
     public void hitungKeliling() {

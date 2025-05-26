@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package geometri;
 
-/**
- *
- * @author rahadityaputra
- */
 public class LimasSegitiga extends Segitiga {
     public double volume;
     public double luasPermukaan;
@@ -16,8 +8,6 @@ public class LimasSegitiga extends Segitiga {
     public LimasSegitiga(double alas, double tinggiLimas, double tinggi, double sisiA, double sisiB, double  sisiC) {
         super(alas, tinggi, sisiA, sisiB, sisiC, "Limas Segitiga");
         this.tinggiLimas = tinggiLimas;
-        this.hitungVolume();
-        this.hitungLuasPermukaan();
     }
 
     public void hitungVolume() {
