@@ -14,5 +14,7 @@ todo
 -benerin interface geometri
 -bedain this sama super
 -constructor gaboleh ngitung (udah)
+-method parent, manggilnya pake super, contoh super.hitungLuas() di class LimasPersegiPanjang
 -main di luar package (sementara ku hapus)
 -tabel materi bab2
+-pakai scanner untuk input
