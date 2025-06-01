@@ -6,7 +6,6 @@ import java.util.concurrent.Executors;
 
 import geometri.BangunDatar;
 import geometri.Geometri;
-import geometri.LimasPersegi;
 
 public class ThreadExecutor {
 
@@ -23,18 +22,31 @@ public class ThreadExecutor {
     private static void processShape(Geometri shape) {
         String threadName = Thread.currentThread().getName();
 
-        if (shape instanceof BangunDatar) {
-            BangunDatar bd = (BangunDatar) shape;
-            System.out.printf("%s - [%s] Keliling: %.2f, Luas: %.2f%n",
-                    threadName, shape.getClass().getSimpleName(),
-                    bd.hitungKeliling(), bd.hitungLuas());
-        }
+        try {
+            if (shape.getClass().getSuperclass().equals(BangunDatar.class)) {
+                // direct subclass of bangun datar
+                BangunDatar bd = (BangunDatar) shape;
+                double keliling = bd.hitungKeliling();
+                double luas = bd.hitungLuas();
+                System.out.printf("%s - [%s] 2D -> Keliling: %.2f, Luas: %.2f%n",
+                        threadName, shape.getClass().getSimpleName(), keliling, luas);
+            }
 
-        if (shape instanceof LimasPersegi) {
-            LimasPersegi lp = (LimasPersegi) shape;
-            System.out.printf("%s - [%s] Volume: %.2f, Luas Permukaan: %.2f%n",
-                    threadName, shape.getClass().getSimpleName(),
-                    lp.hitungVolume(), lp.hitungLuasPermukaan());
+            try {
+                var volumeMethod = shape.getClass().getMethod("hitungVolume");
+                var luasPermukaanMethod = shape.getClass().getMethod("hitungLuasPermukaan");
+
+                double volume = (double) volumeMethod.invoke(shape);
+                double luasPermukaan = (double) luasPermukaanMethod.invoke(shape);
+
+                System.out.printf("%s - [%s] Volume: %.2f, Luas Permukaan: %.2f%n",
+                        threadName, shape.getClass().getSimpleName(), volume, luasPermukaan);
+            } catch (NoSuchMethodException ignored) {
+                // gpp kalo 2d dan ga punya vol sm area
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error processing shape " + shape.getClass().getSimpleName() + ": " + e.getMessage());
         }
     }
 }
