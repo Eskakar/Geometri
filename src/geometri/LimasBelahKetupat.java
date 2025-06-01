@@ -10,6 +10,8 @@ public class LimasBelahKetupat extends BelahKetupat {
     public LimasBelahKetupat(double diagonal1, double diagonal2, double tinggiLimas) {
         super(diagonal1, diagonal2, "Limas Belah Ketupat");
         this.tinggiLimas = tinggiLimas;
+        super.keliling = 0;
+        super.luas = 0;
     }
 
     private double hitungTinggiSegitigaSisiTegak() {
@@ -32,5 +34,9 @@ public class LimasBelahKetupat extends BelahKetupat {
     @Override
     public String toString() {
         return "LimasBelahKetupat";
+    }
+     @Override
+    public double hitungKeliling() {
+      return 0;
     }
 }

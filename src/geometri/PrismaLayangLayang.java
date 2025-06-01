@@ -8,6 +8,8 @@ public class PrismaLayangLayang extends LayangLayang {
     public PrismaLayangLayang(double d1, double d2,double sisi1, double sisi2, double tinggiPrisma) {
         super(d1, d2, sisi1, sisi2);
         this.tinggiPrisma = tinggiPrisma;
+        super.keliling = 0;
+        super.luas = 0;
     }
 
     public double hitungVolume() {
@@ -18,5 +20,9 @@ public class PrismaLayangLayang extends LayangLayang {
     public double hitungLuasPermukaan() {
         this.luasPermukaan = 2 * this.hitungLuas() + 2 * this.tinggiPrisma * super.sisiA + 2 * this.tinggiPrisma * super.sisiB;
         return this.luasPermukaan;
+    }
+    @Override
+    public double hitungKeliling() {
+        return 0;
     }
 }

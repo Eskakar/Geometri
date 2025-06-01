@@ -8,6 +8,8 @@ public class LimasPersegiPanjang extends PersegiPanjang {
     public LimasPersegiPanjang(double panjang, double lebar, double tinggiLimas) {
         super(panjang, lebar, "Limas Persegi Panjang");
         this.tinggiLimas = tinggiLimas;
+        super.keliling = 0;
+        super.luas = 0;
     }
 
     public double hitungVolume() {
@@ -21,5 +23,9 @@ public class LimasPersegiPanjang extends PersegiPanjang {
         double tinggiSisiMiring2 = Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(super.lebar / 2, 2));
         this.luasPermukaan = super.hitungLuas() + (tinggiSisiMiring1 * super.panjang ) + (tinggiSisiMiring2 * super.lebar);
         return this.luasPermukaan;
+    }
+    @Override
+    public double hitungKeliling() {
+        return 0;
     }
 }

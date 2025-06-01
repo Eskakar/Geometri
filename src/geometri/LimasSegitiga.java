@@ -8,6 +8,8 @@ public class LimasSegitiga extends Segitiga {
     public LimasSegitiga(double alas, double tinggiLimas, double tinggi, double sisiA, double sisiB, double  sisiC) {
         super(alas, tinggi, sisiA, sisiB, sisiC, "Limas Segitiga");
         this.tinggiLimas = tinggiLimas;
+        super.keliling = 0;
+        super.luas = 0;
     }
 
     public void hitungVolume() {
@@ -26,4 +28,9 @@ public class LimasSegitiga extends Segitiga {
         this.luasPermukaan = super.hitungLuas() + luasA + luasB + luasC;
         return this.luasPermukaan;
     }
+    @Override
+    public double hitungKeliling() {
+        return 0;
+    }
+    
 }

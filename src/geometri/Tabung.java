@@ -8,6 +8,8 @@ public class Tabung extends Lingkaran {
     public Tabung(double jari, double tinggiPrisma) {
         super(jari, "Tabung");
         this.tinggiPrisma = tinggiPrisma;
+        super.keliling = 0;
+        super.luas = 0;
     }
 
     public double hitungVolume() {
@@ -19,5 +21,9 @@ public class Tabung extends Lingkaran {
     public double hitungLuasPermukaan() {
         this.luasPermukaan = 2 * super.hitungLuas() + (2 * super.PI * super.jariJari * this.tinggiPrisma) ;
         return this.luasPermukaan;
+    }
+    @Override
+    public double hitungKeliling() {
+        return 0;
     }
 }

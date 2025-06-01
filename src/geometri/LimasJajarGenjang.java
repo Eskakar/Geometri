@@ -13,6 +13,8 @@ public class LimasJajarGenjang extends JajarGenjang {
         this.tinggiLimas = tinggiLimas;
         this.tinggiSegitigaPanjang = tinggiSegitigaPanjang;
         this.tinggiSegitigaPendek = tinggiSegitigaPendek;
+        super.keliling = 0;
+        super.luas = 0;
     }
 
     public double hitungVolume() {
@@ -30,5 +32,9 @@ public class LimasJajarGenjang extends JajarGenjang {
     @Override
     public String toString() {
         return "LimasJajarGenjang";
+    }
+    @Override
+    public double hitungKeliling() {
+      return 0;
     }
 }
