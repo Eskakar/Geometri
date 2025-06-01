@@ -11,7 +11,7 @@ public class PrismaBelahKetupat extends BelahKetupat {
     }
 
     public double hitungVolume() {
-        this.volume = super.luas * this.tinggiPrisma;
+        this.volume = super.hitungLuas() * this.tinggiPrisma;
         return this.volume;
     }
 

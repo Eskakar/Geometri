@@ -11,13 +11,13 @@ public class Tabung extends Lingkaran {
     }
 
     public double hitungVolume() {
-        this.volume = this.luas * this.tinggiPrisma;
+        this.volume = super.hitungLuas() * this.tinggiPrisma;
         return this.volume;
 
     }
 
     public double hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * this.luas + (2 * this.PI * this.jariJari * this.tinggiPrisma) ;
+        this.luasPermukaan = 2 * super.hitungLuas() + (2 * super.PI * super.jariJari * this.tinggiPrisma) ;
         return this.luasPermukaan;
     }
 }

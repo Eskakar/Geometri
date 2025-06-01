@@ -16,13 +16,13 @@ public class PersegiPanjang extends BangunDatar {
 
     @Override
     public double hitungKeliling() {
-        this.keliling = 2 * (this.panjang + this.lebar);
-        return this.keliling;
+        super.keliling = 2 * (this.panjang + this.lebar);
+        return super.keliling;
     }
 
     @Override
     public double hitungLuas() {
-        this.luas = this.panjang * this.lebar;
-        return this.luas;
+        super.luas = this.panjang * this.lebar;
+        return super.luas;
     }
 }

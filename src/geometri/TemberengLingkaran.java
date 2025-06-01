@@ -15,13 +15,13 @@ public class TemberengLingkaran extends Lingkaran {
 
     @Override
     public double hitungKeliling() {
-        this.sudut = 2 * Math.acos((this.jariJari - this.tinggi) / this.jariJari);
-        this.keliling = sudut * this.jariJari + 2 * Math.sqrt(2 * this.jariJari * this.tinggi - this.tinggi * this.tinggi);
-        return this.keliling;
+        this.sudut = 2 * Math.acos((super.jariJari - this.tinggi) / super.jariJari);
+        super.keliling = sudut * super.jariJari + 2 * Math.sqrt(2 * super.jariJari * this.tinggi - this.tinggi * this.tinggi);
+        return super.keliling;
     }
      @Override
     public double hitungLuas() {
-        this.luas = (this.jariJari * this.jariJari * Math.acos((this.jariJari - this.tinggi) / this.jariJari) - (this.jariJari - this.tinggi) * Math.sqrt(2 * this.jariJari * this.tinggi - this.tinggi * this.tinggi));
-        return this.luas;
+        super.luas = (super.jariJari * super.jariJari * Math.acos((super.jariJari - this.tinggi) / super.jariJari) - (super.jariJari - this.tinggi) * Math.sqrt(2 * super.jariJari * this.tinggi - this.tinggi * this.tinggi));
+        return super.luas;
     }
 }

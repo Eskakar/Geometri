@@ -11,7 +11,7 @@ public class LimasSegitiga extends Segitiga {
     }
 
     public void hitungVolume() {
-        this.volume = 1.0/3 * this.luas * this.tinggiLimas;
+        this.volume = 1.0/3 * super.hitungLuas() * this.tinggiLimas;
     }
     private double hitungTinggiSisiMiring(double sisi){
         double tinggiSegitiga = Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(sisi/ 2, 2)); 
@@ -20,10 +20,10 @@ public class LimasSegitiga extends Segitiga {
     
     
     public double hitungLuasPermukaan() {
-        double luasA = 0.5 * this.sisiA * hitungTinggiSisiMiring(this.sisiA);
-        double luasB = 0.5 * this.sisiB * hitungTinggiSisiMiring(this.sisiB);
-        double luasC = 0.5 * this.sisiC * hitungTinggiSisiMiring(this.sisiC);
-        this.luasPermukaan = this.luas + luasA + luasB + luasC;
+        double luasA = 0.5 * this.sisiA * hitungTinggiSisiMiring(super.sisiA);
+        double luasB = 0.5 * this.sisiB * hitungTinggiSisiMiring(super.sisiB);
+        double luasC = 0.5 * this.sisiC * hitungTinggiSisiMiring(super.sisiC);
+        this.luasPermukaan = super.hitungLuas() + luasA + luasB + luasC;
         return this.luasPermukaan;
     }
 }

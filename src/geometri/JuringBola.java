@@ -8,13 +8,13 @@ public class JuringBola extends Bola{
     }
     @Override
     public double hitungVolume() {
-        this.volume = (this.sudut / 360) * this.volume;
-        return this.volume;
+        super.volume = (this.sudut / 360) * super.volume;
+        return super.volume;
     }
     @Override
     public double hitungLuasPermukaan() {
-        this.luasPermukaan = (this.sudut / 360) * 4 * this.PI * super.jariJari * super.jariJari;
-        return this.luasPermukaan;
+        super.luasPermukaan = (this.sudut / 360) * 4 * super.PI * super.jariJari * super.jariJari;
+        return super.luasPermukaan;
     }   
 
 }

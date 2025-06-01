@@ -11,12 +11,12 @@ public class PrismaPersegi extends Persegi {
     }
 
     public double hitungVolume() {
-        this.volume = this.luas * this.tinggiPrisma;
+        this.volume = super.hitungLuas()* this.tinggiPrisma;
         return this.volume;
     }
 
     public double hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * this.luas + 4 * this.tinggiPrisma * this.sisi;
+        this.luasPermukaan = 2 * super.hitungLuas() + 4 * this.tinggiPrisma * super.sisi;
         return this.luasPermukaan;
     }
 }

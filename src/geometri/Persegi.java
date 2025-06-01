@@ -14,13 +14,13 @@ public class Persegi extends BangunDatar {
     
     @Override
     public double hitungLuas() {
-        this.luas = this.sisi * this.sisi;
-        return this.luas;
+        super.luas = this.sisi * this.sisi;
+        return super.luas;
     }
 
     @Override
     public double hitungKeliling() {
-        this.keliling = 4 * this.sisi;
-        return this.keliling;
+        super.keliling = 4 * this.sisi;
+        return super.keliling;
     }
 }

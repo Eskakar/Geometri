@@ -16,12 +16,12 @@ public class Lingkaran extends BangunDatar {
 
     @Override
     public double hitungKeliling() {
-        this.keliling = this.PI * this.jariJari * this.jariJari;
-        return this.keliling;
+        super.keliling = this.PI * this.jariJari * this.jariJari;
+        return super.keliling;
     }
      @Override
     public double hitungLuas() {
-        this.luas = this.PI * this.jariJari * this.jariJari;
-        return this.luas;
+        super.luas = this.PI * this.jariJari * this.jariJari;
+        return super.luas;
     }
 }

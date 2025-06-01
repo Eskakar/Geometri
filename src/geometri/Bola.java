@@ -17,12 +17,12 @@ public class Bola extends Lingkaran {
   }
 
   public double hitungVolume() {
-    this.volume = (4.0 / 3) * this.PI * Math.pow(this.jariJari, 3);
+    this.volume = (4.0 / 3) * super.PI * Math.pow(super.jariJari, 3);
     return this.volume;
   }
 
   public double hitungLuasPermukaan() {
-    this.luasPermukaan = 4 * this.PI * this.jariJari * this.jariJari;
+    this.luasPermukaan = 4 * super.PI * super.jariJari * super.jariJari;
     return this.luasPermukaan;
   }
 

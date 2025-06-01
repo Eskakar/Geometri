@@ -22,13 +22,13 @@ public class Trapesium extends BangunDatar {
 
     @Override
     public double hitungKeliling() {
-        this.keliling = this.sisiAtas + this.sisiBawah + this.sisiKanan + this.sisiKiri;
-        return this.keliling;
+        super.keliling = this.sisiAtas + this.sisiBawah + this.sisiKanan + this.sisiKiri;
+        return super.keliling;
     }
 
     @Override
     public double hitungLuas() {
-        this.luas = 0.5 * (this.sisiAtas + this.sisiBawah) * this.tinggi;
-        return this.luas;
+        super.luas = 0.5 * (this.sisiAtas + this.sisiBawah) * this.tinggi;
+        return super.luas;
     }
 }

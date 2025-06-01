@@ -24,13 +24,13 @@ public class BelahKetupat extends BangunDatar {
 
     @Override
     public double hitungLuas() {
-        this.luas = 0.5 * diagonal1 * diagonal2;
-        return this.luas;
+        super.luas = 0.5 * diagonal1 * diagonal2;
+        return super.luas;
     }
 
     @Override
     public double hitungKeliling() {
-        this.keliling = 4 * this.hitungSisi();
-        return this.keliling;
+        super.keliling = 4 * this.hitungSisi();
+        return super.keliling;
     }
 }

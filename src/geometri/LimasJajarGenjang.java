@@ -16,14 +16,14 @@ public class LimasJajarGenjang extends JajarGenjang {
     }
 
     public double hitungVolume() {
-        this.volume = (1.0 / 3.0) * this.hitungLuas() * this.tinggiLimas;
+        this.volume = (1.0 / 3.0) * super.hitungLuas() * this.tinggiLimas;
         return this.volume;
     }
 
     public double hitungLuasPermukaan() {
-        double luasSegitigaPanjang = (this.alas * this.tinggiSegitigaPanjang) / 2;
-        double luasSegitigaPendek = (this.sisiMiring * this.tinggiSegitigaPendek) / 2;
-        this.luasPermukaan = this.hitungLuas() + (2 * luasSegitigaPanjang) + (2 * luasSegitigaPendek);
+        double luasSegitigaPanjang = (super.alas * this.tinggiSegitigaPanjang) / 2;
+        double luasSegitigaPendek = (super.sisiMiring * this.tinggiSegitigaPendek) / 2;
+        this.luasPermukaan = super.hitungLuas() + (2 * luasSegitigaPanjang) + (2 * luasSegitigaPendek);
         return this.luasPermukaan;
     }
 

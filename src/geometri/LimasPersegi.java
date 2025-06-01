@@ -12,7 +12,7 @@ public class LimasPersegi extends Persegi {
     }
 
     private double hitungTinggiSisiMiring() {
-        this.tinggiSisiMiring = Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(this.sisi / 2.0, 2));
+        this.tinggiSisiMiring = Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(super.sisi / 2.0, 2));
         return this.tinggiSisiMiring;
     }
 
@@ -23,7 +23,7 @@ public class LimasPersegi extends Persegi {
 
     public double hitungLuasPermukaan() {
         double tinggiSisi = this.hitungTinggiSisiMiring();
-        this.luasPermukaan = super.hitungLuas() + (4 * 0.5 * this.sisi * tinggiSisi);
+        this.luasPermukaan = super.hitungLuas() + (4 * 0.5 * super.sisi * tinggiSisi);
         
         return this.luasPermukaan;
     }
