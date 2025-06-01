@@ -8,8 +8,7 @@ public class PrismaTrapesium extends Trapesium {
     public PrismaTrapesium(double sisiAtas, double sisiBawah, double sisiKanan, double sisiKiri, double tinggiTrapesium, double tinggiPrisma,String Nama) {
         super(sisiAtas, sisiBawah, sisiKanan, sisiKiri, tinggiTrapesium,Nama);
         this.tinggiPrisma = tinggiPrisma;
-        super.keliling = 0;
-        super.luas = 0;
+
     }
 
     public double hitungVolume() { 

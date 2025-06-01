@@ -8,8 +8,7 @@ public class LimasPersegiPanjang extends PersegiPanjang {
     public LimasPersegiPanjang(double panjang, double lebar, double tinggiLimas) {
         super(panjang, lebar, "Limas Persegi Panjang");
         this.tinggiLimas = tinggiLimas;
-        super.keliling = 0;
-        super.luas = 0;
+
     }
 
     public double hitungVolume() {

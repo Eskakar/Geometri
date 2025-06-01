@@ -8,8 +8,7 @@ public class PrismaBelahKetupat extends BelahKetupat {
     public PrismaBelahKetupat(double d1, double d2, double tinggiPrisma) {
         super(d1, d2);
         this.tinggiPrisma = tinggiPrisma;
-        super.keliling = 0;
-        super.luas = 0;
+
     }
 
     public double hitungVolume() {

@@ -10,8 +10,7 @@ public final class LimasTrapesium extends Trapesium{
         
         super(sisiAtas,sisiBawah,  sisiKanan,  sisiKiri, tinggiTrapesium, "Limas Trapesium");
         this.tinggiLimas = tinggi;
-        super.keliling = 0;
-        super.luas = 0;
+
     }
 
     public double hitungVolume() {
