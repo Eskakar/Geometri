@@ -8,6 +8,8 @@ public class PrismaPersegi extends Persegi {
     public PrismaPersegi(double sisi, double tinggiPrisma) {
         super(sisi);
         this.tinggiPrisma = tinggiPrisma;
+        super.keliling = 0;
+        super.luas = 0;
     }
 
     public double hitungVolume() {
@@ -18,5 +20,9 @@ public class PrismaPersegi extends Persegi {
     public double hitungLuasPermukaan() {
         this.luasPermukaan = 2 * super.hitungLuas() + 4 * this.tinggiPrisma * super.sisi;
         return this.luasPermukaan;
+    }
+    @Override
+    public double hitungKeliling() {
+        return 0;
     }
 }

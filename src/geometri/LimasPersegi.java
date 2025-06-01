@@ -9,6 +9,8 @@ public class LimasPersegi extends Persegi {
     public LimasPersegi(double sisi, double tinggiLimas) {
         super(sisi, "Limas Persegi");
         this.tinggiLimas = tinggiLimas;
+        super.keliling = 0;
+        super.luas = 0;
     }
 
     private double hitungTinggiSisiMiring() {
@@ -31,5 +33,9 @@ public class LimasPersegi extends Persegi {
     @Override
     public String toString() {
         return "LimasPersegi";
+    }
+    @Override
+    public double hitungKeliling() {
+        return 0;
     }
 }

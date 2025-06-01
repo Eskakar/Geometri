@@ -8,6 +8,9 @@ public class PrismaJajarGenjang extends JajarGenjang{
     public PrismaJajarGenjang(double alas, double tinggiAlas, double tinggiPrisma, double sisiMiringAlas) {
         super(alas,tinggiAlas, sisiMiringAlas);
         this.tinggiPrisma = tinggiPrisma;
+        super.keliling = 0;
+        super.luas = 0;
+        
     }
 
     public double hitungVolume() {
@@ -20,5 +23,9 @@ public class PrismaJajarGenjang extends JajarGenjang{
         double alasJajarGenjang = super.alas;
         this.luasPermukaan = 2 * alasJajarGenjang * tinggiAlas + 2 * (alasJajarGenjang + tinggiAlas) * this.tinggiPrisma;
         return this.luasPermukaan;
-    }   
+    }  
+      @Override
+    public double hitungKeliling() {
+      return 0;
+    }
 }

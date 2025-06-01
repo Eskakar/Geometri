@@ -11,7 +11,8 @@ public class Kerucut extends Lingkaran{
     public Kerucut(double tinggiKerucut,double jarijari, String nama){
         super(jarijari, nama);
         this.tinggiKerucut = tinggiKerucut;
-
+        super.keliling = 0;
+        super.luas = 0;
     }
     public double hitungVolume() {
         this.volume = 1.0/3 * super.hitungLuas()* this.tinggiKerucut;
@@ -22,4 +23,9 @@ public class Kerucut extends Lingkaran{
         this.luasPermukaan = super.PI * super.jariJari * (super.jariJari + sisiMiring);
         return this.luasPermukaan;
     }
+    @Override
+    public double hitungKeliling() {
+        return 0;
+    }
+    
 }
