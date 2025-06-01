@@ -7,22 +7,28 @@ public class LimasLayangLayang extends LayangLayang {
     public double tinggiSisiTegak1;
     public double tinggiSisiTegak2;
 
-    public LimasLayangLayang(double tinggiLimas, double tinggiSisiTegak1, double tinggiSisiTegak2, double diagonal1, double diagonal2, double sisiA, double sisiB) {
+    public LimasLayangLayang(double tinggiLimas, double tinggiSisiTegak1, double tinggiSisiTegak2,
+                              double diagonal1, double diagonal2, double sisiA, double sisiB) {
         super(diagonal1, diagonal2, sisiA, sisiB, "Limas Layang Layang");
-        this.tinggiSisiTegak1  = tinggiSisiTegak1;
-        this.tinggiSisiTegak2  = tinggiSisiTegak2;
         this.tinggiLimas = tinggiLimas;
+        this.tinggiSisiTegak1 = tinggiSisiTegak1;
+        this.tinggiSisiTegak2 = tinggiSisiTegak2;
     }
 
-    public void hitungVolume() {
-        this.volume = 1.0/3 * this.luas * this.tinggiLimas;
+    public double hitungVolume() {
+        this.volume = (1.0 / 3.0) * this.hitungLuas() * this.tinggiLimas;
+        return this.volume;
     }
 
-    public void hitungLuasPermukaan() {
+    public double hitungLuasPermukaan() {
         double luasSegitiga1 = (this.sisiA * this.tinggiSisiTegak1) / 2;
         double luasSegitiga2 = (this.sisiB * this.tinggiSisiTegak2) / 2;
-        
-        // Total luas permukaan = luas alas + jumlah luas semua sisi tegak
-        this.luasPermukaan = this.luas + (2 * luasSegitiga1) + (2 * luasSegitiga2);
+        this.luasPermukaan = this.hitungLuas() + (2 * luasSegitiga1) + (2 * luasSegitiga2);
+        return this.luasPermukaan;
+    }
+
+    @Override
+    public String toString() {
+        return "LimasLayangLayang";
     }
 }

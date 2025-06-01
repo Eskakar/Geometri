@@ -11,7 +11,7 @@ public class PrismaLayangLayang extends LayangLayang {
     }
 
     public double hitungVolume() {
-        this.volume = this.luas * this.tinggiPrisma;
+        this.volume = super.hitungLuas() * this.tinggiPrisma;
         return this.volume;
     }
 
