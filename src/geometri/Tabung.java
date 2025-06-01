@@ -8,8 +8,7 @@ public class Tabung extends Lingkaran {
     public Tabung(double jari, double tinggiPrisma) {
         super(jari, "Tabung");
         this.tinggiPrisma = tinggiPrisma;
-        super.keliling = 0;
-        super.luas = 0;
+
     }
 
     public double hitungVolume() {

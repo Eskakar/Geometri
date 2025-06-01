@@ -13,8 +13,7 @@ public class LimasJajarGenjang extends JajarGenjang {
         this.tinggiLimas = tinggiLimas;
         this.tinggiSegitigaPanjang = tinggiSegitigaPanjang;
         this.tinggiSegitigaPendek = tinggiSegitigaPendek;
-        super.keliling = 0;
-        super.luas = 0;
+
     }
 
     public double hitungVolume() {

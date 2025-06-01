@@ -8,8 +8,7 @@ public class PrismaSegitiga extends Segitiga {
     public PrismaSegitiga(double alas, double tinggiSegitiga, double tinggiPrisma, double sisiA, double sisiB, double sisiC) {
         super(alas, tinggiSegitiga, sisiA, sisiB, sisiC);
         this.tinggiPrisma = tinggiPrisma;
-        super.keliling = 0;
-        super.luas = 0;
+  
     }
 
     public double hitungVolume() { 

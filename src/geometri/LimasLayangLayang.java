@@ -13,8 +13,7 @@ public class LimasLayangLayang extends LayangLayang {
         this.tinggiLimas = tinggiLimas;
         this.tinggiSisiTegak1 = tinggiSisiTegak1;
         this.tinggiSisiTegak2 = tinggiSisiTegak2;
-        super.keliling = 0;
-        super.luas = 0;
+
     }
 
     public double hitungVolume() {
