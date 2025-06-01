@@ -29,14 +29,14 @@ public class Segitiga extends BangunDatar {
    @Override
 
     public double hitungKeliling() {
-        this.keliling = this.sisiA + this.sisiB + this.sisiC;
-        return this.luas;
+        super.keliling = this.sisiA + this.sisiB + this.sisiC;
+        return super.keliling;
     }
 
     @Override
     public double hitungLuas() {
-        this.luas = 0.5 * this.alas * this.tinggi;
-        return this.luas;
+        super.luas = 0.5 * this.alas * this.tinggi;
+        return super.luas;
     }
 }
 

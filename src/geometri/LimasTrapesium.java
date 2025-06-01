@@ -9,25 +9,27 @@ public final class LimasTrapesium extends Trapesium{
     public LimasTrapesium(double tinggi, double tinggiTrapesium, double sisiAtas, double sisiBawah, double sisiKanan, double sisiKiri) {
         
         super(sisiAtas,sisiBawah,  sisiKanan,  sisiKiri, tinggiTrapesium, "Limas Trapesium");
-        this.tinggi = tinggi;
+        this.tinggiLimas = tinggi;
     }
 
     public double hitungVolume() {
-        this.volume = 1.0/3 * this.luas * this.tinggi;
+        this.volume = 1.0/3 * super.hitungLuas() * this.tinggiLimas;
         return this.volume;
     }
     private double getTinggiSisiTegak(double sisi) {
-        return Math.sqrt(Math.pow(sisi/2,2)+ Math.pow(this.tinggi,2));
+        double tinggiTegak = Math.sqrt(Math.pow(sisi/2,2)+ Math.pow(this.tinggiLimas,2));
+        return tinggiTegak;
     }
     private double getLuasSisiTegak(double sisi) {
-        return sisi * (0.5) * getTinggiSisiTegak(sisi);
+        double luasSisiTegak = sisi * (0.5) * getTinggiSisiTegak(sisi);
+        return luasSisiTegak;
     }
     public double hitungLuasPermukaan() {
-        double LuasSisiTegakAtas = getLuasSisiTegak(this.sisiAtas);
-        double LuasSisiTegakBawah = getLuasSisiTegak(this.sisiBawah);
-        double LuasSisiTegakKanan = getLuasSisiTegak(this.sisiKanan);
-        double LuasSisiTegaKiri = getLuasSisiTegak(this.sisiKiri);
-        this.luasPermukaan = LuasSisiTegakAtas + LuasSisiTegakBawah + LuasSisiTegakKanan + LuasSisiTegaKiri + this.luas;
+        double LuasSisiTegakAtas = getLuasSisiTegak(super.sisiAtas);
+        double LuasSisiTegakBawah = getLuasSisiTegak(super.sisiBawah);
+        double LuasSisiTegakKanan = getLuasSisiTegak(super.sisiKanan);
+        double LuasSisiTegaKiri = getLuasSisiTegak(super.sisiKiri);
+        this.luasPermukaan = LuasSisiTegakAtas + LuasSisiTegakBawah + LuasSisiTegakKanan + LuasSisiTegaKiri + super.hitungLuas();
         return this.luasPermukaan;
     }
 }

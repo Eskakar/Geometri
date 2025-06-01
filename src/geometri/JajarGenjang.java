@@ -19,13 +19,13 @@ public class JajarGenjang extends BangunDatar {
 
     @Override
     public double hitungKeliling() {
-        this.keliling =  2 * (this.alas + this.sisiMiring);
-        return this.keliling;
+        super.keliling =  2 * (this.alas + this.sisiMiring);
+        return super.keliling;
     }
 
     @Override
     public double hitungLuas() {
-        this.luas =  this.alas * this.tinggi;
-        return this.luas;
+        super.luas =  this.alas * this.tinggi;
+        return super.luas;
     }
 }

@@ -11,12 +11,12 @@ public class PrismaSegitiga extends Segitiga {
     }
 
     public double hitungVolume() { 
-        this.volume = this.luas * this.tinggiPrisma;
+        this.volume = super.hitungLuas() * this.tinggiPrisma;
         return this.volume;
     }
 
     public double hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * this.luas + this.sisiA * this.tinggiPrisma + this.tinggiPrisma * this.sisiB + this.sisiC * this.tinggiPrisma;
+        this.luasPermukaan = 2 * super.hitungLuas() + super.sisiA * this.tinggiPrisma + this.tinggiPrisma * super.sisiB + super.sisiC * this.tinggiPrisma;
         return this.luasPermukaan;
     }
 }

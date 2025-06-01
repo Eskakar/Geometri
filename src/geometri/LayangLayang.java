@@ -20,13 +20,13 @@ public class LayangLayang extends BangunDatar {
 
     @Override
     public double hitungKeliling(){
-        this.keliling = 2 * (this.sisiA + this.sisiB);
-        return this.keliling;
+        super.keliling = 2 * (this.sisiA + this.sisiB);
+        return super.keliling;
     }
 
     @Override
     public double hitungLuas(){
-        this.luas = 0.5 * diagonal1 * diagonal2;
-        return this.luas;
+        super.luas = 0.5 * diagonal1 * diagonal2;
+        return super.luas;
     }
 }

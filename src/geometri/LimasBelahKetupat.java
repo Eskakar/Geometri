@@ -13,7 +13,8 @@ public class LimasBelahKetupat extends BelahKetupat {
     }
 
     private double hitungTinggiSegitigaSisiTegak() {
-        return Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(super.hitungSisi() / 2.0, 2));
+        double TinggiSisiTegak = Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(super.hitungSisi() / 2.0, 2));
+        return TinggiSisiTegak ;
     }
 
     public double hitungVolume() {

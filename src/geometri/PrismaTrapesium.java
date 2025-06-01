@@ -11,12 +11,12 @@ public class PrismaTrapesium extends Trapesium {
     }
 
     public double hitungVolume() { 
-        this.volume = this.luas * this.tinggiPrisma;
+        this.volume = super.hitungLuas() * this.tinggiPrisma;
         return this.volume;
     }
 
     public double hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * this.luas + this.sisiAtas * this.tinggiPrisma + this.tinggiPrisma * this.sisiBawah + this.sisiKanan * this.tinggiPrisma + this.sisiKiri * this.tinggiPrisma;
+        this.luasPermukaan = 2 * super.hitungLuas() + super.sisiAtas * this.tinggiPrisma + this.tinggiPrisma * super.sisiBawah + super.sisiKanan * this.tinggiPrisma + super.sisiKiri * this.tinggiPrisma;
         return this.luasPermukaan;
     }
 
