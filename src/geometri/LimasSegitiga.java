@@ -10,14 +10,15 @@ public class LimasSegitiga extends Segitiga {
         this.tinggiLimas = tinggiLimas;
     }
 
-    public void hitungVolume() {
+    public double hitungVolume() {
         this.volume = 1.0/3 * super.hitungLuas() * this.tinggiLimas;
+        return this.volume;
     }
+
     private double hitungTinggiSisiMiring(double sisi){
         double tinggiSegitiga = Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(sisi/ 2, 2)); 
         return tinggiSegitiga;
     }
-    
     
     public double hitungLuasPermukaan() {
         double luasA = 0.5 * this.sisiA * hitungTinggiSisiMiring(super.sisiA);

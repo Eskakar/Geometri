@@ -8,11 +8,11 @@ public class Bola extends Lingkaran {
   protected double volume;
   protected double luasPermukaan;
 
-  Bola(double jariJari) {
+  public Bola(double jariJari) {
     this(jariJari, "Bola");
   }
 
-  Bola(double jariJari, String nama) {
+  public Bola(double jariJari, String nama) {
     super(jariJari, nama);
   }
 
