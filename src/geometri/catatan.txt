@@ -18,3 +18,23 @@ todo
 -main di luar package (sementara ku hapus)
 -tabel materi bab2
 -pakai scanner untuk input
+
+yoda 
+-belah ketupat
+-jajar genjang
+-layang layang
+-persegi
+-segitiga
+
+-limas
+-belahketupat
+-jajargenjang
+-layanglayang
+-persegi
+
+-prisma
+layang  layang
+
+
+
+------------

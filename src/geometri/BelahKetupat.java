@@ -8,23 +8,26 @@ public class BelahKetupat extends BangunDatar {
     public BelahKetupat(double diagonal1, double diagonal2) {
         this(diagonal1, diagonal2, "Belah Ketupat");
     }
+
     public BelahKetupat(double diagonal1, double diagonal2, String nama) {
         super(nama);
         this.diagonal1 = diagonal1;
         this.diagonal2 = diagonal2;
     }
 
-    private double hitungSisi() {
+    public double hitungSisi() {
         double setengahD1 = this.diagonal1 / 2.0;
         double setengahD2 = this.diagonal2 / 2.0;
         this.sisi = Math.sqrt(setengahD1 * setengahD1 + setengahD2 * setengahD2);
         return this.sisi;
     }
+
     @Override
     public double hitungLuas() {
         this.luas = 0.5 * diagonal1 * diagonal2;
         return this.luas;
     }
+
     @Override
     public double hitungKeliling() {
         this.keliling = 4 * this.hitungSisi();

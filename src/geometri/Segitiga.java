@@ -1,12 +1,17 @@
 package geometri;
 
-public class Segitiga extends BangunDatar implements Runnable {
+public class Segitiga extends BangunDatar {
     protected double alas;
     protected double tinggi;
     protected double sisiA;
     protected double sisiB;
     protected double sisiC;
-    private Thread thread;
+    
+    public Segitiga(double alas, double tinggi) {
+        super("Segitiga");
+        this.alas = alas;
+        this.tinggi = tinggi;
+    }
 
     public Segitiga(double alas, double tinggi, double sisiA, double sisiB, double sisiC) {
         this(alas, tinggi, sisiA, sisiB, sisiC, "Segitiga");
@@ -19,9 +24,6 @@ public class Segitiga extends BangunDatar implements Runnable {
         this.sisiA = sisiA;
         this.sisiB = sisiB;
         this.sisiC = sisiC;
-        
-        thread = new Thread(this);
-        thread.start();
     }
 
    @Override
@@ -35,12 +37,6 @@ public class Segitiga extends BangunDatar implements Runnable {
     public double hitungLuas() {
         this.luas = 0.5 * this.alas * this.tinggi;
         return this.luas;
-    }
-    
-    @Override
-    public void run() {
-        hitungKeliling();
-        hitungLuas();
     }
 }
 
