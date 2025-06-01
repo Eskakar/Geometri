@@ -1,185 +1,62 @@
-import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-import geometri.BangunDatar;
-import geometri.Lingkaran;
+import geometri.JajarGenjang;
+import geometri.LimasPersegi;
 import geometri.Persegi;
+import geometri.PrismaLayangLayang;
 import geometri.Segitiga;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        // objects
+        Segitiga segitiga = new Segitiga(6, 4, 5, 6, 7, "Segitiga");
+        PrismaLayangLayang prisma = new PrismaLayangLayang(8, 6, 5, 4, 10);
+        Persegi persegi = new Persegi(5, "Persegi");
+        LimasPersegi limas = new LimasPersegi(5, 7);
+        JajarGenjang jajarGenjang = new JajarGenjang(6, 4, 5);
 
-        System.out.println("=== Program Geometri ===");
-        System.out.println("1. Bangun Datar");
-        System.out.println("2. Bangun Ruang");
-        System.out.print("Pilih jenis bangun (1/2): ");
-        int jenis = sc.nextInt();
+        // pool
+        ExecutorService executor = Executors.newFixedThreadPool(5);
 
-        BangunDatar bangun = null;
+        executor.execute(() -> {
+            System.out.println(segitiga + ":");
+            System.out.println("  Luas     = " + segitiga.hitungLuas());
+            System.out.println("  Keliling = " + segitiga.hitungKeliling());
+        });
 
-        if (jenis == 1) {
-            System.out.println("-- Menu Bangun Datar --");
-            System.out.println("1. Persegi");
-            System.out.println("2. Persegi Panjang");
-            System.out.println("3. Segitiga");
-            System.out.println("4. Trapesium");
-            System.out.println("5. Jajar Ganjang");
-            System.out.println("6. Belah Ketupat");
-            System.out.println("7. Layang Layang");
-            System.out.println("8. Lingkaran");
-            System.out.println("9. Juring Lingkaran");
-            System.out.println("10. Tembereng Lingkaran");
-            System.out.println("11. Segitiga");
-            System.out.print("Pilih bangun datar (1-11): ");
-            int pilihan = sc.nextInt();
-            switch (pilihan) {
-                case 1 -> {
-                    System.out.print("Masukkan sisi: ");
-                    double sisi = sc.nextDouble();
-                    bangun = new Persegi(sisi);
-                }
-                case 2 -> {
-                    System.out.print("Masukkan jari-jari: ");
-                    double r = sc.nextDouble();
-                    bangun = new Lingkaran(r);
-                }
-                case 3 -> {
-                    System.out.print("Masukkan alas: ");
-                    double a = sc.nextDouble();
-                    System.out.print("Masukkan tinggi: ");
-                    double t = sc.nextDouble();
-                    bangun = new Segitiga(a, t);
-                }
-                case 4 -> {
-                    System.out.print("Masukkan alas: ");
-                    double a = sc.nextDouble();
-                    System.out.print("Masukkan tinggi: ");
-                    double t = sc.nextDouble();
-                    bangun = new Segitiga(a, t);
-                }
-                case 5 -> {
-                    System.out.print("Masukkan alas: ");
-                    double a = sc.nextDouble();
-                    System.out.print("Masukkan tinggi: ");
-                    double t = sc.nextDouble();
-                    bangun = new Segitiga(a, t);
-                }
-                case 5 -> {
-                    System.out.print("Masukkan alas: ");
-                    double a = sc.nextDouble();
-                    System.out.print("Masukkan tinggi: ");
-                    double t = sc.nextDouble();
-                    bangun = new Segitiga(a, t);
-                }
-                case 6 -> {
-                    System.out.print("Masukkan alas: ");
-                    double a = sc.nextDouble();
-                    System.out.print("Masukkan tinggi: ");
-                    double t = sc.nextDouble();
-                    bangun = new Segitiga(a, t);
-                }
-                case 7 -> {
-                    System.out.print("Masukkan alas: ");
-                    double a = sc.nextDouble();
-                    System.out.print("Masukkan tinggi: ");
-                    double t = sc.nextDouble();
-                    bangun = new Segitiga(a, t);
-                }
-                case 8 -> {
-                    System.out.print("Masukkan alas: ");
-                    double a = sc.nextDouble();
-                    System.out.print("Masukkan tinggi: ");
-                    double t = sc.nextDouble();
-                    bangun = new Segitiga(a, t);
-                }
-                case 9 -> {
-                    System.out.print("Masukkan alas: ");
-                    double a = sc.nextDouble();
-                    System.out.print("Masukkan tinggi: ");
-                    double t = sc.nextDouble();
-                    bangun = new Segitiga(a, t);
-                }
-                case 10 -> {
-                    System.out.print("Masukkan alas: ");
-                    double a = sc.nextDouble();
-                    System.out.print("Masukkan tinggi: ");
-                    double t = sc.nextDouble();
-                    bangun = new Segitiga(a, t);
-                }
-                case 11 -> {
-                    System.out.print("Masukkan alas: ");
-                    double a = sc.nextDouble();
-                    System.out.print("Masukkan tinggi: ");
-                    double t = sc.nextDouble();
-                    bangun = new Segitiga(a, t);
-                }
-                case 12 -> {
-                    System.out.print("Masukkan alas: ");
-                    double a = sc.nextDouble();
-                    System.out.print("Masukkan tinggi: ");
-                    double t = sc.nextDouble();
-                    bangun = new Segitiga(a, t);
-                }
-                default -> System.out.println("Pilihan tidak valid");
-            }
-        } else if (jenis == 2) {
-            System.out.println("-- Menu Bangun Ruang --");
-            System.out.println("1. Prisma Persegi");
-            System.out.println("2. Prisma Persegi Panjang");
-            System.out.println("3. Prisma Segitiga");
-            System.out.println("4. Prisma Trapesium");
-            System.out.println("5. Prisma Jajar Ganjang");
-            System.out.println("6. Prisma Belah Ketupat");
-            System.out.println("7. Prisma Layang Layang");
-            System.out.println("8. Tabung");
-            System.out.println("10. Limas Persegi");
-            System.out.println("12. Limas Persegi Panjang");
-            System.out.println("13. Limas Segitiga");
-            System.out.println("14. Limas Trapesium");
-            System.out.println("15. Limas Jajar Ganjang");
-            System.out.println("16. Limas Belah Ketupat");
-            System.out.println("17  Kerucut");
-            System.out.println("17  Kerucut Terpancung");
-            System.out.println("10.Tembereng Bola");
-            System.out.println("9. Juring Bola");
+        executor.execute(() -> {
+            double volume = prisma.hitungVolume();
+            double luasPermukaan = prisma.hitungLuasPermukaan();
+            System.out.println(prisma + ":");
+            System.out.println("Prisma Volume         = " + volume);
+            System.out.println("  Luas Permukaan = " + luasPermukaan);
+        });
 
-            System.out.print("Pilih bangun ruang (1-3): ");
+        executor.execute(() -> {
+            double luas = persegi.hitungLuas();
+            double keliling = persegi.hitungKeliling();
+            System.out.println(persegi + ":");
+            System.out.println("  Luas     = " + luas);
+            System.out.println("  Keliling = " + keliling);
+        });
 
-            int pilihan = sc.nextInt();
-            switch (pilihan) {
-                case 1 -> {
-                    System.out.print("Masukkan sisi: ");
-                    double sisi = sc.nextDouble();
-                    bangun = new Kubus(sisi);
-                }
-                case 2 -> {
-                    System.out.print("Masukkan panjang: ");
-                    double p = sc.nextDouble();
-                    System.out.print("Masukkan lebar: ");
-                    double l = sc.nextDouble();
-                    System.out.print("Masukkan tinggi: ");
-                    double t = sc.nextDouble();
-                    bangun = new Balok(p, l, t);
-                }
-                case 3 -> {
-                    System.out.print("Masukkan jari-jari: ");
-                    double r = sc.nextDouble();
-                    bangun = new Bola(r);
-                }
-                default -> System.out.println("Pilihan tidak valid");
-            }
-        } else {
-            System.out.println("Pilihan tidak valid");
-        }
+        executor.execute(() -> {
+            double volume = limas.hitungVolume();
+            double luasPermukaan = limas.hitungLuasPermukaan();
+            System.out.println(limas + ":");
+            System.out.println("  Volume         = " + volume);
+            System.out.println("  Luas Permukaan = " + luasPermukaan);
+        });
 
-        if (bangun != null) {
-            Thread t1 = new HitungLuasThread(bangun);
-            Thread t2 = new HitungKelilingThread(bangun);
-            Thread t3 = new HitungVolumeThread(bangun);
+        executor.execute(() -> {
+            double luas = jajarGenjang.hitungLuas();
+            double keliling = jajarGenjang.hitungKeliling();
+            System.out.println(jajarGenjang + ":");
+            System.out.println("  Luas     = " + luas);
+            System.out.println("  Keliling = " + keliling);
+        });
 
-            t1.start();
-            t2.start();
-            t3.start();
-        }
+        executor.shutdown();
     }
 }
