@@ -1,0 +1,121 @@
+import java.util.ArrayList;
+import java.util.List;
+
+import geometri.*;
+
+import threading.ThreadExecutor;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Geometri> shapes = new ArrayList<>();
+
+        // 2D: Persegi(sisi)
+        shapes.add(new Persegi(10));
+
+        // 2D: Layang-layang(diagonal1,diagonal2,sisiA,sisiB)
+        shapes.add(new LayangLayang(8, 6, 5, 4));
+
+        // 3D: LimasPersegi(sisi,tinggiLimas)
+        shapes.add(new LimasPersegi(10, 12));
+
+        // 3D: PrismaLayangLayang(d1,d2,sisi1,sisi2,tinggiPrisma)
+        shapes.add(new PrismaLayangLayang(8, 6, 5, 4, 10));
+
+        // 2D: BelahKetupat(diagonal1,diagonal2)
+        shapes.add(new BelahKetupat(8, 6));
+
+        // 3D: Bola(jarijari)
+        shapes.add(new Bola(7));
+
+        // 3D: CincinBola(r1,r2,jarijari)
+        // and volume ≈ depends on full formula
+        shapes.add(new CincinBola(3, 2, 5)); // jari-jari = 5
+
+        // 2D: JajarGenjang(alas,tinggi,sisiMiring)
+        shapes.add(new JajarGenjang(10, 6, 7));
+
+        // 3D: JuringBola(sudut, jarijari)
+        shapes.add(new JuringBola(90, 5)); // 90° sector of a 5-radius sphere
+
+        // 2D: JuringLingkaran(sudutPusat,busur,jarijari)
+        shapes.add(new JuringLingkaran(60, 3.14, 7));
+
+        // 3D: Kerucut(tinggi,jarijari)
+        shapes.add(new Kerucut(12, 4));
+
+        // 3D: KerucutTerpancung(tinggiKerucut,jariJari,jariJariAtas)
+        shapes.add(new KerucutTerpancung(10, 5, 3));
+
+        // 2D: LayangLayang(diagonal1,diagonal2,sisiA,sisiB)
+        shapes.add(new LayangLayang(10, 6, 5, 4));
+
+        // 3D: LimasBelahKetupat(diagonal1,diagonal2,tinggiLimas)
+        shapes.add(new LimasBelahKetupat(8, 6, 12));
+
+        // 3D: LimasJajarGenjang(alas,tinggiJajarGenjang,sisiMiring,tinggiLimas,tinggiSegitigaPanjang,tinggiSegitigaPendek)
+        shapes.add(new LimasJajarGenjang(10, 6, 7, 12, 8, 6));
+
+        // 3D: LimasLayangLayang(tinggiLimas,tingiSisiTegak1,tinggiSisiTegak2,diagonal1,diagonal2,sisiA,sisiB)
+        shapes.add(new LimasLayangLayang(14, 10, 8, 10, 6, 5, 4));
+
+        // 3D: LimasPersegi(sisi,tinggiLimas)
+        shapes.add(new LimasPersegi(6, 10));
+
+        // 3D: LimasPersegiPanjang(panjang,lebar,tinggiLimas)
+        shapes.add(new LimasPersegiPanjang(8, 5, 10));
+
+        // 3D: LimasSegitiga(alas,tinggiLimas,tinggi,sisiA,sisiB,sisiC)
+        shapes.add(new LimasSegitiga(6, 10, 4, 5, 5, 5));
+
+        // 3D: LimasTrapesium(tinggi,tinggiTrapesium,sisiAtas,sisiBawah,sisiKanan,sisiKiri)
+        shapes.add(new LimasTrapesium(12, 6, 4, 8, 5, 5));
+
+        // 2D: Lingkaran(jariJari)
+        shapes.add(new Lingkaran(7));
+
+        // 2D: Persegi(panjang,lebar)
+        shapes.add(new Persegi(6));
+
+        // 2D: PersegiPanjang(panjang,lebar)
+        shapes.add(new PersegiPanjang(8, 5));
+
+        // 3D: PrismaBelahKetupat(d1,d1,tinggiPrisma)
+        shapes.add(new PrismaBelahKetupat(8, 6, 4));
+
+        // 3D: PrismaJajarGenjang(alas,tinggiAlas,tinggiPrisma,sisiMiring,sisiMiringAlas)
+        shapes.add(new PrismaJajarGenjang(10, 6, 4, 7));
+
+        // 3D: PrismaLayangLayang(d1,d2,sisi1,sisi2,tinggiPrisma)
+        shapes.add(new PrismaLayangLayang(10, 6, 5, 4, 4));
+
+        // 3D: PrismaPersegi(sisi,tinggiPrisma)
+        shapes.add(new PrismaPersegi(6, 4));
+
+        // 3D: PrismaPersegiPanjang(panjang,lebar,tinggiPrisma)
+        shapes.add(new PrismaPersegiPanjang(8, 5, 4));
+
+        // 3D: PrismaSegitiga(alas,tinggiSegitiga,tinggiPrisma,sisiA,sisiB,sisiC)
+        shapes.add(new PrismaSegitiga(6, 4, 5, 5, 5, 5));
+
+        // 3D: PrismaTrapesium(sisiAtas,sisiBawah,sisiKanan,sisiKiri,tinggiTrapesium,tinggiPrisma,namaPrisma)
+        shapes.add(new PrismaTrapesium(4, 8, 5, 5, 6, 6, "Prisma Trapesium"));
+
+        // 2D: Segitiga(alas,tinggi,sisiA,sisiB,sisiC)
+        shapes.add(new Segitiga(6, 4, 5, 5, 5));
+
+        // 3D: Tabung(jariJari,tingiPrisma)
+        shapes.add(new Tabung(7, 4));
+
+        // 3D: TemberengBola(jariJariTembereng,tinggi,jariJari)
+        shapes.add(new TemberengBola(5, 3, 5));
+
+        // 2D: TemberengLingkaran(busur,tinggi,taliBusur,jariJari)
+        shapes.add(new TemberengLingkaran(12, 4, 10, 7));
+
+        // 2D: Trapesium(sisiKanan,sisiBawah,sisiKanan,sisiKiri,tinggi)
+        shapes.add(new Trapesium(4, 8, 5, 5, 6));
+
+        // Run threaded calculation
+        ThreadExecutor.processShapes(shapes);
+    }
+}

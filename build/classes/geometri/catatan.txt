@@ -1,0 +1,40 @@
+- aku masih bingung soal mencari luas permukaan  limas trapesium, limas belahketupat, limas jajargenjang, limas layang layang. rumus luas permukaan ga ku isi
+- ada class yang ku tambahin atribut baru lagi
+
+Nabil
+-catatan semua 3d class di constructor ada hitung keliling sama itubng luas
+ganti ke hitung volume sama hitung Luas permukaan
+- pengen ganti hitungKeliling menjadi private (malas)
+- merubah semua tinggi 3d menjadi tinggiLimas atau tinggiPrisma
+
+Yoda
+-persegi, sam segitiga udh implemen thread, tapi segitiga cm coba2
+
+todo
+-benerin interface geometri
+-bedain this sama super
+-constructor gaboleh ngitung (udah)
+-method parent, manggilnya pake super, contoh super.hitungLuas() di class LimasPersegiPanjang
+-main di luar package (sementara ku hapus)
+-tabel materi bab2
+-pakai scanner untuk input
+
+yoda 
+-belah ketupat
+-jajar genjang
+-layang layang
+-persegi
+-segitiga
+
+-limas
+-belahketupat
+-jajargenjang
+-layanglayang
+-persegi
+
+-prisma
+layang  layang
+
+
+
+------------
