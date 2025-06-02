@@ -405,8 +405,7 @@ public class Main {
                 default -> System.out.println("Pilihan belum didukung atau belum ditambahkan.");
             }
         }
-        BangunDatar test = new Lingkaran(7);
-        test.getKeliling();
+
         // Proses perhitungan dengan thread
         ThreadExecutor.processShapes(shapes);
         scanner.close();

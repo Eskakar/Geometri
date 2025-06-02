@@ -1,6 +1,8 @@
 package geometri;
 
 public class TemberengLingkaran extends Lingkaran {
+    private double luas;
+    private double keliling;
     protected double busur;
     protected double tinggi;
     protected double taliBusur;
@@ -16,12 +18,12 @@ public class TemberengLingkaran extends Lingkaran {
     @Override
     public double hitungKeliling() {
         this.sudut = 2 * Math.acos((super.jariJari - this.tinggi) / super.jariJari);
-        super.keliling = sudut * super.jariJari + 2 * Math.sqrt(2 * super.jariJari * this.tinggi - this.tinggi * this.tinggi);
-        return super.keliling;
+        this.keliling = sudut * super.jariJari + 2 * Math.sqrt(2 * super.jariJari * this.tinggi - this.tinggi * this.tinggi);
+        return this.keliling;
     }
      @Override
     public double hitungLuas() {
-        super.luas = (super.jariJari * super.jariJari * Math.acos((super.jariJari - this.tinggi) / super.jariJari) - (super.jariJari - this.tinggi) * Math.sqrt(2 * super.jariJari * this.tinggi - this.tinggi * this.tinggi));
-        return super.luas;
+        this.luas = (super.jariJari * super.jariJari * Math.acos((super.jariJari - this.tinggi) / super.jariJari) - (super.jariJari - this.tinggi) * Math.sqrt(2 * super.jariJari * this.tinggi - this.tinggi * this.tinggi));
+        return this.luas;
     }
 }

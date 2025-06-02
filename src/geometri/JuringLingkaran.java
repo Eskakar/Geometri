@@ -1,7 +1,8 @@
 package geometri;
 
 public class JuringLingkaran extends Lingkaran {
-
+    private double luas;
+    private double keliling;
     protected double sudutPusat; 
     protected double busur;
 
@@ -13,13 +14,13 @@ public class JuringLingkaran extends Lingkaran {
 
     @Override
     public double hitungKeliling(){
-        super.keliling = 2 * super.jariJari + (this.sudutPusat / 360.0) * 2 * super.PI * super.jariJari;
-        return super.keliling;
+        this.keliling = 2 * super.jariJari + (this.sudutPusat / 360.0) * 2 * super.PI * super.jariJari;
+        return this.keliling;
         
     };
     @Override
     public double hitungLuas(){
-        super.luas = (this.sudutPusat / 360.0) * super.luas;
-        return super.luas;
+        this.luas = (this.sudutPusat / 360.0) * super.hitungLuas();
+        return this.luas;
     };
 }
