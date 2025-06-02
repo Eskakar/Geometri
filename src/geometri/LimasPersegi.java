@@ -9,7 +9,6 @@ public class LimasPersegi extends Persegi {
     public LimasPersegi(double sisi, double tinggiLimas) {
         super(sisi, "Limas Persegi");
         this.tinggiLimas = tinggiLimas;
- 
     }
 
     private double hitungTinggiSisiMiring() {
