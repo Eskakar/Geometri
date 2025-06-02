@@ -2,206 +2,412 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import geometri.BelahKetupat;
-import geometri.Bola;
-import geometri.CincinBola;
-import geometri.Geometri;
-import geometri.JajarGenjang;
-import geometri.JuringBola;
-import geometri.JuringLingkaran;
-import geometri.Kerucut;
-import geometri.KerucutTerpancung;
-import geometri.LayangLayang;
-import geometri.LimasBelahKetupat;
-import geometri.LimasJajarGenjang;
-import geometri.LimasLayangLayang;
-import geometri.LimasPersegi;
-import geometri.LimasPersegiPanjang;
-import geometri.LimasSegitiga;
-import geometri.LimasTrapesium;
-import geometri.Lingkaran;
-import geometri.Persegi;
-import geometri.PersegiPanjang;
-import geometri.PrismaBelahKetupat;
-import geometri.PrismaJajarGenjang;
-import geometri.PrismaLayangLayang;
-import geometri.PrismaPersegi;
-import geometri.PrismaPersegiPanjang;
-import geometri.PrismaSegitiga;
-import geometri.PrismaTrapesium;
-import geometri.Segitiga;
-import geometri.Tabung;
-import geometri.TemberengBola;
-import geometri.TemberengLingkaran;
-import geometri.Trapesium;
+import geometri.*;
 import threading.ThreadExecutor;
 
 public class Main {
-    private static final Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         List<Geometri> shapes = new ArrayList<>();
 
-        while (true) {
-            System.out.println("\n=== Menu Geometri ===");
-            System.out.println("1. Persegi");
-            System.out.println("2. Persegi Panjang");
-            System.out.println("3. Lingkaran");
-            System.out.println("4. Segitiga");
-            System.out.println("5. Jajar Genjang");
-            System.out.println("6. Trapesium");
-            System.out.println("7. Layang-layang");
-            System.out.println("8. Belah Ketupat");
-            System.out.println("9. Juring Lingkaran");
-            System.out.println("10. Tembereng Lingkaran");
-            System.out.println("11. Limas Persegi");
-            System.out.println("12. Limas Persegi Panjang");
-            System.out.println("13. Limas Segitiga");
-            System.out.println("14. Limas Trapesium");
-            System.out.println("15. Limas Layang-Layang");
-            System.out.println("16. Limas Belah Ketupat");
-            System.out.println("17. Limas Jajar Genjang");
-            System.out.println("18. Prisma Persegi");
-            System.out.println("19. Prisma Persegi Panjang");
-            System.out.println("20. Prisma Segitiga");
-            System.out.println("21. Prisma Trapesium");
-            System.out.println("22. Prisma Layang-Layang");
-            System.out.println("23. Prisma Belah Ketupat");
-            System.out.println("24. Prisma Jajar Genjang");
-            System.out.println("25. Tabung");
-            System.out.println("26. Kerucut");
-            System.out.println("27. Kerucut Terpancung");
-            System.out.println("28. Bola");
-            System.out.println("29. Cincin Bola");
-            System.out.println("30. Juring Bola");
-            System.out.println("31. Tembereng Bola");
-            System.out.println("0. Selesai dan Proses");
-            System.out.print("Pilih bentuk geometri: ");
-            
-            int choice = scanner.nextInt();
-            if (choice == 0) break;
+        String[] options = {
+            "1. Segitiga",
+            "2. Persegi",
+            "3. Persegi Panjang",
+            "4. Lingkaran",
+            "5. Trapesium",
+            "6. Jajar Genjang",
+            "7. Belah Ketupat",
+            "8. Layang-Layang",
+            "9. Juring Lingkaran",
+            "10. Tembereng Lingkaran",
+            "11. Bola",
+            "12. Tabung",
+            "13. Kerucut",
+            "14. Kerucut Terpancung",
+            "15. Cincin Bola",
+            "16. Juring Bola",
+            "17. Tembereng Bola",
+            "18. Limas Persegi",
+            "19. Limas Persegi Panjang",
+            "20. Limas Segitiga",
+            "21. Limas Belah Ketupat",
+            "22. Limas Jajar Genjang",
+            "23. Limas Trapesium",
+            "24. Limas Layang-Layang",
+            "25. Prisma Persegi",
+            "26. Prisma Persegi Panjang",
+            "27. Prisma Segitiga",
+            "28. Prisma Belah Ketupat",
+            "29. Prisma Jajar Genjang",
+            "30. Prisma Trapesium",
+            "31. Prisma Layang-Layang"
+        };
 
-            Geometri shape = createShape(choice);
-            if (shape != null) {
-                shapes.add(shape);
-                System.out.println("Bentuk berhasil ditambahkan.\n");
-            } else {
-                System.out.println("Pilihan tidak valid atau input salah.\n");
+        System.out.println("Pilih jenis geometri:");
+        for (String option : options) {
+            System.out.println(option);
+        }
+
+        System.out.print("Masukkan nomor geometri: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+
+        System.out.print("Masukkan jumlah objek yang ingin dihitung: ");
+        int jumlah = scanner.nextInt();
+        scanner.nextLine();
+
+        for (int i = 0; i < jumlah; i++) {
+            System.out.println("\n[Data ke-" + (i + 1) + "]");
+
+            switch (choice) {
+                case 1 -> { // Segitiga
+                    System.out.print("Alas: ");
+                    double alas = scanner.nextDouble();
+                    System.out.print("Tinggi: ");
+                    double tinggi = scanner.nextDouble();
+                    System.out.print("Sisi A: ");
+                    double a = scanner.nextDouble();
+                    System.out.print("Sisi B: ");
+                    double b = scanner.nextDouble();
+                    System.out.print("Sisi C: ");
+                    double c = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new Segitiga(alas, tinggi, a, b, c));
+                }
+                case 2 -> {
+                    System.out.print("Sisi: ");
+                    double sisi = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new Persegi(sisi));
+                }
+                case 3 -> {
+                    System.out.print("Panjang: ");
+                    double p = scanner.nextDouble();
+                    System.out.print("Lebar: ");
+                    double l = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new PersegiPanjang(p, l));
+                }
+                case 4 -> {
+                    System.out.print("Jari-jari: ");
+                    double r = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new Lingkaran(r));
+                }
+                case 5 -> {
+                    System.out.print("Sisi Atas: ");
+                    double atas = scanner.nextDouble();
+                    System.out.print("Sisi Bawah: ");
+                    double bawah = scanner.nextDouble();
+                    System.out.print("Sisi Kanan: ");
+                    double kanan = scanner.nextDouble();
+                    System.out.print("Sisi Kiri: ");
+                    double kiri = scanner.nextDouble();
+                    System.out.print("Tinggi: ");
+                    double t = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new Trapesium(atas, bawah, kanan, kiri, t));
+                }
+                case 6 -> {
+                    System.out.print("Alas: ");
+                    double a = scanner.nextDouble();
+                    System.out.print("Tinggi: ");
+                    double t = scanner.nextDouble();
+                    System.out.print("Sisi miring: ");
+                    double sm = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new JajarGenjang(a, t, sm));
+                }
+                case 7 -> {
+                    System.out.print("Diagonal 1: ");
+                    double d1 = scanner.nextDouble();
+                    System.out.print("Diagonal 2: ");
+                    double d2 = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new BelahKetupat(d1, d2));
+                }
+                case 8 -> {
+                    System.out.print("Diagonal 1: ");
+                    double d1 = scanner.nextDouble();
+                    System.out.print("Diagonal 2: ");
+                    double d2 = scanner.nextDouble();
+                    System.out.print("Sisi A: ");
+                    double sa = scanner.nextDouble();
+                    System.out.print("Sisi B: ");
+                    double sb = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new LayangLayang(d1, d2, sa, sb));
+                }
+                case 9 -> {
+                    System.out.print("Sudut pusat (°): ");
+                    double sudut = scanner.nextDouble();
+                    System.out.print("Busur: ");
+                    double busur = scanner.nextDouble();
+                    System.out.print("Jari-jari: ");
+                    double r = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new JuringLingkaran(sudut, busur, r));
+                }
+                case 10 -> {
+                    System.out.print("Busur: ");
+                    double busur = scanner.nextDouble();
+                    System.out.print("Tinggi: ");
+                    double tinggi = scanner.nextDouble();
+                    System.out.print("Tali busur: ");
+                    double tb = scanner.nextDouble();
+                    System.out.print("Jari-jari: ");
+                    double r = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new TemberengLingkaran(busur, tinggi, tb, r));
+                }
+                case 11 -> {
+                    System.out.print("Jari-jari bola: ");
+                    double r = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new Bola(r));
+                }
+                case 12 -> {
+                    System.out.print("Jari-jari: ");
+                    double r = scanner.nextDouble();
+                    System.out.print("Tinggi: ");
+                    double t = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new Tabung(r, t));
+                }
+                case 13 -> {
+                    System.out.print("Tinggi: ");
+                    double t = scanner.nextDouble();
+                    System.out.print("Jari-jari: ");
+                    double r = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new Kerucut(t, r));
+                }
+                case 14 -> {
+                    System.out.print("Tinggi: ");
+                    double t = scanner.nextDouble();
+                    System.out.print("Jari-jari bawah: ");
+                    double r1 = scanner.nextDouble();
+                    System.out.print("Jari-jari atas: ");
+                    double r2 = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new KerucutTerpancung(t, r1, r2));
+                }
+                case 15 -> {
+                    System.out.print("r1: ");
+                    double r1 = scanner.nextDouble();
+                    System.out.print("r2: ");
+                    double r2 = scanner.nextDouble();
+                    System.out.print("Jari-jari: ");
+                    double r = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new CincinBola(r1, r2, r));
+                }
+                case 16 -> {
+                    System.out.print("Sudut: ");
+                    double sudut = scanner.nextDouble();
+                    System.out.print("Jari-jari: ");
+                    double r = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new JuringBola(sudut, r));
+                }
+                case 17 -> {
+                    System.out.print("Jari-jari tembereng: ");
+                    double rt = scanner.nextDouble();
+                    System.out.print("Tinggi: ");
+                    double tinggi = scanner.nextDouble();
+                    System.out.print("Jari-jari bola: ");
+                    double r = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new TemberengBola(rt, tinggi, r));
+                }
+                case 18 -> {
+                    System.out.print("Sisi: ");
+                    double sisi = scanner.nextDouble();
+                    System.out.print("Tinggi limas: ");
+                    double tinggi = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new LimasPersegi(sisi, tinggi));
+                }
+                case 19 -> {
+                    System.out.print("Panjang: ");
+                    double p = scanner.nextDouble();
+                    System.out.print("Lebar: ");
+                    double l = scanner.nextDouble();
+                    System.out.print("Tinggi limas: ");
+                    double t = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new LimasPersegiPanjang(p, l, t));
+                }
+                case 20 -> {
+                    System.out.print("Alas: ");
+                    double alas = scanner.nextDouble();
+                    System.out.print("Tinggi limas: ");
+                    double tl = scanner.nextDouble();
+                    System.out.print("Tinggi segitiga: ");
+                    double ts = scanner.nextDouble();
+                    System.out.print("Sisi A: ");
+                    double a = scanner.nextDouble();
+                    System.out.print("Sisi B: ");
+                    double b = scanner.nextDouble();
+                    System.out.print("Sisi C: ");
+                    double c = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new LimasSegitiga(alas, tl, ts, a, b, c));
+                }
+                case 21 -> { // Limas Belah Ketupat
+                    System.out.print("Diagonal 1: ");
+                    double d1 = scanner.nextDouble();
+                    System.out.print("Diagonal 2: ");
+                    double d2 = scanner.nextDouble();
+                    System.out.print("Tinggi limas: ");
+                    double tinggi = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new LimasBelahKetupat(d1, d2, tinggi));
+                }
+                case 22 -> { // Limas Jajar Genjang
+                    System.out.print("Alas: ");
+                    double a = scanner.nextDouble();
+                    System.out.print("Tinggi alas: ");
+                    double ta = scanner.nextDouble();
+                    System.out.print("Sisi miring: ");
+                    double sm = scanner.nextDouble();
+                    System.out.print("Tinggi limas: ");
+                    double tinggi = scanner.nextDouble();
+                    System.out.print("Tinggi segitiga panjang: ");
+                    double tinggiSP= scanner.nextDouble();
+                    System.out.print("Tinggi segitiga pendek: ");
+                    double tinggiSpen = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new LimasJajarGenjang(a, ta, sm, tinggi,tinggiSP,tinggiSpen));
+                }
+                case 23 -> { // Limas Trapesium
+                    System.out.print("Atas: ");
+                    double atas = scanner.nextDouble();
+                    System.out.print("Bawah: ");
+                    double bawah = scanner.nextDouble();
+                    System.out.print("Kanan: ");
+                    double kanan = scanner.nextDouble();
+                    System.out.print("Kiri: ");
+                    double kiri = scanner.nextDouble();
+                    System.out.print("Tinggi trapesium: ");
+                    double tinggit = scanner.nextDouble();
+                    System.out.print("Tinggi limas: ");
+                    double tinggil = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new LimasTrapesium(atas, bawah, kanan, kiri, tinggit, tinggil));
+                }
+                case 24 -> { // Limas Layang-Layang
+                    System.out.print("Diagonal 1: ");
+                    double d1 = scanner.nextDouble();
+                    System.out.print("Diagonal 2: ");
+                    double d2 = scanner.nextDouble();
+                    System.out.print("Sisi A: ");
+                    double a = scanner.nextDouble();
+                    System.out.print("Sisi B: ");
+                    double b = scanner.nextDouble();
+                    System.out.print("Tinggi limas: ");
+                    double tinggi = scanner.nextDouble();
+                    System.out.print("Tinggi sisi tegak 1: ");
+                    double tinggiTegak1 = scanner.nextDouble();
+                    System.out.print("Tinggi sisi tegak 2: ");
+                    double tinggiTegak2 = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new LimasLayangLayang( tinggi,tinggiTegak1,tinggiTegak2,d1, d2, a, b));
+                }
+                case 25 -> { // Prisma Persegi
+                    System.out.print("Sisi: ");
+                    double sisi = scanner.nextDouble();
+                    System.out.print("Tinggi prisma: ");
+                    double tinggi = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new PrismaPersegi(sisi, tinggi));
+                }
+                case 26 -> { // Prisma Persegi Panjang
+                    System.out.print("Panjang: ");
+                    double p = scanner.nextDouble();
+                    System.out.print("Lebar: ");
+                    double l = scanner.nextDouble();
+                    System.out.print("Tinggi prisma: ");
+                    double t = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new PrismaPersegiPanjang(p, l, t));
+                }
+                case 27 -> { // Prisma Segitiga
+                    System.out.print("Alas: ");
+                    double alas = scanner.nextDouble();
+                    System.out.print("Tinggi segitiga: ");
+                    double tinggis = scanner.nextDouble();
+                    System.out.print("Tinggi prisma: ");
+                    double tinggip = scanner.nextDouble();
+                    System.out.print("Sisi A: ");
+                    double a = scanner.nextDouble();
+                    System.out.print("Sisi B: ");
+                    double b = scanner.nextDouble();
+                    System.out.print("Sisi C: ");
+                    double c = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new PrismaSegitiga(alas, tinggis, tinggip, a, b, c));
+                }
+                case 28 -> { // Prisma Belah Ketupat
+                    System.out.print("Diagonal 1: ");
+                    double d1 = scanner.nextDouble();
+                    System.out.print("Diagonal 2: ");
+                    double d2 = scanner.nextDouble();
+                    System.out.print("Tinggi prisma: ");
+                    double tinggi = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new PrismaBelahKetupat(d1, d2, tinggi));
+                }
+                case 29 -> { // Prisma Jajar Genjang
+                    System.out.print("Alas: ");
+                    double a = scanner.nextDouble();
+                    System.out.print("Tinggi alas: ");
+                    double ta = scanner.nextDouble();
+                    System.out.print("Sisi miring: ");
+                    double sm = scanner.nextDouble();
+                    System.out.print("Tinggi prisma: ");
+                    double tinggi = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new PrismaJajarGenjang(a, ta, sm, tinggi));
+                }
+                case 30 -> { // Prisma Trapesium
+                    System.out.print("Atas: ");
+                    double atas = scanner.nextDouble();
+                    System.out.print("Bawah: ");
+                    double bawah = scanner.nextDouble();
+                    System.out.print("Kanan: ");
+                    double kanan = scanner.nextDouble();
+                    System.out.print("Kiri: ");
+                    double kiri = scanner.nextDouble();
+                    System.out.print("Tinggi trapesium: ");
+                    double tinggit = scanner.nextDouble();
+                    System.out.print("Tinggi prisma: ");
+                    double tinggip = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new PrismaTrapesium(atas, bawah, kanan, kiri, tinggit, tinggip,"Prisma Trapesium"));
+                }
+                case 31 -> { // Prisma Layang-Layang
+                    System.out.print("Diagonal 1: ");
+                    double d1 = scanner.nextDouble();
+                    System.out.print("Diagonal 2: ");
+                    double d2 = scanner.nextDouble();
+                    System.out.print("Sisi A: ");
+                    double a = scanner.nextDouble();
+                    System.out.print("Sisi B: ");
+                    double b = scanner.nextDouble();
+                    System.out.print("Tinggi prisma: ");
+                    double tinggi = scanner.nextDouble();
+                    scanner.nextLine();
+                    shapes.add(new PrismaLayangLayang(d1, d2, a, b, tinggi));
+                }
+
+                default -> System.out.println("Pilihan belum didukung atau belum ditambahkan.");
             }
         }
 
+        // Proses perhitungan dengan thread
         ThreadExecutor.processShapes(shapes);
-    }
-
-    private static Geometri createShape(int choice) {
-        switch (choice) {
-            case 1:
-                System.out.print("Sisi: ");
-                return new Persegi(scanner.nextDouble());
-            case 2:
-                System.out.print("Panjang: ");
-                double p = scanner.nextDouble();
-                System.out.print("Lebar: ");
-                double l = scanner.nextDouble();
-                return new PersegiPanjang(p, l);
-            case 3:
-                System.out.print("Jari-jari: ");
-                return new Lingkaran(scanner.nextDouble());
-            case 4:
-                System.out.print("Alas: ");
-                double alas = scanner.nextDouble();
-                System.out.print("Tinggi: ");
-                double tinggi = scanner.nextDouble();
-                System.out.print("Sisi A, B, C: ");
-                return new Segitiga(alas, tinggi, scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 5:
-                System.out.print("Alas: ");
-                double ja = scanner.nextDouble();
-                System.out.print("Tinggi: ");
-                double jt = scanner.nextDouble();
-                System.out.print("Sisi Miring: ");
-                return new JajarGenjang(ja, jt, scanner.nextDouble());
-            case 6:
-                System.out.print("Alas 1, Alas 2, Tinggi, Sisi A, Sisi B: ");
-                return new Trapesium(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 7:
-                System.out.print("Diagonal 1, Diagonal 2, Sisi A, Sisi B: ");
-                return new LayangLayang(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 8:
-                System.out.print("Diagonal 1, Diagonal 2: ");
-                return new BelahKetupat(scanner.nextDouble(), scanner.nextDouble());
-            case 9:
-                System.out.print("Sudut (°), π, jari-jari: ");
-                return new JuringLingkaran(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 10:
-                System.out.print("Tali busur, tinggi, jari-jari, π: ");
-                return new TemberengLingkaran(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 11:
-                System.out.print("Sisi alas, tinggi: ");
-                return new LimasPersegi(scanner.nextDouble(), scanner.nextDouble());
-            case 12:
-                System.out.print("Panjang, lebar, tinggi: ");
-                return new LimasPersegiPanjang(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 13:
-                System.out.print("Alas, tinggi alas, tinggi limas, sisi A, B, C: ");
-                return new LimasSegitiga(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 14:
-                System.out.print("Alas 1, Alas 2, tinggi alas, tinggi limas, sisi A, B: ");
-                return new LimasTrapesium(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 15:
-                System.out.print("Diagonal 1, Diagonal 2, Sisi A, B, tinggi, sisi samping A, B: ");
-                return new LimasLayangLayang(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 16:
-                System.out.print("Diagonal 1, Diagonal 2, tinggi limas: ");
-                return new LimasBelahKetupat(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 17:
-                System.out.print("Alas, tinggi alas, sisi miring, tinggi limas, panjang alas, lebar alas: ");
-                return new LimasJajarGenjang(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 18:
-                System.out.print("Sisi alas, tinggi prisma: ");
-                return new PrismaPersegi(scanner.nextDouble(), scanner.nextDouble());
-            case 19:
-                System.out.print("Panjang, lebar, tinggi: ");
-                return new PrismaPersegiPanjang(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 20:
-                System.out.print("Alas, tinggi alas, tinggi prisma, sisi A, B, C: ");
-                return new PrismaSegitiga(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 21:
-                System.out.print("Alas 1, Alas 2, tinggi alas, sisi A, B, tinggi prisma: ");
-                scanner.nextLine(); // flush newline
-                return new PrismaTrapesium(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), "Prisma Trapesium");
-            case 22:
-                System.out.print("Diagonal 1, Diagonal 2, sisi A, B, tinggi: ");
-                return new PrismaLayangLayang(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 23:
-                System.out.print("Diagonal 1, Diagonal 2, tinggi: ");
-                return new PrismaBelahKetupat(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 24:
-                System.out.print("Alas, tinggi alas, tinggi prisma, sisi miring: ");
-                return new PrismaJajarGenjang(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 25:
-                System.out.print("Jari-jari, tinggi: ");
-                return new Tabung(scanner.nextDouble(), scanner.nextDouble());
-            case 26:
-                System.out.print("Garis pelukis, jari-jari: ");
-                return new Kerucut(scanner.nextDouble(), scanner.nextDouble());
-            case 27:
-                System.out.print("Tinggi, jari-jari atas, jari-jari bawah: ");
-                return new KerucutTerpancung(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 28:
-                System.out.print("Jari-jari: ");
-                return new Bola(scanner.nextDouble());
-            case 29:
-                System.out.print("Tebal cincin, jari-jari dalam, jari-jari luar: ");
-                return new CincinBola(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            case 30:
-                System.out.print("Sudut (°), jari-jari: ");
-                return new JuringBola(scanner.nextDouble(), scanner.nextDouble());
-            case 31:
-                System.out.print("Jari-jari, tinggi, jari-jari bola: ");
-                return new TemberengBola(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
-            default:
-                return null;
-        }
+        scanner.close();
     }
 }

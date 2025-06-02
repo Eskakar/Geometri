@@ -7,12 +7,6 @@ public class Segitiga extends BangunDatar {
     protected double sisiB;
     protected double sisiC;
     
-    public Segitiga(double alas, double tinggi) {
-        super("Segitiga");
-        this.alas = alas;
-        this.tinggi = tinggi;
-    }
-
     public Segitiga(double alas, double tinggi, double sisiA, double sisiB, double sisiC) {
         this(alas, tinggi, sisiA, sisiB, sisiC, "Segitiga");
     }

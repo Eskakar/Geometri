@@ -1,7 +1,6 @@
 package geometri;
 
 public class Lingkaran extends BangunDatar {
-
     protected double jariJari;
     protected final double PI = 3.14;
 
@@ -19,6 +18,7 @@ public class Lingkaran extends BangunDatar {
         super.keliling = this.PI * this.jariJari * this.jariJari;
         return super.keliling;
     }
+
      @Override
     public double hitungLuas() {
         super.luas = this.PI * this.jariJari * this.jariJari;

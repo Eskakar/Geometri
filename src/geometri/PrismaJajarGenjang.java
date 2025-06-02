@@ -7,7 +7,7 @@ public class PrismaJajarGenjang extends JajarGenjang{
 
     public PrismaJajarGenjang(double alas, double tinggiAlas, double tinggiPrisma, double sisiMiringAlas) {
         super(alas,tinggiAlas, sisiMiringAlas);
-        this.tinggiPrisma = tinggiPrisma;     
+        this.tinggiPrisma = tinggiPrisma;
     }
 
     public double hitungVolume() {
