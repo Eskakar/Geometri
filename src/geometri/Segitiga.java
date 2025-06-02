@@ -32,5 +32,11 @@ public class Segitiga extends BangunDatar {
         super.luas = 0.5 * this.alas * this.tinggi;
         return super.luas;
     }
+    
+    public boolean isValidTriangle() {
+    boolean ok = (sisiA + sisiB > sisiC) && (sisiA + sisiC > sisiB) && (sisiB + sisiC > sisiA);
+    return ok;
+}
+
 }
 

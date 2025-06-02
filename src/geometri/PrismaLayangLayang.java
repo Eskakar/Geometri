@@ -17,7 +17,7 @@ public class PrismaLayangLayang extends LayangLayang {
     }
 
     public double hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * this.hitungLuas() + 2 * this.tinggiPrisma * super.sisiA + 2 * this.tinggiPrisma * super.sisiB;
+        this.luasPermukaan = 2 * super.hitungLuas() + 2 * this.tinggiPrisma * super.sisiA + 2 * this.tinggiPrisma * super.sisiB;
         return this.luasPermukaan;
     }
     @Override

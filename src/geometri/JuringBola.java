@@ -8,7 +8,7 @@ public class JuringBola extends Bola{
     }
     @Override
     public double hitungVolume() {
-        super.volume = (this.sudut / 360) * super.volume;
+        super.volume = (this.sudut / 360) * super.hitungVolume();
         return super.volume;
     }
     @Override
