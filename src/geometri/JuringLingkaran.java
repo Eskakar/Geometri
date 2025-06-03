@@ -14,13 +14,23 @@ public class JuringLingkaran extends Lingkaran {
 
     @Override
     public double hitungKeliling(){
-        this.keliling = 2 * super.jariJari + (this.sudutPusat / 360.0) * 2 * super.PI * super.jariJari;
-        return this.keliling;
+        try {
+            this.keliling = 2 * super.jariJari + (this.sudutPusat / 360.0) * 2 * super.PI * super.jariJari;
+            return this.keliling;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung keliling: " + e.getMessage());
+            return 0;
+        }
         
     };
     @Override
     public double hitungLuas(){
-        this.luas = (this.sudutPusat / 360.0) * super.hitungLuas();
-        return this.luas;
+        try {
+            this.luas = (this.sudutPusat / 360.0) * super.hitungLuas();
+            return this.luas;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung luas: " + e.getMessage());
+            return 0;
+        }
     };
 }

@@ -16,16 +16,26 @@ public class BelahKetupat extends BangunDatar {
     }
 
     public double hitungSisi() {
-        double setengahD1 = this.diagonal1 / 2.0;
-        double setengahD2 = this.diagonal2 / 2.0;
-        this.sisi = Math.sqrt(setengahD1 * setengahD1 + setengahD2 * setengahD2);
-        return this.sisi;
+        try {
+            double setengahD1 = this.diagonal1 / 2.0;
+            double setengahD2 = this.diagonal2 / 2.0;
+            this.sisi = Math.sqrt(setengahD1 * setengahD1 + setengahD2 * setengahD2);
+            return this.sisi;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung keliling: " + e.getMessage());
+            return 0;
+        }
     }
 
     @Override
     public double hitungLuas() {
-        super.luas = 0.5 * diagonal1 * diagonal2;
-        return super.luas;
+        try {
+            super.luas = 0.5 * diagonal1 * diagonal2;
+            return super.luas;
+        } catch (Exception e) {
+            System.err.println("Error menghitung luas: " + e.getMessage());
+            return 0;
+        }
     }
 
     @Override

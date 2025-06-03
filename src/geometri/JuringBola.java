@@ -8,13 +8,23 @@ public class JuringBola extends Bola{
     }
     @Override
     public double hitungVolume() {
-        super.volume = (this.sudut / 360) * super.hitungVolume();
-        return super.volume;
+        try {
+            super.volume = (this.sudut / 360) * super.hitungVolume();
+            return super.volume;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung volume: " + e.getMessage());
+            return 0;
+        }
     }
     @Override
     public double hitungLuasPermukaan() {
-        super.luasPermukaan = (this.sudut / 360) * 4 * super.PI * super.jariJari * super.jariJari;
-        return super.luasPermukaan;
+        try {
+            super.luasPermukaan = (this.sudut / 360) * 4 * super.PI * super.jariJari * super.jariJari;
+            return super.luasPermukaan;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung luas permukaan: " + e.getMessage());
+            return 0;
+        }
     }   
 
 }

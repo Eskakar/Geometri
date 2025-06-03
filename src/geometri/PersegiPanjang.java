@@ -16,13 +16,23 @@ public class PersegiPanjang extends BangunDatar {
 
     @Override
     public double hitungKeliling() {
-        super.keliling = 2 * (this.panjang + this.lebar);
-        return super.keliling;
+        try {
+            super.keliling = 2 * (this.panjang + this.lebar);
+            return super.keliling;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung keliling  : " + e.getMessage());
+            return 0;
+        }
     }
 
     @Override
     public double hitungLuas() {
-        super.luas = this.panjang * this.lebar;
-        return super.luas;
+        try {
+            super.luas = this.panjang * this.lebar;
+            return super.luas;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung luas  : " + e.getMessage());
+            return 0;
+        }
     }
 }

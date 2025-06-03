@@ -15,13 +15,23 @@ public class Lingkaran extends BangunDatar {
 
     @Override
     public double hitungKeliling() {
-        super.keliling = this.PI * this.jariJari * this.jariJari;
-        return super.keliling;
+        try {
+            super.keliling = this.PI * this.jariJari * this.jariJari;
+            return super.keliling;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung keliling  : " + e.getMessage());
+            return 0;
+        }
     }
 
      @Override
     public double hitungLuas() {
-        super.luas = this.PI * this.jariJari * this.jariJari;
-        return super.luas;
+        try {
+            super.luas = this.PI * this.jariJari * this.jariJari;
+            return super.luas;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung luas  : " + e.getMessage());
+            return 0;
+        }
     }
 }

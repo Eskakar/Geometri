@@ -12,17 +12,27 @@ public class TemberengBola extends Bola {
 
     @Override
     public double hitungVolume() {
-        this.volume = (super.PI * this.tinggi * this.tinggi * (3 * super.jariJari - this.tinggi)) / 3;
-        return this.volume;
+        try {
+            this.volume = (super.PI * this.tinggi * this.tinggi * (3 * super.jariJari - this.tinggi)) / 3;
+            return this.volume;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung volume  : " + e.getMessage());
+          return 0;
+        }
     }
 
     @Override
     public double hitungLuasPermukaan() {
-        double luasSelimut = 2 * super.PI * super.jariJari * this.tinggi;
-        double jariJariAlas = Math.sqrt(2 * super.jariJari * this.tinggi - Math.pow(this.tinggi, 2));
-        double luasALas = super.PI * Math.pow(jariJariAlas, 2);
-        this.luasPermukaan = luasSelimut + luasALas;
-        return this.luasPermukaan;
+        try {
+            double luasSelimut = 2 * super.PI * super.jariJari * this.tinggi;
+            double jariJariAlas = Math.sqrt(2 * super.jariJari * this.tinggi - Math.pow(this.tinggi, 2));
+            double luasALas = super.PI * Math.pow(jariJariAlas, 2);
+            this.luasPermukaan = luasSelimut + luasALas;
+            return this.luasPermukaan;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung luas permukaan  : " + e.getMessage());
+          return 0;
+        }
 
     }
 }

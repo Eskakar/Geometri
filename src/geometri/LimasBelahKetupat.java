@@ -14,20 +14,35 @@ public class LimasBelahKetupat extends BelahKetupat {
     }
 
     private double hitungTinggiSegitigaSisiTegak() {
-        double TinggiSisiTegak = Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(super.hitungSisi() / 2.0, 2));
-        return TinggiSisiTegak ;
+        try {
+            double TinggiSisiTegak = Math.sqrt(Math.pow(this.tinggiLimas, 2) + Math.pow(super.hitungSisi() / 2.0, 2));
+            return TinggiSisiTegak ;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung tinggi sisi tegak: " + e.getMessage());
+            return 0;
+        }
     }
 
     public double hitungVolume() {
-        this.volume = (1.0 / 3.0) * super.hitungLuas() * this.tinggiLimas;
-        return this.volume;
+        try {
+            this.volume = (1.0 / 3.0) * super.hitungLuas() * this.tinggiLimas;
+            return this.volume;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung volume: " + e.getMessage());
+            return 0;
+        }
     }
 
     public double hitungLuasPermukaan() {
-        double tinggiSegitiga = hitungTinggiSegitigaSisiTegak();
-        double luasSegitiga = 0.5 * super.hitungSisi() * tinggiSegitiga;
-        this.luasPermukaan = super.hitungLuas() + (4 * luasSegitiga);
-        return this.luasPermukaan;
+        try {
+            double tinggiSegitiga = hitungTinggiSegitigaSisiTegak();
+            double luasSegitiga = 0.5 * super.hitungSisi() * tinggiSegitiga;
+            this.luasPermukaan = super.hitungLuas() + (4 * luasSegitiga);
+            return this.luasPermukaan;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung luas permukaan: " + e.getMessage());
+            return 0;
+        }
     }
 
     @Override

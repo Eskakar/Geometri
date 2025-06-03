@@ -17,13 +17,23 @@ public class TemberengLingkaran extends Lingkaran {
 
     @Override
     public double hitungKeliling() {
-        this.sudut = 2 * Math.acos((super.jariJari - this.tinggi) / super.jariJari);
-        this.keliling = sudut * super.jariJari + 2 * Math.sqrt(2 * super.jariJari * this.tinggi - this.tinggi * this.tinggi);
-        return this.keliling;
+        try {
+            this.sudut = 2 * Math.acos((super.jariJari - this.tinggi) / super.jariJari);
+            this.keliling = sudut * super.jariJari + 2 * Math.sqrt(2 * super.jariJari * this.tinggi - this.tinggi * this.tinggi);
+            return this.keliling;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung keliling  : " + e.getMessage());
+          return 0;
+        }
     }
      @Override
     public double hitungLuas() {
-        this.luas = (super.jariJari * super.jariJari * Math.acos((super.jariJari - this.tinggi) / super.jariJari) - (super.jariJari - this.tinggi) * Math.sqrt(2 * super.jariJari * this.tinggi - this.tinggi * this.tinggi));
-        return this.luas;
+        try {
+            this.luas = (super.jariJari * super.jariJari * Math.acos((super.jariJari - this.tinggi) / super.jariJari) - (super.jariJari - this.tinggi) * Math.sqrt(2 * super.jariJari * this.tinggi - this.tinggi * this.tinggi));
+            return this.luas;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung luas  : " + e.getMessage());
+          return 0;
+        }
     }
 }

@@ -20,13 +20,23 @@ public class LayangLayang extends BangunDatar {
 
     @Override
     public double hitungKeliling(){
-        super.keliling = 2 * (this.sisiA + this.sisiB);
-        return super.keliling;
+        try {
+            super.keliling = 2 * (this.sisiA + this.sisiB);
+            return super.keliling;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung keliling: " + e.getMessage());
+            return 0;
+        }
     }
 
     @Override
     public double hitungLuas(){
-        super.luas = 0.5 * diagonal1 * diagonal2;
-        return super.luas;
+        try {
+            super.luas = 0.5 * diagonal1 * diagonal2;
+            return super.luas;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung luas: " + e.getMessage());
+            return 0;
+        }
     }
 }

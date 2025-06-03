@@ -23,14 +23,24 @@ public class Segitiga extends BangunDatar {
    @Override
 
     public double hitungKeliling() {
-        super.keliling = this.sisiA + this.sisiB + this.sisiC;
-        return super.keliling;
+        try {
+            super.keliling = this.sisiA + this.sisiB + this.sisiC;
+            return super.keliling;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung keliling  : " + e.getMessage());
+          return 0;
+        }
     }
 
     @Override
     public double hitungLuas() {
-        super.luas = 0.5 * this.alas * this.tinggi;
-        return super.luas;
+        try {
+            super.luas = 0.5 * this.alas * this.tinggi;
+            return super.luas;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung luas  : " + e.getMessage());
+          return 0;
+        }
     }
     
     public boolean isValidTriangle() {

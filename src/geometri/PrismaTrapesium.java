@@ -12,13 +12,23 @@ public class PrismaTrapesium extends Trapesium {
     }
 
     public double hitungVolume() { 
-        this.volume = super.hitungLuas() * this.tinggiPrisma;
-        return this.volume;
+        try {
+            this.volume = super.hitungLuas() * this.tinggiPrisma;
+            return this.volume;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung volume  : " + e.getMessage());
+          return 0;
+        }
     }
 
     public double hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * super.hitungLuas() + super.sisiAtas * this.tinggiPrisma + this.tinggiPrisma * super.sisiBawah + super.sisiKanan * this.tinggiPrisma + super.sisiKiri * this.tinggiPrisma;
-        return this.luasPermukaan;
+        try {
+            this.luasPermukaan = 2 * super.hitungLuas() + super.sisiAtas * this.tinggiPrisma + this.tinggiPrisma * super.sisiBawah + super.sisiKanan * this.tinggiPrisma + super.sisiKiri * this.tinggiPrisma;
+            return this.luasPermukaan;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung luas permukaan  : " + e.getMessage());
+          return 0;
+        }
     }
     @Override
     public double hitungKeliling() {
