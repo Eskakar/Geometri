@@ -36,7 +36,6 @@ import geometri.TemberengBola;
 import geometri.TemberengLingkaran;
 import geometri.Trapesium;
 import geometri.view.MainGUI;
-import threading.ThreadExecutor;
 
 public class Main {
   public static void main(String[] args) {

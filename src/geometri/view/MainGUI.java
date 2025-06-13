@@ -1,548 +1,375 @@
 package geometri.view;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-import javax.imageio.plugins.tiff.GeoTIFFTagSet;
 import javax.swing.*;
-
-// Assuming these classes are in your 'geometri' package
+// Asumsikan semua kelas geometri seperti BangunDatar, Bola, Segitiga, dll., sudah tersedia di package geometri
 import geometri.*;
-import threading.ThreadExecutor; // Assuming this class exists
 
 public class MainGUI extends JFrame {
 
-  private CardLayout cardLayout;
-  private JPanel mainPanel;
-
-  private JPanel modeSelectionPanel;
-  private JRadioButton manualModeRadioButton;
-  private JRadioButton autoModeRadioButton;
-  private ButtonGroup modeButtonGroup;
-
-  private JPanel shapeInputPanel;
-  private JComboBox<String> shapeComboBox;
-  private JPanel dynamicInputPanel;
-  private JButton addShapeButton;
-  private JButton generateShapesButton;
-  private JTextField quantityField;
-  private JButton processButton;
-  private JButton backToModeButton;
-
-  private JPanel resultsPanel;
-  private JTextArea resultsTextArea;
-  private JButton backToInputButton;
-
-  private List<BangunDatar> shapes = new ArrayList<>();
-  private boolean isManualMode = true; // Default mode
-
-  private final String[] shapeOptions = {
-      "Segitiga", "Persegi", "Persegi Panjang", "Lingkaran", "Trapesium",
-      "Jajar Genjang", "Belah Ketupat", "Layang-Layang", "Juring Lingkaran",
-      "Tembereng Lingkaran", "Bola", "Tabung", "Kerucut", "Kerucut Terpancung",
-      "Cincin Bola", "Juring Bola", "Tembereng Bola", "Limas Persegi",
-      "Limas Persegi Panjang", "Limas Segitiga", "Limas Belah Ketupat",
-      "Limas Jajar Genjang", "Limas Trapesium", "Limas Layang-Layang",
-      "Prisma Persegi", "Prisma Persegi Panjang", "Prisma Segitiga",
-      "Prisma Belah Ketupat", "Prisma Jajar Genjang", "Prisma Trapesium",
-      "Prisma Layang-Layang"
-  };
-
   public MainGUI() {
-    setTitle("Aplikasi Geometri");
-    setSize(800, 600);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLocationRelativeTo(null); // Center the window
-    cardLayout = new CardLayout();
-    mainPanel = new JPanel(cardLayout);
-    add(mainPanel);
-
-    // --- Mode Selection Panel ---
-    modeSelectionPanel = new JPanel(new GridBagLayout());
-    GridBagConstraints gbc = new GridBagConstraints();
-    gbc.insets = new Insets(10, 10, 10, 10);
-    gbc.gridx = 0;
-    gbc.gridy = 0;
-    gbc.anchor = GridBagConstraints.WEST;
-
-    manualModeRadioButton = new JRadioButton("Input manual");
-    manualModeRadioButton.setSelected(true);
-    autoModeRadioButton = new JRadioButton("Generate otomatis (random)");
-    modeButtonGroup = new ButtonGroup();
-    modeButtonGroup.add(manualModeRadioButton);
-    modeButtonGroup.add(autoModeRadioButton);
-
-    JButton continueButton = new JButton("Lanjut");
-
-    modeSelectionPanel.add(new JLabel("Pilih metode input:"), gbc);
-    gbc.gridy++;
-    modeSelectionPanel.add(manualModeRadioButton, gbc);
-    gbc.gridy++;
-    modeSelectionPanel.add(autoModeRadioButton, gbc);
-    gbc.gridy++;
-    modeSelectionPanel.add(continueButton, gbc);
-
-    mainPanel.add(modeSelectionPanel, "MODE_SELECTION");
-
-    // --- Shape Input Panel ---
-    shapeInputPanel = new JPanel(new BorderLayout(10, 10));
-    JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
-    JPanel centerInputPanel = new JPanel(new BorderLayout());
-    JPanel bottomButtonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
-
-    shapeComboBox = new JComboBox<>(shapeOptions);
-    topPanel.add(new JLabel("Pilih geometri:"));
-    topPanel.add(shapeComboBox);
-
-    dynamicInputPanel = new JPanel(new GridLayout(0, 2, 5, 5)); // 0 rows, 2 columns, 5px gap
-    centerInputPanel.add(dynamicInputPanel, BorderLayout.NORTH); // Align to top
-
-    addShapeButton = new JButton("Tambah Objek");
-    generateShapesButton = new JButton("Generate Objek");
-    quantityField = new JTextField(5);
-    processButton = new JButton("Proses dan Tampilkan");
-    backToModeButton = new JButton("Kembali");
-
-    JPanel autoGeneratePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-    autoGeneratePanel.add(new JLabel("Jumlah objek per bentuk:"));
-    autoGeneratePanel.add(quantityField);
-    autoGeneratePanel.add(generateShapesButton);
-
-    bottomButtonsPanel.add(backToModeButton);
-    bottomButtonsPanel.add(processButton);
-
-    shapeInputPanel.add(topPanel, BorderLayout.NORTH);
-    shapeInputPanel.add(new JScrollPane(centerInputPanel), BorderLayout.CENTER);
-    shapeInputPanel.add(bottomButtonsPanel, BorderLayout.SOUTH);
-    bottomButtonsPanel.add(addShapeButton);
-
-    mainPanel.add(shapeInputPanel, "SHAPE_INPUT");
-
-    resultsPanel = new JPanel(new BorderLayout(10, 10));
-    resultsTextArea = new JTextArea();
-    resultsTextArea.setEditable(false);
-    resultsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
-    backToInputButton = new JButton("Kembali ke Input");
-
-    resultsPanel.add(new JScrollPane(resultsTextArea), BorderLayout.CENTER);
-    JPanel resultsBottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-    resultsBottomPanel.add(backToInputButton);
-    resultsPanel.add(resultsBottomPanel, BorderLayout.SOUTH);
-
-    mainPanel.add(resultsPanel, "RESULTS");
-
-    // --- Event Listeners ---
-    continueButton.addActionListener(e -> {
-      isManualMode = manualModeRadioButton.isSelected();
-      updateInputPanelForMode();
-      cardLayout.show(mainPanel, "SHAPE_INPUT");
-    });
-
-    manualModeRadioButton.addActionListener(e -> updateInputPanelForMode());
-    autoModeRadioButton.addActionListener(e -> updateInputPanelForMode());
-
-    shapeComboBox.addActionListener(e -> updateDynamicInputPanel());
-
-    addShapeButton.addActionListener(e -> {
-      try {
-        int choice = shapeComboBox.getSelectedIndex() + 1; // 1-indexed
-        BangunDatar shape = generateManualShape(choice, dynamicInputPanel);
-        if (shape != null) {
-          shapes.add(shape);
-          JOptionPane.showMessageDialog(this, shapeOptions[choice - 1] + " berhasil ditambahkan!");
-          clearInputFields(dynamicInputPanel);
-        }
-      } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Input tidak valid. Harap masukkan angka.", "Error",
-            JOptionPane.ERROR_MESSAGE);
-      } catch (IllegalArgumentException ex) {
-        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-      }
-    });
-
-    generateShapesButton.addActionListener(e -> {
-      try {
-        int choice = shapeComboBox.getSelectedIndex() + 1; // 1-indexed
-        int jumlah = Integer.parseInt(quantityField.getText());
-
-        if (choice == 0) { // All geometries - not supported for specific shape dropdown
-          // For "Semua Geometri" (0), we would need a separate option or a way to iterate
-          // through all.
-          // For now, this is handled when 'choice' is picked from dropdown.
-          // If you want "All Geometries" random generation, you need to add a "0. Semua
-          // Geometri" to the combobox
-          // and handle it in generateRandomShape.
-          JOptionPane.showMessageDialog(this,
-              "Fitur 'Semua Geometri' untuk generate otomatis dari dropdown belum diimplementasikan. Pilih satu per satu.",
-              "Info", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-          for (int i = 0; i < jumlah; i++) {
-            shapes.add(generateRandomShape(choice));
-          }
-          JOptionPane.showMessageDialog(this, jumlah + " " + shapeOptions[choice - 1] + " berhasil digenerate!");
-        }
-      } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Jumlah tidak valid. Harap masukkan angka.", "Error",
-            JOptionPane.ERROR_MESSAGE);
-      } catch (IllegalArgumentException ex) {
-        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-      }
-    });
-
-    processButton.addActionListener(e -> {
-      if (shapes.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Belum ada bangun yang ditambahkan atau digenerate.", "Informasi",
-            JOptionPane.INFORMATION_MESSAGE);
-        return;
-      }
-      resultsTextArea.setText(""); // Clear previous results
-      // This part simulates the ThreadExecutor.processShapes(shapes);
-      // You'll need to adapt it to actually use your ThreadExecutor and get its
-      // output.
-      // For now, I'll just iterate and display
-      for (Geometri shape : shapes) {
-        resultsTextArea.append(shape.getNama() + ":\n");
-        resultsTextArea.append("  Luas: " + String.format("%.2f", shape.hitungLuas()) + "\n");
-        if (shape instanceof BangunDatar) {
-          resultsTextArea.append("  Keliling: " + String.format("%.2f", shape.hitungKeliling()) + "\n");
-        } else if (shape instanceof Bola) {
-          resultsTextArea.append("  Volume: " + String.format("%.2f", ((Bola) shape).hitungVolume()) + "\n");
-          resultsTextArea
-              .append("  Luas Permukaan: " + String.format("%.2f", ((Bola) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof Tabung) {
-          resultsTextArea.append("  Volume: " + String.format("%.2f", ((Tabung) shape).hitungVolume()) + "\n");
-          resultsTextArea
-              .append("  Luas Permukaan: " + String.format("%.2f", ((Tabung) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof Kerucut) {
-          resultsTextArea.append("  Volume: " + String.format("%.2f", ((Kerucut) shape).hitungVolume()) + "\n");
-          resultsTextArea
-              .append("  Luas Permukaan: " + String.format("%.2f", ((Kerucut) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof KerucutTerpancung) {
-          resultsTextArea
-              .append("  Volume: " + String.format("%.2f", ((KerucutTerpancung) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((KerucutTerpancung) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof CincinBola) {
-          resultsTextArea.append("  Volume: " + String.format("%.2f", ((CincinBola) shape).hitungVolume()) + "\n");
-          resultsTextArea
-              .append("  Luas Permukaan: " + String.format("%.2f", ((CincinBola) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof JuringBola) {
-          resultsTextArea.append("  Volume: " + String.format("%.2f", ((JuringBola) shape).hitungVolume()) + "\n");
-          resultsTextArea
-              .append("  Luas Permukaan: " + String.format("%.2f", ((JuringBola) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof TemberengBola) {
-          resultsTextArea.append("  Volume: " + String.format("%.2f", ((TemberengBola) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((TemberengBola) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof LimasPersegi) {
-          resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasPersegi) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((LimasPersegi) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof LimasPersegiPanjang) {
-          resultsTextArea
-              .append("  Volume: " + String.format("%.2f", ((LimasPersegiPanjang) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((LimasPersegiPanjang) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof LimasSegitiga) {
-          resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasSegitiga) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((LimasSegitiga) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof LimasBelahKetupat) {
-          resultsTextArea
-              .append("  Volume: " + String.format("%.2f", ((LimasBelahKetupat) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((LimasBelahKetupat) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof LimasJajarGenjang) {
-          resultsTextArea
-              .append("  Volume: " + String.format("%.2f", ((LimasJajarGenjang) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((LimasJajarGenjang) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof LimasTrapesium) {
-          resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasTrapesium) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((LimasTrapesium) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof LimasLayangLayang) {
-          resultsTextArea
-              .append("  Volume: " + String.format("%.2f", ((LimasLayangLayang) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((LimasLayangLayang) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof PrismaPersegi) {
-          resultsTextArea.append("  Volume: " + String.format("%.2f", ((PrismaPersegi) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((PrismaPersegi) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof PrismaPersegiPanjang) {
-          resultsTextArea
-              .append("  Volume: " + String.format("%.2f", ((PrismaPersegiPanjang) shape).hitungVolume()) + "\n");
-          resultsTextArea.append("  Luas Permukaan: "
-              + String.format("%.2f", ((PrismaPersegiPanjang) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof PrismaSegitiga) {
-          resultsTextArea.append("  Volume: " + String.format("%.2f", ((PrismaSegitiga) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((PrismaSegitiga) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof PrismaBelahKetupat) {
-          resultsTextArea
-              .append("  Volume: " + String.format("%.2f", ((PrismaBelahKetupat) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((PrismaBelahKetupat) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof PrismaJajarGenjang) {
-          resultsTextArea
-              .append("  Volume: " + String.format("%.2f", ((PrismaJajarGenjang) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((PrismaJajarGenjang) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof PrismaTrapesium) {
-          resultsTextArea.append("  Volume: " + String.format("%.2f", ((PrismaTrapesium) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((PrismaTrapesium) shape).hitungLuasPermukaan()) + "\n");
-        } else if (shape instanceof PrismaLayangLayang) {
-          resultsTextArea
-              .append("  Volume: " + String.format("%.2f", ((PrismaLayangLayang) shape).hitungVolume()) + "\n");
-          resultsTextArea.append(
-              "  Luas Permukaan: " + String.format("%.2f", ((PrismaLayangLayang) shape).hitungLuasPermukaan()) + "\n");
-        }
-        resultsTextArea.append("\n");
-      }
-      shapes.clear(); // Clear shapes after processing
-      cardLayout.show(mainPanel, "RESULTS");
-    });
-
-    backToModeButton.addActionListener(e -> {
-      shapes.clear(); // Clear shapes if returning to mode selection
-      cardLayout.show(mainPanel, "MODE_SELECTION");
-    });
-
-    backToInputButton.addActionListener(e -> {
-      cardLayout.show(mainPanel, "SHAPE_INPUT");
-      resultsTextArea.setText("");
-    });
-
-    // Initial setup
-    updateInputPanelForMode();
-    updateDynamicInputPanel();
+    initComponents();
   }
 
-  private void updateInputPanelForMode() {
-    if (isManualMode) {
-      addShapeButton.setVisible(true);
-      generateShapesButton.setVisible(false);
-      quantityField.setVisible(false);
-    } else {
-      addShapeButton.setVisible(false);
-      generateShapesButton.setVisible(true);
-      quantityField.setVisible(true);
+  private void processAndDisplayResults(String previousCard) {
+    if (shapes.isEmpty()) {
+      JOptionPane.showMessageDialog(this, "Belum ada bangun yang ditambahkan atau digenerate.", "Informasi",
+          JOptionPane.INFORMATION_MESSAGE);
+      return;
     }
-    // Repack the frame to adjust layout if components visibility changed
-    revalidate();
-    repaint();
+
+    resultsTextArea.setText(""); // Bersihkan hasil sebelumnya
+    for (Geometri shape : shapes) {
+      resultsTextArea.append(shape.getNama() + ":\n");
+      resultsTextArea.append("  Luas: " + String.format("%.2f", shape.hitungLuas()) + "\n");
+      // Menggunakan instanceof untuk memeriksa tipe dan memanggil method yang sesuai
+      if (shape instanceof BangunDatar) {
+        resultsTextArea.append("  Keliling: " + String.format("%.2f", ((BangunDatar) shape).hitungKeliling()) + "\n");
+      } else if (shape instanceof Bola) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((Bola) shape).hitungVolume()) + "\n");
+        resultsTextArea
+            .append("  Luas Permukaan: " + String.format("%.2f", ((Bola) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof Tabung) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((Tabung) shape).hitungVolume()) + "\n");
+        resultsTextArea
+            .append("  Luas Permukaan: " + String.format("%.2f", ((Tabung) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof Kerucut) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((Kerucut) shape).hitungVolume()) + "\n");
+        resultsTextArea
+            .append("  Luas Permukaan: " + String.format("%.2f", ((Kerucut) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof KerucutTerpancung) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((KerucutTerpancung) shape).hitungVolume()) + "\n");
+        resultsTextArea.append(
+            "  Luas Permukaan: " + String.format("%.2f", ((KerucutTerpancung) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof CincinBola) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((CincinBola) shape).hitungVolume()) + "\n");
+        resultsTextArea
+            .append("  Luas Permukaan: " + String.format("%.2f", ((CincinBola) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof JuringBola) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((JuringBola) shape).hitungVolume()) + "\n");
+        resultsTextArea
+            .append("  Luas Permukaan: " + String.format("%.2f", ((JuringBola) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof TemberengBola) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((TemberengBola) shape).hitungVolume()) + "\n");
+        resultsTextArea
+            .append("  Luas Permukaan: " + String.format("%.2f", ((TemberengBola) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof LimasPersegi) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasPersegi) shape).hitungVolume()) + "\n");
+        resultsTextArea
+            .append("  Luas Permukaan: " + String.format("%.2f", ((LimasPersegi) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof LimasPersegiPanjang) {
+        resultsTextArea
+            .append("  Volume: " + String.format("%.2f", ((LimasPersegiPanjang) shape).hitungVolume()) + "\n");
+        resultsTextArea.append(
+            "  Luas Permukaan: " + String.format("%.2f", ((LimasPersegiPanjang) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof LimasSegitiga) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasSegitiga) shape).hitungVolume()) + "\n");
+        resultsTextArea
+            .append("  Luas Permukaan: " + String.format("%.2f", ((LimasSegitiga) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof LimasBelahKetupat) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasBelahKetupat) shape).hitungVolume()) + "\n");
+        resultsTextArea.append(
+            "  Luas Permukaan: " + String.format("%.2f", ((LimasBelahKetupat) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof LimasJajarGenjang) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasJajarGenjang) shape).hitungVolume()) + "\n");
+        resultsTextArea.append(
+            "  Luas Permukaan: " + String.format("%.2f", ((LimasJajarGenjang) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof LimasTrapesium) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasTrapesium) shape).hitungVolume()) + "\n");
+        resultsTextArea.append(
+            "  Luas Permukaan: " + String.format("%.2f", ((LimasTrapesium) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof LimasLayangLayang) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasLayangLayang) shape).hitungVolume()) + "\n");
+        resultsTextArea.append(
+            "  Luas Permukaan: " + String.format("%.2f", ((LimasLayangLayang) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof PrismaPersegi) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((PrismaPersegi) shape).hitungVolume()) + "\n");
+        resultsTextArea
+            .append("  Luas Permukaan: " + String.format("%.2f", ((PrismaPersegi) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof PrismaPersegiPanjang) {
+        resultsTextArea
+            .append("  Volume: " + String.format("%.2f", ((PrismaPersegiPanjang) shape).hitungVolume()) + "\n");
+        resultsTextArea.append(
+            "  Luas Permukaan: " + String.format("%.2f", ((PrismaPersegiPanjang) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof PrismaSegitiga) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((PrismaSegitiga) shape).hitungVolume()) + "\n");
+        resultsTextArea.append(
+            "  Luas Permukaan: " + String.format("%.2f", ((PrismaSegitiga) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof PrismaBelahKetupat) {
+        resultsTextArea
+            .append("  Volume: " + String.format("%.2f", ((PrismaBelahKetupat) shape).hitungVolume()) + "\n");
+        resultsTextArea.append(
+            "  Luas Permukaan: " + String.format("%.2f", ((PrismaBelahKetupat) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof PrismaJajarGenjang) {
+        resultsTextArea
+            .append("  Volume: " + String.format("%.2f", ((PrismaJajarGenjang) shape).hitungVolume()) + "\n");
+        resultsTextArea.append(
+            "  Luas Permukaan: " + String.format("%.2f", ((PrismaJajarGenjang) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof PrismaTrapesium) {
+        resultsTextArea.append("  Volume: " + String.format("%.2f", ((PrismaTrapesium) shape).hitungVolume()) + "\n");
+        resultsTextArea.append(
+            "  Luas Permukaan: " + String.format("%.2f", ((PrismaTrapesium) shape).hitungLuasPermukaan()) + "\n");
+      } else if (shape instanceof PrismaLayangLayang) {
+        resultsTextArea
+            .append("  Volume: " + String.format("%.2f", ((PrismaLayangLayang) shape).hitungVolume()) + "\n");
+        resultsTextArea.append(
+            "  Luas Permukaan: " + String.format("%.2f", ((PrismaLayangLayang) shape).hitungLuasPermukaan()) + "\n");
+      }
+      resultsTextArea.append("\n");
+    }
+    shapes.clear(); // Bersihkan shapes setelah diproses
+    cardLayout.show(mainPanel, "RESULTS");
   }
 
   private void updateDynamicInputPanel() {
     dynamicInputPanel.removeAll();
     String selectedShape = (String) shapeComboBox.getSelectedItem();
-    if (selectedShape == null)
+    if (selectedShape == null) {
+      dynamicInputPanel.revalidate();
+      dynamicInputPanel.repaint();
       return;
+    }
 
     switch (selectedShape) {
       case "Segitiga":
-        addInputField("Alas:", "alas");
-        addInputField("Tinggi:", "tinggi");
-        addInputField("Sisi A:", "sisi1");
-        addInputField("Sisi B:", "sisi2");
-        addInputField("Sisi C:", "sisi3");
+        addInputFieldDynamicInput("Alas:", "alas");
+        addInputFieldDynamicInput("Tinggi:", "tinggi");
+        addInputFieldDynamicInput("Sisi A:", "sisi1");
+        addInputFieldDynamicInput("Sisi B:", "sisi2");
+        addInputFieldDynamicInput("Sisi C:", "sisi3");
         break;
       case "Persegi":
-        addInputField("Sisi:", "sisi");
+        addInputFieldDynamicInput("Sisi:", "sisi");
         break;
       case "Persegi Panjang":
-        addInputField("Panjang:", "panjang");
-        addInputField("Lebar:", "lebar");
+        addInputFieldDynamicInput("Panjang:", "panjang");
+        addInputFieldDynamicInput("Lebar:", "lebar");
         break;
       case "Lingkaran":
-        addInputField("Jari-jari:", "jariJari");
+        addInputFieldDynamicInput("Jari-jari:", "jariJari");
         break;
       case "Trapesium":
-        addInputField("Sisi atas:", "sisiAtas");
-        addInputField("Sisi bawah:", "sisiBawah");
-        addInputField("Sisi kanan:", "sisiKanan");
-        addInputField("Sisi kiri:", "sisiKiri");
-        addInputField("Tinggi:", "tinggi");
+        addInputFieldDynamicInput("Sisi atas:", "sisiAtas");
+        addInputFieldDynamicInput("Sisi bawah:", "sisiBawah");
+        addInputFieldDynamicInput("Sisi kanan:", "sisiKanan");
+        addInputFieldDynamicInput("Sisi kiri:", "sisiKiri");
+        addInputFieldDynamicInput("Tinggi:", "tinggi");
         break;
       case "Jajar Genjang":
-        addInputField("Alas:", "alas");
-        addInputField("Tinggi:", "tinggi");
-        addInputField("Sisi Miring:", "sisiMiring");
+        addInputFieldDynamicInput("Alas:", "alas");
+        addInputFieldDynamicInput("Tinggi:", "tinggi");
+        addInputFieldDynamicInput("Sisi Miring:", "sisiMiring");
         break;
       case "Belah Ketupat":
-        addInputField("Diagonal 1:", "d1");
-        addInputField("Diagonal 2:", "d2");
+        addInputFieldDynamicInput("Diagonal 1:", "d1");
+        addInputFieldDynamicInput("Diagonal 2:", "d2");
         break;
       case "Layang-Layang":
-        addInputField("Diagonal 1:", "d1");
-        addInputField("Diagonal 2:", "d2");
-        addInputField("Sisi A:", "sisiA");
-        addInputField("Sisi B:", "sisiB");
+        addInputFieldDynamicInput("Diagonal 1:", "d1");
+        addInputFieldDynamicInput("Diagonal 2:", "d2");
+        addInputFieldDynamicInput("Sisi A:", "sisiA");
+        addInputFieldDynamicInput("Sisi B:", "sisiB");
         break;
       case "Juring Lingkaran":
-        addInputField("Sudut Pusat (derajat):", "sudutPusat");
-        addInputField("Busur:", "busur");
-        addInputField("Jari-jari:", "jariJari");
+        addInputFieldDynamicInput("Jari-jari:", "jariJari");
+        addInputFieldDynamicInput("Sudut Pusat (derajat):", "sudutPusat");
+        // addInputField("Busur:", "busur"); // Busur biasanya dihitung, bukan diinput
+        // manual
         break;
       case "Tembereng Lingkaran":
-        addInputField("Jari-jari:", "jariJari");
-        addInputField("Tinggi Tembereng:", "tinggiTembereng");
-        addInputField("Panjang Tali Busur:", "panjangTaliBusur");
-        addInputField("Sudut Pusat (derajat):", "sudutPusat");
+        addInputFieldDynamicInput("Jari-jari:", "jariJari");
+        addInputFieldDynamicInput("Tinggi Tembereng:", "tinggiTembereng");
+        addInputFieldDynamicInput("Panjang Tali Busur:", "panjangTaliBusur");
+        addInputFieldDynamicInput("Sudut Pusat (derajat):", "sudutPusat");
         break;
       case "Bola":
-        addInputField("Jari-jari:", "jariJari");
+        addInputFieldDynamicInput("Jari-jari:", "jariJari");
         break;
       case "Tabung":
-        addInputField("Jari-jari:", "jariJari");
-        addInputField("Tinggi:", "tinggi");
+        addInputFieldDynamicInput("Jari-jari:", "jariJari");
+        addInputFieldDynamicInput("Tinggi:", "tinggi");
         break;
       case "Kerucut":
-        addInputField("Jari-jari Alas:", "jariJariAlas");
-        addInputField("Tinggi:", "tinggi");
+        addInputFieldDynamicInput("Jari-jari Alas:", "jariJariAlas");
+        addInputFieldDynamicInput("Tinggi:", "tinggi");
         break;
       case "Kerucut Terpancung":
-        addInputField("Jari-jari Atas:", "jariJariAtas");
-        addInputField("Jari-jari Bawah:", "jariJariBawah");
-        addInputField("Tinggi:", "tinggi");
+        addInputFieldDynamicInput("Jari-jari Atas:", "jariJariAtas");
+        addInputFieldDynamicInput("Jari-jari Bawah:", "jariJariBawah");
+        addInputFieldDynamicInput("Tinggi:", "tinggi");
         break;
       case "Cincin Bola":
-        addInputField("Jari-jari Dalam:", "jariJariDalam");
-        addInputField("Jari-jari Luar:", "jariJariLuar");
-        addInputField("Tinggi:", "tinggi");
+        addInputFieldDynamicInput("Jari-jari Dalam:", "jariJariDalam");
+        addInputFieldDynamicInput("Jari-jari Luar:", "jariJariLuar");
+        addInputFieldDynamicInput("Tinggi:", "tinggi");
         break;
       case "Juring Bola":
-        addInputField("Sudut (derajat):", "sudut");
-        addInputField("Jari-jari:", "jariJari");
+        addInputFieldDynamicInput("Jari-jari:", "jariJari");
+        addInputFieldDynamicInput("Sudut (derajat):", "sudut");
         break;
       case "Tembereng Bola":
-        addInputField("Tinggi Tembereng:", "tinggiTembereng");
-        addInputField("Jari-jari Lingkaran Potongan:", "jariLingkaranPotongan");
+        addInputFieldDynamicInput("Jari-jari Bola:", "jariJariBola"); // Tambahkan ini jika dibutuhkan
+        addInputFieldDynamicInput("Tinggi Tembereng:", "tinggiTembereng");
+        // addInputField("Jari-jari Lingkaran Potongan:", "jariLingkaranPotongan"); //
+        // Ini sering dihitung
         break;
       case "Limas Persegi":
-        addInputField("Sisi Alas:", "sisiAlas");
-        addInputField("Tinggi Limas:", "tinggiLimas");
+        addInputFieldDynamicInput("Sisi Alas:", "sisiAlas");
+        addInputFieldDynamicInput("Tinggi Limas:", "tinggiLimas");
         break;
       case "Limas Persegi Panjang":
-        addInputField("Panjang Alas:", "panjangAlas");
-        addInputField("Lebar Alas:", "lebarAlas");
-        addInputField("Tinggi Limas:", "tinggiLimas");
+        addInputFieldDynamicInput("Panjang Alas:", "panjangAlas");
+        addInputFieldDynamicInput("Lebar Alas:", "lebarAlas");
+        addInputFieldDynamicInput("Tinggi Limas:", "tinggiLimas");
         break;
       case "Limas Segitiga":
-        addInputField("Sisi Alas 1:", "sisiAlas1");
-        addInputField("Sisi Alas 2:", "sisiAlas2");
-        addInputField("Sisi Alas 3:", "sisiAlas3");
-        addInputField("Alas Segitiga:", "alasSegitiga");
-        addInputField("Tinggi Segitiga Alas:", "tinggiSegitiga");
-        addInputField("Tinggi Limas:", "tinggiLimas");
+        addInputFieldDynamicInput("Alas Segitiga:", "alasSegitiga");
+        addInputFieldDynamicInput("Tinggi Segitiga Alas:", "tinggiSegitiga");
+        addInputFieldDynamicInput("Tinggi Limas:", "tinggiLimas");
+        addInputFieldDynamicInput("Sisi Alas 1 (opsional):", "sisiAlas1"); // Opsional untuk keliling alas
+        addInputFieldDynamicInput("Sisi Alas 2 (opsional):", "sisiAlas2");
+        addInputFieldDynamicInput("Sisi Alas 3 (opsional):", "sisiAlas3");
         break;
       case "Limas Belah Ketupat":
-        addInputField("Diagonal 1 Alas:", "d1Alas");
-        addInputField("Diagonal 2 Alas:", "d2Alas");
-        addInputField("Tinggi Limas:", "tinggiLimas");
+        addInputFieldDynamicInput("Diagonal 1 Alas:", "d1Alas");
+        addInputFieldDynamicInput("Diagonal 2 Alas:", "d2Alas");
+        addInputFieldDynamicInput("Tinggi Limas:", "tinggiLimas");
         break;
       case "Limas Jajar Genjang":
-        addInputField("Alas Jajar Genjang:", "alasJajarGenjang");
-        addInputField("Tinggi Jajar Genjang:", "tinggiJajarGenjang");
-        addInputField("Sisi Miring Jajar Genjang:", "sisiMiringJajarGenjang");
-        addInputField("Tinggi Limas:", "tinggiLimas");
-        addInputField("Tinggi Sisi Tegak Panjang (optional):", "tinggiSegitigaPanjang"); // Assuming these are
-                                                                                         // optional/calculated
-        addInputField("Tinggi Sisi Tegak Pendek (optional):", "tinggiSegitigaPendek");
+        addInputFieldDynamicInput("Alas Jajar Genjang:", "alasJajarGenjang");
+        addInputFieldDynamicInput("Tinggi Jajar Genjang:", "tinggiJajarGenjang");
+        addInputFieldDynamicInput("Sisi Miring Jajar Genjang (opsional):", "sisiMiringJajarGenjang");
+        addInputFieldDynamicInput("Tinggi Limas:", "tinggiLimas");
+        // addInputField("Tinggi Sisi Tegak Panjang (optional):",
+        // "tinggiSegitigaPanjang");
+        // addInputField("Tinggi Sisi Tegak Pendek (optional):",
+        // "tinggiSegitigaPendek");
         break;
       case "Limas Trapesium":
-        addInputField("Sisi Atas Alas:", "sisiAtasAlas");
-        addInputField("Sisi Bawah Alas:", "sisiBawahAlas");
-        addInputField("Sisi Kanan Alas:", "sisiKananAlas");
-        addInputField("Sisi Kiri Alas:", "sisiKiriAlas");
-        addInputField("Tinggi Alas Trapesium:", "tinggiAlasTrapesium");
-        addInputField("Tinggi Limas:", "tinggiLimas");
+        addInputFieldDynamicInput("Sisi Atas Alas:", "sisiAtasAlas");
+        addInputFieldDynamicInput("Sisi Bawah Alas:", "sisiBawahAlas");
+        addInputFieldDynamicInput("Tinggi Alas Trapesium:", "tinggiAlasTrapesium");
+        addInputFieldDynamicInput("Sisi Kanan Alas (opsional):", "sisiKananAlas");
+        addInputFieldDynamicInput("Sisi Kiri Alas (opsional):", "sisiKiriAlas");
+        addInputFieldDynamicInput("Tinggi Limas:", "tinggiLimas");
         break;
       case "Limas Layang-Layang":
-        addInputField("Diagonal 1 Alas:", "d1Alas");
-        addInputField("Diagonal 2 Alas:", "d2Alas");
-        addInputField("Sisi Atas Alas:", "sisiAtasAlas");
-        addInputField("Sisi Bawah Alas:", "sisiBawahAlas");
-        addInputField("Tinggi Limas:", "tinggiLimas");
-        addInputField("Tinggi Sisi Tegak 1 (optional):", "tinggiSisiTegak1"); // Assuming these are optional/calculated
-        addInputField("Tinggi Sisi Tegak 2 (optional):", "tinggiSisiTegak2");
+        addInputFieldDynamicInput("Diagonal 1 Alas:", "d1Alas");
+        addInputFieldDynamicInput("Diagonal 2 Alas:", "d2Alas");
+        addInputFieldDynamicInput("Tinggi Limas:", "tinggiLimas");
+        addInputFieldDynamicInput("Sisi A Alas (opsional):", "sisiAAlas"); // Sisi yang sama panjang di layang-layang
+        addInputFieldDynamicInput("Sisi B Alas (opsional):", "sisiBAlas");
         break;
       case "Prisma Persegi":
-        addInputField("Sisi Alas:", "sisiAlas");
-        addInputField("Tinggi Prisma:", "tinggiPrisma");
+        addInputFieldDynamicInput("Sisi Alas:", "sisiAlas");
+        addInputFieldDynamicInput("Tinggi Prisma:", "tinggiPrisma");
         break;
       case "Prisma Persegi Panjang":
-        addInputField("Panjang Alas:", "panjangAlas");
-        addInputField("Lebar Alas:", "lebarAlas");
-        addInputField("Tinggi Prisma:", "tinggiPrisma");
+        addInputFieldDynamicInput("Panjang Alas:", "panjangAlas");
+        addInputFieldDynamicInput("Lebar Alas:", "lebarAlas");
+        addInputFieldDynamicInput("Tinggi Prisma:", "tinggiPrisma");
         break;
       case "Prisma Segitiga":
-        addInputField("Sisi Alas 1:", "sisiAlas1");
-        addInputField("Sisi Alas 2:", "sisiAlas2");
-        addInputField("Sisi Alas 3:", "sisiAlas3");
-        addInputField("Alas Segitiga:", "alasSegitiga");
-        addInputField("Tinggi Segitiga Alas:", "tinggiSegitiga");
-        addInputField("Tinggi Prisma:", "tinggiPrisma");
+        addInputFieldDynamicInput("Alas Segitiga:", "alasSegitiga");
+        addInputFieldDynamicInput("Tinggi Segitiga Alas:", "tinggiSegitiga");
+        addInputFieldDynamicInput("Tinggi Prisma:", "tinggiPrisma");
+        addInputFieldDynamicInput("Sisi Alas 1 (opsional):", "sisiAlas1");
+        addInputFieldDynamicInput("Sisi Alas 2 (opsional):", "sisiAlas2");
+        addInputFieldDynamicInput("Sisi Alas 3 (opsional):", "sisiAlas3");
         break;
       case "Prisma Belah Ketupat":
-        addInputField("Diagonal 1 Alas:", "d1Alas");
-        addInputField("Diagonal 2 Alas:", "d2Alas");
-        addInputField("Tinggi Prisma:", "tinggiPrisma");
+        addInputFieldDynamicInput("Diagonal 1 Alas:", "d1Alas");
+        addInputFieldDynamicInput("Diagonal 2 Alas:", "d2Alas");
+        addInputFieldDynamicInput("Tinggi Prisma:", "tinggiPrisma");
         break;
       case "Prisma Jajar Genjang":
-        addInputField("Alas Jajar Genjang:", "alasJajarGenjang");
-        addInputField("Tinggi Jajar Genjang:", "tinggiJajarGenjang");
-        addInputField("Sisi Miring Jajar Genjang:", "sisiMiringJajarGenjang");
-        addInputField("Tinggi Prisma:", "tinggiPrisma");
+        addInputFieldDynamicInput("Alas Jajar Genjang:", "alasJajarGenjang");
+        addInputFieldDynamicInput("Tinggi Jajar Genjang:", "tinggiJajarGenjang");
+        addInputFieldDynamicInput("Sisi Miring Jajar Genjang (opsional):", "sisiMiringJajarGenjang");
+        addInputFieldDynamicInput("Tinggi Prisma:", "tinggiPrisma");
         break;
       case "Prisma Trapesium":
-        addInputField("Sisi Atas Alas:", "sisiAtasAlas");
-        addInputField("Sisi Bawah Alas:", "sisiBawahAlas");
-        addInputField("Sisi Kanan Alas:", "sisiKananAlas");
-        addInputField("Sisi Kiri Alas:", "sisiKiriAlas");
-        addInputField("Tinggi Alas Trapesium:", "tinggiAlasTrapesium");
-        addInputField("Tinggi Prisma:", "tinggiPrisma");
+        addInputFieldDynamicInput("Sisi Atas Alas:", "sisiAtasAlas");
+        addInputFieldDynamicInput("Sisi Bawah Alas:", "sisiBawahAlas");
+        addInputFieldDynamicInput("Tinggi Alas Trapesium:", "tinggiAlasTrapesium");
+        addInputFieldDynamicInput("Sisi Kanan Alas (opsional):", "sisiKananAlas");
+        addInputFieldDynamicInput("Sisi Kiri Alas (opsional):", "sisiKiriAlas");
+        addInputFieldDynamicInput("Tinggi Prisma:", "tinggiPrisma");
         break;
       case "Prisma Layang-Layang":
-        addInputField("Diagonal 1 Alas:", "d1Alas");
-        addInputField("Diagonal 2 Alas:", "d2Alas");
-        addInputField("Sisi Atas Alas:", "sisiAtasAlas");
-        addInputField("Sisi Bawah Alas:", "sisiBawahAlas");
-        addInputField("Tinggi Prisma:", "tinggiPrisma");
+        addInputFieldDynamicInput("Diagonal 1 Alas:", "d1Alas");
+        addInputFieldDynamicInput("Diagonal 2 Alas:", "d2Alas");
+        addInputFieldDynamicInput("Tinggi Prisma:", "tinggiPrisma");
+        addInputFieldDynamicInput("Sisi A Alas (opsional):", "sisiAAlas");
+        addInputFieldDynamicInput("Sisi B Alas (opsional):", "sisiBAlas");
         break;
       default:
-        // No specific inputs needed, or not yet implemented
-        dynamicInputPanel.add(new JLabel("Pilih bentuk untuk input parameter."));
+        dynamicInputPanel.add(createLabel("Pilih bentuk untuk input parameter.", 10));
         break;
     }
     dynamicInputPanel.revalidate();
     dynamicInputPanel.repaint();
   }
 
-  private void addInputField(String label, String name) {
-    JLabel l = new JLabel(label);
-    JTextField tf = new JTextField(10);
-    tf.setName(name); // Set a name to retrieve it later
-    dynamicInputPanel.add(l);
-    dynamicInputPanel.add(tf);
+  private void addInputFieldDynamicInput(String labelText, String name) {
+    JLabel label = createLabel(labelText, 20);
+    JTextField textField = new JTextField(10); // Memberikan lebar awal sekitar 10 karakter
+    textField.setFont(new Font(textField.getFont().getName(), Font.PLAIN, 20));
+    textField.setName(name); // Untuk mengambil nilai nanti
+
+    GridBagConstraints gbc = new GridBagConstraints();
+    // Memberi padding 5px di setiap sisi komponen (atas, kiri, bawah, kanan)
+    gbc.insets = new Insets(5, 5, 5, 5);
+
+    // --- Pengaturan untuk LABEL ---
+    gbc.gridx = 0; // Tempatkan di kolom pertama (indeks 0)
+    gbc.gridy = GridBagConstraints.RELATIVE; // Tempatkan di baris berikutnya yang tersedia
+    gbc.anchor = GridBagConstraints.WEST; // Rata kiri di dalam selnya
+    gbc.fill = GridBagConstraints.NONE; // Label tidak meregang
+    gbc.weightx = 0; // Label tidak mengambil ruang horizontal ekstra
+    dynamicInputPanel.add(label, gbc);
+
+    // --- Pengaturan untuk TEXTFIELD ---
+    gbc.gridx = 1; // Tempatkan di kolom kedua (indeks 1), tepat di samping label
+    gbc.gridy = GridBagConstraints.RELATIVE; // Tempatkan di baris berikutnya yang tersedia (ini akan membuat pasangan
+                                             // per baris)
+    gbc.anchor = GridBagConstraints.WEST; // Rata kiri di dalam selnya
+    gbc.weightx = 1.0; // Field akan mengambil semua ruang horizontal ekstra yang tersedia di kolomnya
+    dynamicInputPanel.add(textField, gbc);
   }
 
+  // Mengubah getFieldValue untuk menangani input opsional dengan nilai default
+  // 0.0
   private double getFieldValue(JPanel panel, String fieldName) {
     for (Component comp : panel.getComponents()) {
       if (comp instanceof JTextField) {
         JTextField tf = (JTextField) comp;
+        // Pastikan nama field cocok dan text field tidak kosong
         if (fieldName.equals(tf.getName())) {
-          return Double.parseDouble(tf.getText());
+          String text = tf.getText().trim();
+          if (text.isEmpty()) {
+            // Jika field opsional dan kosong, kembalikan 0.0
+            if (fieldName.contains("optional")) { // Penanda 'optional' di label/nama
+              return 0.0;
+            } else {
+              throw new IllegalArgumentException("Field '" + fieldName + "' tidak boleh kosong.");
+            }
+          }
+          try {
+            return Double.parseDouble(text);
+          } catch (NumberFormatException e) {
+            throw new NumberFormatException("Nilai untuk '" + fieldName + "' tidak valid: " + text);
+          }
         }
       }
     }
-    throw new IllegalArgumentException("Field not found: " + fieldName);
+    // Jika field tidak ditemukan (mungkin opsional dan tidak ditampilkan),
+    // kembalikan 0.0
+    // Ini perlu disesuaikan dengan logika addInputField dan konstruktor geometri
+    // Anda
+    return 0.0; // Mengembalikan 0.0 jika field tidak ditemukan (asumsi opsional)
   }
 
   private void clearInputFields(JPanel panel) {
@@ -553,7 +380,6 @@ public class MainGUI extends JFrame {
     }
   }
 
-  // This method mirrors your generateManualShape, adapted for GUI input
   private BangunDatar generateManualShape(int choice, JPanel inputPanel) {
     try {
       switch (choice) {
@@ -597,10 +423,10 @@ public class MainGUI extends JFrame {
           double sisiBLL = getFieldValue(inputPanel, "sisiB");
           return new LayangLayang(d1LL, d2LL, sisiALL, sisiBLL);
         case 9: // Juring Lingkaran
-          double sudutPusatJL = getFieldValue(inputPanel, "sudutPusat");
-          double busurJL = getFieldValue(inputPanel, "busur");
           double rJL = getFieldValue(inputPanel, "jariJari");
-          return new JuringLingkaran(sudutPusatJL, busurJL, rJL);
+          double sudutPusatJL = getFieldValue(inputPanel, "sudutPusat");
+          // double busurJL = getFieldValue(inputPanel, "busur"); // Busur sering dihitung
+          return new JuringLingkaran(sudutPusatJL, 0, rJL); // Busur diisi 0 jika dihitung
         case 10: // Tembereng Lingkaran
           double jariJariTL = getFieldValue(inputPanel, "jariJari");
           double tinggiTemberengTL = getFieldValue(inputPanel, "tinggiTembereng");
@@ -634,8 +460,10 @@ public class MainGUI extends JFrame {
           return new JuringBola(sudutJB, jariJariJB);
         case 17: // Tembereng Bola
           double tinggiTemberengTB = getFieldValue(inputPanel, "tinggiTembereng");
-          double jariLingkaranPotonganTB = getFieldValue(inputPanel, "jariLingkaranPotongan");
-          return new TemberengBola(tinggiTemberengTB, jariLingkaranPotonganTB);
+          double jariJariBolaTB = getFieldValue(inputPanel, "jariJariBola");
+          // double jariLingkaranPotonganTB = getFieldValue(inputPanel,
+          // "jariLingkaranPotongan");
+          return new TemberengBola(tinggiTemberengTB, jariJariBolaTB); // Asumsi constructor sesuai
         case 18: // Limas Persegi
           double sisiAlasLP = getFieldValue(inputPanel, "sisiAlas");
           double tinggiLimasLP = getFieldValue(inputPanel, "tinggiLimas");
@@ -646,12 +474,13 @@ public class MainGUI extends JFrame {
           double tinggiLimasLPP = getFieldValue(inputPanel, "tinggiLimas");
           return new LimasPersegiPanjang(panjangAlasLPP, lebarAlasLPP, tinggiLimasLPP);
         case 20: // Limas Segitiga
-          double sisiAlas1LS = getFieldValue(inputPanel, "sisiAlas1");
-          double sisiAlas2LS = getFieldValue(inputPanel, "sisiAlas2");
-          double sisiAlas3LS = getFieldValue(inputPanel, "sisiAlas3");
           double alasSegitigaLS = getFieldValue(inputPanel, "alasSegitiga");
           double tinggiSegitigaLS = getFieldValue(inputPanel, "tinggiSegitiga");
           double tinggiLimasLS = getFieldValue(inputPanel, "tinggiLimas");
+          // Parameter opsional
+          double sisiAlas1LS = getFieldValue(inputPanel, "sisiAlas1");
+          double sisiAlas2LS = getFieldValue(inputPanel, "sisiAlas2");
+          double sisiAlas3LS = getFieldValue(inputPanel, "sisiAlas3");
           return new LimasSegitiga(alasSegitigaLS, tinggiLimasLS, tinggiSegitigaLS, sisiAlas1LS, sisiAlas2LS,
               sisiAlas3LS);
         case 21: // Limas Belah Ketupat
@@ -662,50 +491,32 @@ public class MainGUI extends JFrame {
         case 22: // Limas Jajar Genjang
           double alasJGJG = getFieldValue(inputPanel, "alasJajarGenjang");
           double tinggiJGJG = getFieldValue(inputPanel, "tinggiJajarGenjang");
-          double sisiMiringJGJG = getFieldValue(inputPanel, "sisiMiringJajarGenjang");
           double tinggiLimasJGJG = getFieldValue(inputPanel, "tinggiLimas");
-          // Note: The original Main.java has optional/calculated parameters for
-          // LimasJajarGenjang
-          // I'm assuming they are derived or optional here based on your constructor
-          double tinggiSegitigaPanjangJGJG = 0; // Default or calculate
-          double tinggiSegitigaPendekJGJG = 0; // Default or calculate
-          try {
-            tinggiSegitigaPanjangJGJG = getFieldValue(inputPanel, "tinggiSegitigaPanjang");
-          } catch (IllegalArgumentException e) {
-            /* ignore if not present */ }
-          try {
-            tinggiSegitigaPendekJGJG = getFieldValue(inputPanel, "tinggiSegitigaPendek");
-          } catch (IllegalArgumentException e) {
-            /* ignore if not present */ }
-          return new LimasJajarGenjang(alasJGJG, tinggiJGJG, sisiMiringJGJG, tinggiLimasJGJG, tinggiSegitigaPanjangJGJG,
-              tinggiSegitigaPendekJGJG);
+          double sisiMiringJGJG = getFieldValue(inputPanel, "sisiMiringJajarGenjang"); // Opsional
+          return new LimasJajarGenjang(alasJGJG, tinggiJGJG, sisiMiringJGJG, tinggiLimasJGJG, 0, 0); // 0 untuk optional
+                                                                                                     // tinggi sisi
+                                                                                                     // tegak
         case 23: // Limas Trapesium
           double sisiAtasAlasLT = getFieldValue(inputPanel, "sisiAtasAlas");
           double sisiBawahAlasLT = getFieldValue(inputPanel, "sisiBawahAlas");
-          double sisiKananAlasLT = getFieldValue(inputPanel, "sisiKananAlas");
-          double sisiKiriAlasLT = getFieldValue(inputPanel, "sisiKiriAlas");
           double tinggiAlasTrapesiumLT = getFieldValue(inputPanel, "tinggiAlasTrapesium");
           double tinggiLimasLT = getFieldValue(inputPanel, "tinggiLimas");
+          double sisiKananAlasLT = getFieldValue(inputPanel, "sisiKananAlas"); // Opsional
+          double sisiKiriAlasLT = getFieldValue(inputPanel, "sisiKiriAlas"); // Opsional
           return new LimasTrapesium(tinggiLimasLT, tinggiAlasTrapesiumLT, sisiAtasAlasLT, sisiBawahAlasLT,
               sisiKananAlasLT, sisiKiriAlasLT);
         case 24: // Limas Layang-Layang
           double d1AlasLLL = getFieldValue(inputPanel, "d1Alas");
           double d2AlasLLL = getFieldValue(inputPanel, "d2Alas");
-          double sisiAtasAlasLLL = getFieldValue(inputPanel, "sisiAtasAlas");
-          double sisiBawahAlasLLL = getFieldValue(inputPanel, "sisiBawahAlas");
           double tinggiLimasLLL = getFieldValue(inputPanel, "tinggiLimas");
-          double tinggiSisiTegak1LLL = 0;
-          double tinggiSisiTegak2LLL = 0;
-          try {
-            tinggiSisiTegak1LLL = getFieldValue(inputPanel, "tinggiSisiTegak1");
-          } catch (IllegalArgumentException e) {
-            /* ignore */ }
-          try {
-            tinggiSisiTegak2LLL = getFieldValue(inputPanel, "tinggiSisiTegak2");
-          } catch (IllegalArgumentException e) {
-            /* ignore */ }
-          return new LimasLayangLayang(tinggiLimasLLL, tinggiSisiTegak1LLL, tinggiSisiTegak2LLL, d1AlasLLL, d2AlasLLL,
-              sisiAtasAlasLLL, sisiBawahAlasLLL);
+          double sisiAAlasLLL = getFieldValue(inputPanel, "sisiAAlas"); // Opsional
+          double sisiBAlasLLL = getFieldValue(inputPanel, "sisiBAlas"); // Opsional
+          return new LimasLayangLayang(tinggiLimasLLL, 0, 0, d1AlasLLL, d2AlasLLL, sisiAAlasLLL, sisiBAlasLLL); // 0
+                                                                                                                // untuk
+                                                                                                                // optional
+                                                                                                                // tinggi
+                                                                                                                // sisi
+                                                                                                                // tegak
         case 25: // Prisma Persegi
           double sisiAlasPP = getFieldValue(inputPanel, "sisiAlas");
           double tinggiPrismaPP = getFieldValue(inputPanel, "tinggiPrisma");
@@ -716,12 +527,12 @@ public class MainGUI extends JFrame {
           double tinggiPrismaPPP = getFieldValue(inputPanel, "tinggiPrisma");
           return new PrismaPersegiPanjang(panjangAlasPPP, lebarAlasPPP, tinggiPrismaPPP);
         case 27: // Prisma Segitiga
-          double sisiAlas1PS = getFieldValue(inputPanel, "sisiAlas1");
-          double sisiAlas2PS = getFieldValue(inputPanel, "sisiAlas2");
-          double sisiAlas3PS = getFieldValue(inputPanel, "sisiAlas3");
           double alasSegitigaPS = getFieldValue(inputPanel, "alasSegitiga");
           double tinggiSegitigaPS = getFieldValue(inputPanel, "tinggiSegitiga");
           double tinggiPrismaPS = getFieldValue(inputPanel, "tinggiPrisma");
+          double sisiAlas1PS = getFieldValue(inputPanel, "sisiAlas1");
+          double sisiAlas2PS = getFieldValue(inputPanel, "sisiAlas2");
+          double sisiAlas3PS = getFieldValue(inputPanel, "sisiAlas3");
           return new PrismaSegitiga(alasSegitigaPS, tinggiSegitigaPS, tinggiPrismaPS, sisiAlas1PS, sisiAlas2PS,
               sisiAlas3PS);
         case 28: // Prisma Belah Ketupat
@@ -732,34 +543,36 @@ public class MainGUI extends JFrame {
         case 29: // Prisma Jajar Genjang
           double alasPJG = getFieldValue(inputPanel, "alasJajarGenjang");
           double tinggiPJG = getFieldValue(inputPanel, "tinggiJajarGenjang");
-          double sisiMiringPJG = getFieldValue(inputPanel, "sisiMiringJajarGenjang");
           double tinggiPrismaPJG = getFieldValue(inputPanel, "tinggiPrisma");
+          double sisiMiringPJG = getFieldValue(inputPanel, "sisiMiringJajarGenjang"); // Opsional
           return new PrismaJajarGenjang(alasPJG, tinggiPJG, tinggiPrismaPJG, sisiMiringPJG);
         case 30: // Prisma Trapesium
           double sisiAtasAlasPT = getFieldValue(inputPanel, "sisiAtasAlas");
           double sisiBawahAlasPT = getFieldValue(inputPanel, "sisiBawahAlas");
-          double sisiKananAlasPT = getFieldValue(inputPanel, "sisiKananAlas");
-          double sisiKiriAlasPT = getFieldValue(inputPanel, "sisiKiriAlas");
           double tinggiAlasTrapesiumPT = getFieldValue(inputPanel, "tinggiAlasTrapesium");
           double tinggiPrismaPT = getFieldValue(inputPanel, "tinggiPrisma");
+          double sisiKananAlasPT = getFieldValue(inputPanel, "sisiKananAlas"); // Opsional
+          double sisiKiriAlasPT = getFieldValue(inputPanel, "sisiKiriAlas"); // Opsional
           return new PrismaTrapesium(sisiAtasAlasPT, sisiBawahAlasPT, sisiKananAlasPT, sisiKiriAlasPT,
               tinggiAlasTrapesiumPT, tinggiPrismaPT, "Prisma Trapesium");
         case 31: // Prisma Layang-Layang
           double d1AlasPLL = getFieldValue(inputPanel, "d1Alas");
           double d2AlasPLL = getFieldValue(inputPanel, "d2Alas");
-          double sisiAtasAlasPLL = getFieldValue(inputPanel, "sisiAtasAlas");
-          double sisiBawahAlasPLL = getFieldValue(inputPanel, "sisiBawahAlas");
           double tinggiPrismaPLL = getFieldValue(inputPanel, "tinggiPrisma");
-          return new PrismaLayangLayang(d1AlasPLL, d2AlasPLL, sisiAtasAlasPLL, sisiBawahAlasPLL, tinggiPrismaPLL);
+          double sisiAAlasPLL = getFieldValue(inputPanel, "sisiAAlas"); // Opsional
+          double sisiBAlasPLL = getFieldValue(inputPanel, "sisiBAlas"); // Opsional
+          return new PrismaLayangLayang(d1AlasPLL, d2AlasPLL, sisiAAlasPLL, sisiBAlasPLL, tinggiPrismaPLL);
         default:
+          throw new IllegalArgumentException("Pilihan geometri tidak valid.");
       }
-      throw new IllegalArgumentException("Pilihan geometri tidak valid.");
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("Input tidak valid. Harap masukkan nilai numerik untuk semua parameter.");
+      throw new IllegalArgumentException(
+          "Input tidak valid. Harap masukkan nilai numerik yang benar untuk semua parameter.");
+    } catch (IllegalArgumentException e) {
+      throw e;
     }
   }
 
-  // This method mirrors your generateRandomShape
   private BangunDatar generateRandomShape(int choice) {
     return switch (choice) {
       case 1 -> new Segitiga(r(), r(), r(), r(), r());
@@ -797,19 +610,262 @@ public class MainGUI extends JFrame {
     };
   }
 
+  private void initComponents() {
+    setTitle("Aplikasi Geometri");
+    setSize(800, 600);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLocationRelativeTo(null); // Center the window
+
+    cardLayout = new CardLayout();
+    mainPanel = new JPanel(cardLayout);
+    add(mainPanel);
+
+    // --- Panel untuk pemilihan mode manual atau auto generate ---
+    modeSelectionPanel = new JPanel(new GridBagLayout());
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.insets = new Insets(10, 10, 10, 10);
+    gbc.gridx = 0;
+    gbc.gridy = 0;
+    gbc.anchor = GridBagConstraints.WEST;
+
+    modeButtonGroup = new ButtonGroup();
+    manualModeRadioButton = createRadioButton("Manual", true, modeButtonGroup);
+    randomModeRadioButton = createRadioButton("Random", false, modeButtonGroup);
+    continueButton = createButton("Lanjut"); // Inisialisasi di sini
+    modeSelectionPanel.add(createLabel("Pilih metode input:", 20), gbc);
+    gbc.gridy++;
+    modeSelectionPanel.add(manualModeRadioButton, gbc);
+    gbc.gridy++;
+    modeSelectionPanel.add(randomModeRadioButton, gbc);
+    gbc.gridy++;
+    modeSelectionPanel.add(continueButton, gbc);
+    mainPanel.add(modeSelectionPanel, "MODE_SELECTION");
+
+    // --- Panel untuk mode manual
+    shapeInputPanel = new JPanel(new BorderLayout(10, 10)); // Border layout untuk keseluruhan panel
+    JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+    shapeComboBox = createComboBox(shapeOptions, 18);
+    topPanel.add(createLabel("Pilih geometri:", 20));
+    topPanel.add(shapeComboBox);
+    dynamicInputPanel = new JPanel(new GridBagLayout());
+
+    addShapeButton = createButton("Tambah Objek");
+    processManualButton = createButton("Proses dan Tampilkan");
+    backToModeButtonManual = createButton("Kembali");
+
+    JPanel bottomButtonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+    bottomButtonsPanel.add(backToModeButtonManual);
+    bottomButtonsPanel.add(addShapeButton); // Tombol tambah objek setelah generate
+    bottomButtonsPanel.add(processManualButton);
+
+    JPanel centerWrapperPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    centerWrapperPanel.add(dynamicInputPanel);
+    shapeInputPanel.add(topPanel, BorderLayout.NORTH);
+    shapeInputPanel.add(centerWrapperPanel, BorderLayout.CENTER);
+    shapeInputPanel.add(bottomButtonsPanel, BorderLayout.SOUTH);
+
+    mainPanel.add(shapeInputPanel, "SHAPE_INPUT");
+
+    randomInputPanel = new JPanel(new BorderLayout(10, 10));
+    JPanel generateTimeInputPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10)); // Center alignment
+    generateTime = new JTextField(10); // Lebar kolom 10 karakter
+    generateTime.setFont(new Font(generateTime.getFont().getName(), Font.PLAIN, 20));
+    generateTimeLabel = createLabel("Dibuat berapa kali ? = ", 20);
+    generateTimeInputPanel.add(generateTimeLabel);
+    generateTimeInputPanel.add(generateTime);
+
+    randomInputPanel.add(generateTimeInputPanel, BorderLayout.CENTER);
+
+    JPanel bottomButtonsPanel2 = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+    processRandomButton = createButton("Proses dan Tampilkan");
+    backToModeButtonRandom = createButton("Kembali"); // Tombol kembali khusus untuk mode random
+
+    bottomButtonsPanel2.add(backToModeButtonRandom);
+    bottomButtonsPanel2.add(processRandomButton);
+    randomInputPanel.add(bottomButtonsPanel2, BorderLayout.SOUTH);
+
+    mainPanel.add(randomInputPanel, "RANDOM_INPUT");
+
+    // --- Panel untuk hasil operasi (RESULTS) ---
+    resultsPanel = new JPanel(new BorderLayout(10, 10));
+    resultsTextArea = new JTextArea();
+    resultsTextArea.setEditable(false);
+    resultsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
+    backToInputButton = createButton("Kembali ke Input");
+
+    resultsPanel.add(new JScrollPane(resultsTextArea), BorderLayout.CENTER);
+    JPanel resultsBottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+    resultsBottomPanel.add(backToInputButton);
+    resultsPanel.add(resultsBottomPanel, BorderLayout.SOUTH);
+
+    mainPanel.add(resultsPanel, "RESULTS");
+
+    // --- Event Listeners ---
+    continueButton.addActionListener(e -> {
+      isManualMode = manualModeRadioButton.isSelected();
+      if (isManualMode) {
+        updateDynamicInputPanel(); // Perbarui input panel sesuai pilihan bentuk
+        cardLayout.show(mainPanel, "SHAPE_INPUT");
+      } else {
+        cardLayout.show(mainPanel, "RANDOM_INPUT");
+      }
+    });
+
+    shapeComboBox.addActionListener(e -> updateDynamicInputPanel());
+
+    addShapeButton.addActionListener(e -> {
+      try {
+        int choice = shapeComboBox.getSelectedIndex() + 1; // 1-indexed
+        BangunDatar shape = generateManualShape(choice, dynamicInputPanel);
+        if (shape != null) {
+          shapes.add(shape);
+          JOptionPane.showMessageDialog(this, shapeOptions[choice - 1] + " berhasil ditambahkan!");
+          clearInputFields(dynamicInputPanel);
+        }
+      } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Input tidak valid. Harap masukkan angka.", "Error",
+            JOptionPane.ERROR_MESSAGE);
+      } catch (IllegalArgumentException ex) {
+        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+      }
+    });
+
+    processManualButton.addActionListener(e -> processAndDisplayResults("SHAPE_INPUT"));
+
+    processRandomButton.addActionListener(e -> {
+      try {
+        int count = Integer.parseInt(generateTime.getText());
+        if (count <= 0) {
+          JOptionPane.showMessageDialog(this, "Jumlah generate harus lebih dari 0.", "Error",
+              JOptionPane.ERROR_MESSAGE);
+          return;
+        }
+        shapes.clear(); // Clear previous shapes
+        for (int i = 0; i < count; i++) {
+          // Generate random shape from all available shapes
+          // Pilihan random dari semua shape yang ada
+          int randomChoice = (int) (Math.random() * shapeOptions.length) + 1;
+          shapes.add(generateRandomShape(randomChoice));
+        }
+        processAndDisplayResults("RANDOM_INPUT");
+      } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Input jumlah generate tidak valid. Harap masukkan angka.", "Error",
+            JOptionPane.ERROR_MESSAGE);
+      } catch (IllegalArgumentException ex) {
+        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+      }
+    });
+
+    // Listeners untuk tombol kembali
+    backToModeButtonManual.addActionListener(e -> {
+      shapes.clear(); // Bersihkan shapes jika kembali ke mode selection
+      cardLayout.show(mainPanel, "MODE_SELECTION");
+    });
+
+    backToModeButtonRandom.addActionListener(e -> {
+      shapes.clear(); // Bersihkan shapes jika kembali ke mode selection
+      cardLayout.show(mainPanel, "MODE_SELECTION");
+    });
+
+    backToInputButton.addActionListener(e -> {
+      // Kembali ke panel input yang sesuai dengan mode terakhir
+      if (isManualMode) {
+        cardLayout.show(mainPanel, "SHAPE_INPUT");
+      } else {
+        cardLayout.show(mainPanel, "RANDOM_INPUT");
+      }
+      resultsTextArea.setText("");
+    });
+
+    // Initial setup - tampilkan panel pemilihan mode saat aplikasi dimulai
+    cardLayout.show(mainPanel, "MODE_SELECTION");
+
+  }
+
   private static double r() {
-    return 1 + Math.random() * 10;
+    return 1 + Math.random() * 10; // Nilai random antara 1.0 sampai 11.0
   }
 
   private static double r(double min, double max) {
     return min + Math.random() * (max - min);
   }
 
-  public static void main(String[] args) {
-    // Ensure GUI updates are done on the Event Dispatch Thread (EDT)
-    SwingUtilities.invokeLater(() -> {
-      MainGUI gui = new MainGUI();
-      gui.setVisible(true);
-    });
+  public static JButton createButton(String buttonText) {
+    JButton button = new JButton(buttonText);
+    Dimension fixedSize = new Dimension(200, 50);
+    button.setPreferredSize(fixedSize);
+    button.setMinimumSize(fixedSize);
+    button.setMaximumSize(fixedSize);
+    return button;
   }
+
+  public static JLabel createLabel(String labelText, int fontSize) {
+    JLabel label = new JLabel(labelText);
+    label.setFont(new Font(label.getFont().getName(), Font.PLAIN, fontSize)); // Mengambil nama font default jika tidak
+    return label;
+  }
+
+  public static JRadioButton createRadioButton(String text, boolean isSelected, ButtonGroup group) {
+    JRadioButton radioButton = new JRadioButton(text);
+    radioButton.setFont(new Font(radioButton.getFont().getName(), Font.PLAIN, 18));
+    radioButton.setSelected(isSelected);
+
+    if (group != null) {
+      group.add(radioButton);
+    }
+    return radioButton;
+  }
+
+  public static <E> JComboBox<E> createComboBox(E[] items, int fontSize) {
+    JComboBox<E> comboBox = new JComboBox<>(items);
+    comboBox.setFont(new Font(comboBox.getFont().getName(), Font.PLAIN, fontSize));
+    return comboBox;
+  }
+
+  // deklarasi komponen komponen
+  private CardLayout cardLayout;
+  private JPanel mainPanel;
+
+  // panel untuk seleksi mode
+  private JPanel modeSelectionPanel;
+  private JRadioButton manualModeRadioButton;
+  private JRadioButton randomModeRadioButton;
+  private ButtonGroup modeButtonGroup;
+  private JButton continueButton; // Pindahkan deklarasi ke sini agar bisa diakses di listener
+
+  // panel untuk seleksi input manual
+  private JPanel shapeInputPanel;
+  private JComboBox<String> shapeComboBox;
+  private JPanel dynamicInputPanel;
+  private JButton addShapeButton;
+
+  private JButton processManualButton; // Ubah nama agar jelas untuk mode manual
+  private JButton backToModeButtonManual; // Tombol kembali untuk mode manual
+  private JButton backToModeButtonRandom; // Tombol kembali untuk mode random
+
+  // panel untuk randomInputPanel
+  private JPanel randomInputPanel;
+  private JButton processRandomButton; // Ubah nama agar jelas untuk mode random
+  private JLabel generateTimeLabel; // Pindahkan deklarasi ke sini
+  private JTextField generateTime; // Pindahkan deklarasi ke sini
+
+  // panel untuk hasil operasi
+  private JPanel resultsPanel;
+  private JTextArea resultsTextArea;
+  private JButton backToInputButton;
+
+  private List<BangunDatar> shapes = new ArrayList<>();
+  private boolean isManualMode = true; // Default mode
+                                       //
+  private final String[] shapeOptions = {
+      "Segitiga", "Persegi", "Persegi Panjang", "Lingkaran", "Trapesium",
+      "Jajar Genjang", "Belah Ketupat", "Layang-Layang", "Juring Lingkaran",
+      "Tembereng Lingkaran", "Bola", "Tabung", "Kerucut", "Kerucut Terpancung",
+      "Cincin Bola", "Juring Bola", "Tembereng Bola", "Limas Persegi",
+      "Limas Persegi Panjang", "Limas Segitiga", "Limas Belah Ketupat",
+      "Limas Jajar Genjang", "Limas Trapesium", "Limas Layang-Layang",
+      "Prisma Persegi", "Prisma Persegi Panjang", "Prisma Segitiga",
+      "Prisma Belah Ketupat", "Prisma Jajar Genjang", "Prisma Trapesium",
+      "Prisma Layang-Layang"
+  };
 }
