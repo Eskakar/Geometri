@@ -35,106 +35,111 @@ import geometri.Tabung;
 import geometri.TemberengBola;
 import geometri.TemberengLingkaran;
 import geometri.Trapesium;
+import geometri.view.MainGUI;
 import threading.ThreadExecutor;
 
 public class Main {
   public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    List<Geometri> shapes = new ArrayList<>();
-    // Random rand = new Random();
-
-    String[] options = {
-        "0. Semua Geometri",
-        "1. Segitiga",
-        "2. Persegi",
-        "3. Persegi Panjang",
-        "4. Lingkaran",
-        "5. Trapesium",
-        "6. Jajar Genjang",
-        "7. Belah Ketupat",
-        "8. Layang-Layang",
-        "9. Juring Lingkaran",
-        "10. Tembereng Lingkaran",
-        "11. Bola",
-        "12. Tabung",
-        "13. Kerucut",
-        "14. Kerucut Terpancung",
-        "15. Cincin Bola",
-        "16. Juring Bola",
-        "17. Tembereng Bola",
-        "18. Limas Persegi",
-        "19. Limas Persegi Panjang",
-        "20. Limas Segitiga",
-        "21. Limas Belah Ketupat",
-        "22. Limas Jajar Genjang",
-        "23. Limas Trapesium",
-        "24. Limas Layang-Layang",
-        "25. Prisma Persegi",
-        "26. Prisma Persegi Panjang",
-        "27. Prisma Segitiga",
-        "28. Prisma Belah Ketupat",
-        "29. Prisma Jajar Genjang",
-        "30. Prisma Trapesium",
-        "31. Prisma Layang-Layang"
-    };
-
-    System.out.println("Pilih metode input:");
-    System.out.println("1. Input manual");
-    System.out.println("2. Generate otomatis (random)");
-    System.out.print("Pilihan: ");
-    int mode = scanner.nextInt();
-
-    if (mode == 1) {
-      boolean lanjut = true;
-      while (lanjut) {
-        for (String option : options) {
-          System.out.println(option);
-        }
-        System.out.print("Masukkan nomor geometri: ");
-        int choice = scanner.nextInt();
-
-        try {
-          Geometri shape = generateManualShape(choice, scanner);
-          shapes.add(shape);
-        } catch (IllegalArgumentException e) {
-          System.out.println("Error: " + e.getMessage());
-        }
-
-        System.out.print("Ingin input bangun lain? (y/n): ");
-        String again = scanner.next();
-        lanjut = again.equalsIgnoreCase("y");
-      }
-    } else if (mode == 2) {
-      for (String option : options) {
-        System.out.println(option);
-      }
-
-      System.out.print("Masukkan nomor geometri: ");
-      int choice = scanner.nextInt();
-      System.out.print("Masukkan jumlah objek per bentuk: ");
-      int jumlah = scanner.nextInt();
-
-      if (choice == 0) {
-        for (int i = 1; i <= 31; i++) {
-          for (int j = 0; j < jumlah; j++) {
-            shapes.add(generateRandomShape(i));
-          }
-        }
-      } else {
-        for (int i = 0; i < jumlah; i++) {
-          shapes.add(generateRandomShape(choice));
-        }
-      }
-    } else {
-      System.out.println("Pilihan tidak valid.");
-      scanner.close();
-      return;
-    }
-
-    // Proses dan tampilkan hasil
-    ThreadExecutor.processShapes(shapes);
-    scanner.close();
+    MainGUI mainGUI = new MainGUI();
+    mainGUI.setVisible(true);
+    // Scanner scanner = new Scanner(System.in);
+    // List<Geometri> shapes = new ArrayList<>();
+    //// Random rand = new Random();
+    //
+    // String[] options = {
+    // "0. Semua Geometri",
+    // "1. Segitiga",
+    // "2. Persegi",
+    // "3. Persegi Panjang",
+    // "4. Lingkaran",
+    // "5. Trapesium",
+    // "6. Jajar Genjang",
+    // "7. Belah Ketupat",
+    // "8. Layang-Layang",
+    // "9. Juring Lingkaran",
+    // "10. Tembereng Lingkaran",
+    // "11. Bola",
+    // "12. Tabung",
+    // "13. Kerucut",
+    // "14. Kerucut Terpancung",
+    // "15. Cincin Bola",
+    // "16. Juring Bola",
+    // "17. Tembereng Bola",
+    // "18. Limas Persegi",
+    // "19. Limas Persegi Panjang",
+    // "20. Limas Segitiga",
+    // "21. Limas Belah Ketupat",
+    // "22. Limas Jajar Genjang",
+    // "23. Limas Trapesium",
+    // "24. Limas Layang-Layang",
+    // "25. Prisma Persegi",
+    // "26. Prisma Persegi Panjang",
+    // "27. Prisma Segitiga",
+    // "28. Prisma Belah Ketupat",
+    // "29. Prisma Jajar Genjang",
+    // "30. Prisma Trapesium",
+    // "31. Prisma Layang-Layang"
+    // };
+    //
+    // System.out.println("Pilih metode input:");
+    // System.out.println("1. Input manual");
+    // System.out.println("2. Generate otomatis (random)");
+    // System.out.print("Pilihan: ");
+    // int mode = scanner.nextInt();
+    //
+    // if (mode == 1) {
+    // boolean lanjut = true;
+    // while (lanjut) {
+    // for (String option : options) {
+    // System.out.println(option);
+    // }
+    // System.out.print("Masukkan nomor geometri: ");
+    // int choice = scanner.nextInt();
+    //
+    // try {
+    // Geometri shape = generateManualShape(choice, scanner);
+    // shapes.add(shape);
+    // } catch (IllegalArgumentException e) {
+    // System.out.println("Error: " + e.getMessage());
+    // }
+    //
+    // System.out.print("Ingin input bangun lain? (y/n): ");
+    // String again = scanner.next();
+    // lanjut = again.equalsIgnoreCase("y");
+    // }
+    // } else if (mode == 2) {
+    // for (String option : options) {
+    // System.out.println(option);
+    // }
+    //
+    // System.out.print("Masukkan nomor geometri: ");
+    // int choice = scanner.nextInt();
+    // System.out.print("Masukkan jumlah objek per bentuk: ");
+    // int jumlah = scanner.nextInt();
+    //
+    // if (choice == 0) {
+    // for (int i = 1; i <= 31; i++) {
+    // for (int j = 0; j < jumlah; j++) {
+    // shapes.add(generateRandomShape(i));
+    // }
+    // }
+    // } else {
+    // for (int i = 0; i < jumlah; i++) {
+    // shapes.add(generateRandomShape(choice));
+    // }
+    // }
+    // } else {
+    // System.out.println("Pilihan tidak valid.");
+    // scanner.close();
+    // return;
+    // }
+    //
+    //// Proses dan tampilkan hasil
+    // ThreadExecutor.processShapes(shapes);
+    // scanner.close();
   }
+  
+  
 
   private static Geometri generateRandomShape(int choice) {
     return switch (choice) {
