@@ -28,6 +28,7 @@ public class Segitiga extends BangunDatar {
         throw new IllegalArgumentException("Sisi-sisi tidak membentuk segitiga yang valid.");
       }
       super.keliling = this.sisiA + this.sisiB + this.sisiC;
+      //System.err.println("Ini biasa");
       return super.keliling;
     } catch (RuntimeException e) {
       System.err.println("Error menghitung keliling  : " + e.getMessage());
@@ -40,6 +41,7 @@ public class Segitiga extends BangunDatar {
     try {
       double s = hitungKeliling() / 2;
       super.luas = Math.sqrt(s * (s - sisiA) * (s - sisiB) * (s - sisiC));
+      //System.err.println("Ini biasa");
       return super.luas;
 
     } catch (RuntimeException e) {
@@ -51,6 +53,7 @@ public class Segitiga extends BangunDatar {
   public double hitungLuas(double alasBaru, double tinggiBaru) {
     try {
       super.luas = 0.5 * alasBaru * tinggiBaru;
+      //System.err.println("Ini Overloading");
       return super.luas;
     } catch (RuntimeException e) {
       System.err.println("Error menghitung luas  : " + e.getMessage());
@@ -62,6 +65,7 @@ public class Segitiga extends BangunDatar {
       if (!isValidTriangle()) {
         throw new IllegalArgumentException("Sisi-sisi tidak membentuk segitiga yang valid.");
       }
+      //System.err.println("Ini Overloading");
       super.keliling = sisiA + sisiB + sisiC;
       return super.keliling;
     } catch (RuntimeException e) {

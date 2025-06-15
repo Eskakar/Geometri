@@ -535,7 +535,7 @@ public class MainGUI extends JFrame {
           double s2 = getFieldValue(inputPanel, "sisi2");
           double s3 = getFieldValue(inputPanel, "sisi3");
           // return new Segitiga(alas, tinggi, s1, s2, s3);
-          if (segitiga != null && segitiga instanceof Segitiga) {
+          if (segitiga != null && segitiga.getLuas() != 0) {
             ((Segitiga) segitiga).hitungLuas(alas, tinggi);
             ((Segitiga) segitiga).hitungKeliling(s1, s2, s3);
             return segitiga;
