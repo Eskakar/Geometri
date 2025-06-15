@@ -36,5 +36,11 @@ public class Kerucut extends Lingkaran{
     public double hitungKeliling() {
         return 0;
     }
+    double getVolume(){
+        return this.volume;
+    }
+    double getLuasPermukaan(){
+        return this.luasPermukaan;
+    }
     
 }

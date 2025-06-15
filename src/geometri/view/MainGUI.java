@@ -8,121 +8,152 @@ import javax.swing.*;
 import geometri.*;
 
 public class MainGUI extends JFrame {
+    //membuat object geometri
+    private Geometri BelahKetupat;  
+    private Geometri Bola;  
+    private Geometri CincinBola;  
+    private Geometri JajarGenjang;  
+    private Geometri JuringBola;  
+    private Geometri JuringLingkaran;  
+    private Geometri Kerucut;  
+    private Geometri KerucutTerpancung;  
+    private Geometri LayangLayang;  
+    private Geometri LimasBelahKetupat;  
+    private Geometri LimasJajarGenjang;  
+    private Geometri LimasLayangLayang;  
+    private Geometri LimasPersegi;  
+    private Geometri LimasPersegiPanjang;  
+    private Geometri LimasSegitiga;  
+    private Geometri LimasTrapesium;  
+    private Geometri Lingkaran;  
+    private Geometri Persegi;  
+    private Geometri PersegiPanjang;  
+    private Geometri PrismaBelahKetupat;  
+    private Geometri PrismaJajarGenjang;  
+    private Geometri PrismaLayangLayang;  
+    private Geometri PrismaPersegi;  
+    private Geometri PrismaPersegiPanjang;  
+    private Geometri PrismaSegitiga;  
+    private Geometri PrismaTrapesium;  
+    private Geometri Segitiga;  
+    private Geometri Tabung;  
+    private Geometri TemberengBola;  
+    private Geometri TemberengLingkaran;  
+    private Geometri Trapesium;  
 
-  public MainGUI() {
-    initComponents();
-  }
-
-  private void processAndDisplayResults(String previousCard) {
-    if (shapes.isEmpty()) {
-      JOptionPane.showMessageDialog(this, "Belum ada bangun yang ditambahkan atau digenerate.", "Informasi",
-          JOptionPane.INFORMATION_MESSAGE);
-      return;
+    public MainGUI() {
+      initComponents();
     }
+    private void processAndDisplayResults(String previousCard) {
+        if (shapes.isEmpty()) {
+          JOptionPane.showMessageDialog(this, "Belum ada bangun yang ditambahkan atau digenerate.", "Informasi",
+              JOptionPane.INFORMATION_MESSAGE);
+          return;
+        }
 
-    resultsTextArea.setText(""); // Bersihkan hasil sebelumnya
-    for (Geometri shape : shapes) {
-      resultsTextArea.append(shape.getNama() + ":\n");
-      resultsTextArea.append("  Luas: " + String.format("%.2f", shape.hitungLuas()) + "\n");
-      // Menggunakan instanceof untuk memeriksa tipe dan memanggil method yang sesuai
-      if (shape instanceof BangunDatar) {
-        resultsTextArea.append("  Keliling: " + String.format("%.2f", ((BangunDatar) shape).hitungKeliling()) + "\n");
-      } else if (shape instanceof Bola) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((Bola) shape).hitungVolume()) + "\n");
-        resultsTextArea
-            .append("  Luas Permukaan: " + String.format("%.2f", ((Bola) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof Tabung) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((Tabung) shape).hitungVolume()) + "\n");
-        resultsTextArea
-            .append("  Luas Permukaan: " + String.format("%.2f", ((Tabung) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof Kerucut) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((Kerucut) shape).hitungVolume()) + "\n");
-        resultsTextArea
-            .append("  Luas Permukaan: " + String.format("%.2f", ((Kerucut) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof KerucutTerpancung) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((KerucutTerpancung) shape).hitungVolume()) + "\n");
-        resultsTextArea.append(
-            "  Luas Permukaan: " + String.format("%.2f", ((KerucutTerpancung) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof CincinBola) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((CincinBola) shape).hitungVolume()) + "\n");
-        resultsTextArea
-            .append("  Luas Permukaan: " + String.format("%.2f", ((CincinBola) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof JuringBola) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((JuringBola) shape).hitungVolume()) + "\n");
-        resultsTextArea
-            .append("  Luas Permukaan: " + String.format("%.2f", ((JuringBola) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof TemberengBola) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((TemberengBola) shape).hitungVolume()) + "\n");
-        resultsTextArea
-            .append("  Luas Permukaan: " + String.format("%.2f", ((TemberengBola) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof LimasPersegi) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasPersegi) shape).hitungVolume()) + "\n");
-        resultsTextArea
-            .append("  Luas Permukaan: " + String.format("%.2f", ((LimasPersegi) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof LimasPersegiPanjang) {
-        resultsTextArea
-            .append("  Volume: " + String.format("%.2f", ((LimasPersegiPanjang) shape).hitungVolume()) + "\n");
-        resultsTextArea.append(
-            "  Luas Permukaan: " + String.format("%.2f", ((LimasPersegiPanjang) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof LimasSegitiga) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasSegitiga) shape).hitungVolume()) + "\n");
-        resultsTextArea
-            .append("  Luas Permukaan: " + String.format("%.2f", ((LimasSegitiga) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof LimasBelahKetupat) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasBelahKetupat) shape).hitungVolume()) + "\n");
-        resultsTextArea.append(
-            "  Luas Permukaan: " + String.format("%.2f", ((LimasBelahKetupat) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof LimasJajarGenjang) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasJajarGenjang) shape).hitungVolume()) + "\n");
-        resultsTextArea.append(
-            "  Luas Permukaan: " + String.format("%.2f", ((LimasJajarGenjang) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof LimasTrapesium) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasTrapesium) shape).hitungVolume()) + "\n");
-        resultsTextArea.append(
-            "  Luas Permukaan: " + String.format("%.2f", ((LimasTrapesium) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof LimasLayangLayang) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasLayangLayang) shape).hitungVolume()) + "\n");
-        resultsTextArea.append(
-            "  Luas Permukaan: " + String.format("%.2f", ((LimasLayangLayang) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof PrismaPersegi) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((PrismaPersegi) shape).hitungVolume()) + "\n");
-        resultsTextArea
-            .append("  Luas Permukaan: " + String.format("%.2f", ((PrismaPersegi) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof PrismaPersegiPanjang) {
-        resultsTextArea
-            .append("  Volume: " + String.format("%.2f", ((PrismaPersegiPanjang) shape).hitungVolume()) + "\n");
-        resultsTextArea.append(
-            "  Luas Permukaan: " + String.format("%.2f", ((PrismaPersegiPanjang) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof PrismaSegitiga) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((PrismaSegitiga) shape).hitungVolume()) + "\n");
-        resultsTextArea.append(
-            "  Luas Permukaan: " + String.format("%.2f", ((PrismaSegitiga) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof PrismaBelahKetupat) {
-        resultsTextArea
-            .append("  Volume: " + String.format("%.2f", ((PrismaBelahKetupat) shape).hitungVolume()) + "\n");
-        resultsTextArea.append(
-            "  Luas Permukaan: " + String.format("%.2f", ((PrismaBelahKetupat) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof PrismaJajarGenjang) {
-        resultsTextArea
-            .append("  Volume: " + String.format("%.2f", ((PrismaJajarGenjang) shape).hitungVolume()) + "\n");
-        resultsTextArea.append(
-            "  Luas Permukaan: " + String.format("%.2f", ((PrismaJajarGenjang) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof PrismaTrapesium) {
-        resultsTextArea.append("  Volume: " + String.format("%.2f", ((PrismaTrapesium) shape).hitungVolume()) + "\n");
-        resultsTextArea.append(
-            "  Luas Permukaan: " + String.format("%.2f", ((PrismaTrapesium) shape).hitungLuasPermukaan()) + "\n");
-      } else if (shape instanceof PrismaLayangLayang) {
-        resultsTextArea
-            .append("  Volume: " + String.format("%.2f", ((PrismaLayangLayang) shape).hitungVolume()) + "\n");
-        resultsTextArea.append(
-            "  Luas Permukaan: " + String.format("%.2f", ((PrismaLayangLayang) shape).hitungLuasPermukaan()) + "\n");
+        resultsTextArea.setText(""); // Bersihkan hasil sebelumnya
+        for (Geometri shape : shapes) {
+          resultsTextArea.append(shape.getNama() + ":\n");
+          resultsTextArea.append("  Luas: " + String.format("%.2f", shape.hitungLuas()) + "\n");
+          // Menggunakan instanceof untuk memeriksa tipe dan memanggil method yang sesuai
+          if (shape instanceof BangunDatar) {
+            resultsTextArea.append("  Keliling: " + String.format("%.2f", ((BangunDatar) shape).hitungKeliling()) + "\n");
+          } else if (shape instanceof Bola) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((Bola) shape).hitungVolume()) + "\n");
+            resultsTextArea
+                .append("  Luas Permukaan: " + String.format("%.2f", ((Bola) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof Tabung) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((Tabung) shape).hitungVolume()) + "\n");
+            resultsTextArea
+                .append("  Luas Permukaan: " + String.format("%.2f", ((Tabung) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof Kerucut) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((Kerucut) shape).hitungVolume()) + "\n");
+            resultsTextArea
+                .append("  Luas Permukaan: " + String.format("%.2f", ((Kerucut) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof KerucutTerpancung) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((KerucutTerpancung) shape).hitungVolume()) + "\n");
+            resultsTextArea.append(
+                "  Luas Permukaan: " + String.format("%.2f", ((KerucutTerpancung) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof CincinBola) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((CincinBola) shape).hitungVolume()) + "\n");
+            resultsTextArea
+                .append("  Luas Permukaan: " + String.format("%.2f", ((CincinBola) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof JuringBola) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((JuringBola) shape).hitungVolume()) + "\n");
+            resultsTextArea
+                .append("  Luas Permukaan: " + String.format("%.2f", ((JuringBola) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof TemberengBola) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((TemberengBola) shape).hitungVolume()) + "\n");
+            resultsTextArea
+                .append("  Luas Permukaan: " + String.format("%.2f", ((TemberengBola) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof LimasPersegi) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasPersegi) shape).hitungVolume()) + "\n");
+            resultsTextArea
+                .append("  Luas Permukaan: " + String.format("%.2f", ((LimasPersegi) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof LimasPersegiPanjang) {
+            resultsTextArea
+                .append("  Volume: " + String.format("%.2f", ((LimasPersegiPanjang) shape).hitungVolume()) + "\n");
+            resultsTextArea.append(
+                "  Luas Permukaan: " + String.format("%.2f", ((LimasPersegiPanjang) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof LimasSegitiga) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasSegitiga) shape).hitungVolume()) + "\n");
+            resultsTextArea
+                .append("  Luas Permukaan: " + String.format("%.2f", ((LimasSegitiga) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof LimasBelahKetupat) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasBelahKetupat) shape).hitungVolume()) + "\n");
+            resultsTextArea.append(
+                "  Luas Permukaan: " + String.format("%.2f", ((LimasBelahKetupat) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof LimasJajarGenjang) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasJajarGenjang) shape).hitungVolume()) + "\n");
+            resultsTextArea.append(
+                "  Luas Permukaan: " + String.format("%.2f", ((LimasJajarGenjang) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof LimasTrapesium) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasTrapesium) shape).hitungVolume()) + "\n");
+            resultsTextArea.append(
+                "  Luas Permukaan: " + String.format("%.2f", ((LimasTrapesium) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof LimasLayangLayang) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((LimasLayangLayang) shape).hitungVolume()) + "\n");
+            resultsTextArea.append(
+                "  Luas Permukaan: " + String.format("%.2f", ((LimasLayangLayang) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof PrismaPersegi) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((PrismaPersegi) shape).hitungVolume()) + "\n");
+            resultsTextArea
+                .append("  Luas Permukaan: " + String.format("%.2f", ((PrismaPersegi) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof PrismaPersegiPanjang) {
+            resultsTextArea
+                .append("  Volume: " + String.format("%.2f", ((PrismaPersegiPanjang) shape).hitungVolume()) + "\n");
+            resultsTextArea.append(
+                "  Luas Permukaan: " + String.format("%.2f", ((PrismaPersegiPanjang) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof PrismaSegitiga) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((PrismaSegitiga) shape).hitungVolume()) + "\n");
+            resultsTextArea.append(
+                "  Luas Permukaan: " + String.format("%.2f", ((PrismaSegitiga) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof PrismaBelahKetupat) {
+            resultsTextArea
+                .append("  Volume: " + String.format("%.2f", ((PrismaBelahKetupat) shape).hitungVolume()) + "\n");
+            resultsTextArea.append(
+                "  Luas Permukaan: " + String.format("%.2f", ((PrismaBelahKetupat) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof PrismaJajarGenjang) {
+            resultsTextArea
+                .append("  Volume: " + String.format("%.2f", ((PrismaJajarGenjang) shape).hitungVolume()) + "\n");
+            resultsTextArea.append(
+                "  Luas Permukaan: " + String.format("%.2f", ((PrismaJajarGenjang) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof PrismaTrapesium) {
+            resultsTextArea.append("  Volume: " + String.format("%.2f", ((PrismaTrapesium) shape).hitungVolume()) + "\n");
+            resultsTextArea.append(
+                "  Luas Permukaan: " + String.format("%.2f", ((PrismaTrapesium) shape).hitungLuasPermukaan()) + "\n");
+          } else if (shape instanceof PrismaLayangLayang) {
+            resultsTextArea
+                .append("  Volume: " + String.format("%.2f", ((PrismaLayangLayang) shape).hitungVolume()) + "\n");
+            resultsTextArea.append(
+                "  Luas Permukaan: " + String.format("%.2f", ((PrismaLayangLayang) shape).hitungLuasPermukaan()) + "\n");
+          }
+          resultsTextArea.append("\n");
+        }
+        shapes.clear(); // Bersihkan shapes setelah diproses
+        cardLayout.show(mainPanel, "RESULTS");
       }
-      resultsTextArea.append("\n");
-    }
-    shapes.clear(); // Bersihkan shapes setelah diproses
-    cardLayout.show(mainPanel, "RESULTS");
-  }
-
+  //untuk tampilan input manual, otomatis tergenerate
   private void updateDynamicInputPanel() {
     dynamicInputPanel.removeAll();
     String selectedShape = (String) shapeComboBox.getSelectedItem();
@@ -312,7 +343,7 @@ public class MainGUI extends JFrame {
     dynamicInputPanel.revalidate();
     dynamicInputPanel.repaint();
   }
-
+  //ini fungsi tampilan input manual
   private void addInputFieldDynamicInput(String labelText, String name) {
     JLabel label = createLabel(labelText, 20);
     JTextField textField = new JTextField(10); // Memberikan lebar awal sekitar 10 karakter
@@ -339,7 +370,7 @@ public class MainGUI extends JFrame {
     gbc.weightx = 1.0; // Field akan mengambil semua ruang horizontal ekstra yang tersedia di kolomnya
     dynamicInputPanel.add(textField, gbc);
   }
-
+  //Mengambil value
   // Mengubah getFieldValue untuk menangani input opsional dengan nilai default
   // 0.0
   private double getFieldValue(JPanel panel, String fieldName) {
@@ -379,7 +410,7 @@ public class MainGUI extends JFrame {
       }
     }
   }
-
+  //mengambil inputan berdassrkan shape yang dipilih dan nama field
   private BangunDatar generateManualShape(int choice, JPanel inputPanel) {
     try {
       switch (choice) {
@@ -710,15 +741,18 @@ public class MainGUI extends JFrame {
         cardLayout.show(mainPanel, "RANDOM_INPUT");
       }
     });
-
+    // memilih bangun datar apa sekaligus menampilkan input data dan textnya
     shapeComboBox.addActionListener(e -> updateDynamicInputPanel());
-
+    //ini membuat object berdasarkan bangun yang dipilih
     addShapeButton.addActionListener(e -> {
       try {
+        //mengambil id geometri
         int choice = shapeComboBox.getSelectedIndex() + 1; // 1-indexed
+        //manggil fungsi untuk membuat object
         BangunDatar shape = generateManualShape(choice, dynamicInputPanel);
         if (shape != null) {
           shapes.add(shape);
+          processAndDisplayResults("SHAPE_INPUT");//editan nabil
           JOptionPane.showMessageDialog(this, shapeOptions[choice - 1] + " berhasil ditambahkan!");
           clearInputFields(dynamicInputPanel);
         }
@@ -729,7 +763,7 @@ public class MainGUI extends JFrame {
         JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
       }
     });
-
+    //setelah dibuat object nya bisa langsung diproses hitung dan tampilkan di panel SHAPE_Input
     processManualButton.addActionListener(e -> processAndDisplayResults("SHAPE_INPUT"));
 
     processRandomButton.addActionListener(e -> {
