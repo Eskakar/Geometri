@@ -47,5 +47,11 @@ public class LimasSegitiga extends Segitiga {
     public double hitungKeliling() {
         return 0;
     }
+    double getVolume(){
+        return this.volume;
+    }
+    double getLuasPermukaan(){
+        return this.luasPermukaan;
+    }
     
 }

@@ -2,7 +2,7 @@ package geometri;
 
 public class Persegi extends BangunDatar {
     protected double sisi;
-
+    
     public Persegi(double sisi) {
         this(sisi, "Persegi");
     }

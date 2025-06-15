@@ -8,7 +8,6 @@ import javax.swing.*;
 import geometri.*;
 
 public class MainGUI extends JFrame {
-
   public MainGUI() {
     segitiga = new Segitiga(0, 0, 0, 0, 0);
     initComponents();
@@ -124,6 +123,7 @@ public class MainGUI extends JFrame {
     cardLayout.show(mainPanel, "RESULTS");
   }
 
+  // untuk tampilan input manual, otomatis tergenerate
   private void updateDynamicInputPanel() {
     dynamicInputPanel.removeAll();
     String selectedShape = (String) shapeComboBox.getSelectedItem();
@@ -314,6 +314,7 @@ public class MainGUI extends JFrame {
     dynamicInputPanel.repaint();
   }
 
+  // ini fungsi tampilan input manual
   private void addInputFieldDynamicInput(String labelText, String name) {
     JLabel label = createLabel(labelText, 20);
     JTextField textField = new JTextField(10); // Memberikan lebar awal sekitar 10 karakter
@@ -341,6 +342,7 @@ public class MainGUI extends JFrame {
     dynamicInputPanel.add(textField, gbc);
   }
 
+  // Mengambil value
   // Mengubah getFieldValue untuk menangani input opsional dengan nilai default
   // 0.0
   private double getFieldValue(JPanel panel, String fieldName) {
@@ -381,6 +383,7 @@ public class MainGUI extends JFrame {
     }
   }
 
+  // mengambil inputan berdassrkan shape yang dipilih dan nama field
   private BangunDatar generateManualShape(int choice, JPanel inputPanel) {
     try {
       switch (choice) {
@@ -723,15 +726,18 @@ public class MainGUI extends JFrame {
         cardLayout.show(mainPanel, "RANDOM_INPUT");
       }
     });
-
+    // memilih bangun datar apa sekaligus menampilkan input data dan textnya
     shapeComboBox.addActionListener(e -> updateDynamicInputPanel());
-
+    // ini membuat object berdasarkan bangun yang dipilih
     addShapeButton.addActionListener(e -> {
       try {
+        // mengambil id geometri
         int choice = shapeComboBox.getSelectedIndex() + 1; // 1-indexed
+        // manggil fungsi untuk membuat object
         BangunDatar shape = generateManualShape(choice, dynamicInputPanel);
         if (shape != null) {
           shapes.add(shape);
+          processAndDisplayResults("SHAPE_INPUT");// editan nabil
           JOptionPane.showMessageDialog(this, shapeOptions[choice - 1] + " berhasil ditambahkan!");
           clearInputFields(dynamicInputPanel);
         }
@@ -742,7 +748,8 @@ public class MainGUI extends JFrame {
         JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
       }
     });
-
+    // setelah dibuat object nya bisa langsung diproses hitung dan tampilkan di
+    // panel SHAPE_Input
     processManualButton.addActionListener(e -> processAndDisplayResults("SHAPE_INPUT"));
 
     processRandomButton.addActionListener(e -> {
