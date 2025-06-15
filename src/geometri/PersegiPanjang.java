@@ -35,4 +35,24 @@ public class PersegiPanjang extends BangunDatar {
             return 0;
         }
     }
+
+    public double hitungKeliling(int panjangBaru, int lebarBaru) {
+        try {
+            super.keliling = 2 * (panjangBaru + lebarBaru);
+            return super.keliling;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung keliling  : " + e.getMessage());
+            return 0;
+        }
+    }
+
+    public double hitungLuas(int panjangBaru, int lebarBaru) {
+        try {
+            super.luas = panjangBaru * lebarBaru;
+            return super.luas;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung luas  : " + e.getMessage());
+            return 0;
+        }
+    }
 }

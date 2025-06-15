@@ -24,16 +24,6 @@ public class Lingkaran extends BangunDatar {
     }
   }
 
-  public double hitungKeliling(int diameter) {
-    try {
-      super.keliling = this.PI * diameter;
-      return super.keliling;
-    } catch (RuntimeException e) {
-      System.err.println("Error menghitung keliling  : " + e.getMessage());
-      return 0;
-    }
-  }
-
   @Override
   public double hitungLuas() {
     try {
@@ -45,4 +35,23 @@ public class Lingkaran extends BangunDatar {
     }
   }
 
+  public double hitungKeliling(int diameter) {
+    try {
+      super.keliling = this.PI * diameter;
+      return super.keliling;
+    } catch (RuntimeException e) {
+      System.err.println("Error menghitung keliling  : " + e.getMessage());
+      return 0;
+    }
+  }
+
+  public double hitungLuas(int jariJariBaru) {
+    try {
+      super.luas = this.PI * jariJariBaru * jariJariBaru; 
+      return super.luas;
+    } catch (RuntimeException e) {
+      System.err.println("Error menghitung luas  : " + e.getMessage());
+      return 0;
+    }
+  }
 }

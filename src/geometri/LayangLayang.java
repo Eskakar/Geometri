@@ -39,4 +39,24 @@ public class LayangLayang extends BangunDatar {
             return 0;
         }
     }
+
+    public double hitungKeliling(int sisiABaru, int sisiBBaru){
+        try {
+            super.keliling = 2 * (sisiABaru + sisiBBaru);
+            return super.keliling;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung keliling: " + e.getMessage());
+            return 0;
+        }
+    }
+
+    public double hitungLuas(int diagonal1Baru, int diagonal2Baru){
+        try {
+            super.luas = 0.5 * diagonal2Baru * diagonal2Baru;
+            return super.luas;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung luas: " + e.getMessage());
+            return 0;
+        }
+    }
 }

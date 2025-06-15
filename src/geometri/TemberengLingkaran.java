@@ -39,4 +39,27 @@ public class TemberengLingkaran extends Lingkaran {
       return 0;
     }
   }
+
+  public double hitungKeliling(int jariJariBaru, int tinggiBaru) {
+    try {
+      this.sudut = 2 * Math.acos((jariJariBaru - tinggiBaru) / jariJariBaru);
+      this.keliling = sudut * jariJariBaru 
+          + 2 * Math.sqrt(2 * jariJariBaru * tinggiBaru - tinggiBaru * tinggiBaru);
+      return this.keliling;
+    } catch (RuntimeException e) {
+      System.err.println("Error menghitung keliling  : " + e.getMessage());
+      return 0;
+    }
+  }
+
+  public double hitungLuas(int jariJariBaru, int tinggiBaru) {
+    try {
+      this.luas = (jariJariBaru * jariJariBaru * Math.acos((jariJariBaru - tinggiBaru) / jariJariBaru)
+          - (jariJariBaru - tinggiBaru) * Math.sqrt(2 * jariJariBaru * tinggiBaru - tinggiBaru * tinggiBaru));
+      return this.luas;
+    } catch (RuntimeException e) {
+      System.err.println("Error menghitung luas  : " + e.getMessage());
+      return 0;
+    }
+  }
 }

@@ -33,4 +33,25 @@ public class JuringLingkaran extends Lingkaran {
             return 0;
         }
     };
+
+    public double hitungKeliling(int jariJariBaru, int sudutPusatBaru){
+        try {
+            this.keliling = 2 * jariJariBaru + (sudutPusatBaru / 360.0) * 2 * super.PI * jariJariBaru;
+            return this.keliling;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung keliling: " + e.getMessage());
+            return 0;
+        }
+        
+    };
+
+    public double hitungLuas(int jariJariBaru, int sudutPusatBaru){
+        try {
+            this.luas = (sudutPusatBaru / 360.0) * super.hitungLuas(jariJariBaru);
+            return this.luas;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung luas: " + e.getMessage());
+            return 0;
+        }
+    };
 }

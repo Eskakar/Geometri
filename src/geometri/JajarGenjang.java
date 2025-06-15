@@ -38,4 +38,24 @@ public class JajarGenjang extends BangunDatar {
             return 0;
         }
     }
+
+    public double hitungKeliling(int alasBaru, int sisiMiringBaru) {
+        try {
+            super.keliling =  2 * (alasBaru + sisiMiringBaru);
+            return super.keliling;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung keliling: " + e.getMessage());
+            return 0;
+        }
+    }
+
+    public double hitungLuas(int alasBaru, int tinggiBaru) {
+        try {
+            super.luas =  alasBaru * tinggiBaru;
+            return super.luas;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung luas: " + e.getMessage());
+            return 0;
+        }
+    }
 }

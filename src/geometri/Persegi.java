@@ -33,4 +33,24 @@ public class Persegi extends BangunDatar {
             return 0;
         }
     }
+
+    public double hitungLuas(int sisiBaru) {
+        try {
+            super.luas = sisiBaru * sisiBaru;
+            return super.luas;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung luas  : " + e.getMessage());
+            return 0;
+        }
+    }
+
+    public double hitungKeliling(int sisiBaru) {
+        try {
+            super.keliling = 4 * sisiBaru;
+            return super.keliling;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung keliling  : " + e.getMessage());
+            return 0;
+        }
+    }
 }

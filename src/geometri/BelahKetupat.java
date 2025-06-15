@@ -27,6 +27,25 @@ public class BelahKetupat extends BangunDatar {
         }
     }
 
+    public double hitungSisi(int diagonal1Baru, int diagonal2Baru) {
+        try {
+            double setengahD1 = diagonal1Baru / 2.0;
+            double setengahD2 = diagonal2Baru / 2.0;
+            // cek
+            double sisiBaru = Math.sqrt(setengahD1 * setengahD1 + setengahD2 * setengahD2);
+            return sisiBaru;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung keliling: " + e.getMessage());
+            return 0;
+        }
+    }
+
+    @Override
+    public double hitungKeliling() {
+        super.keliling = 4 * this.hitungSisi();
+        return super.keliling;
+    }
+
     @Override
     public double hitungLuas() {
         try {
@@ -38,9 +57,18 @@ public class BelahKetupat extends BangunDatar {
         }
     }
 
-    @Override
-    public double hitungKeliling() {
-        super.keliling = 4 * this.hitungSisi();
+    public double hitungKeliling(int diagonal1Baru, int diagonal2Baru) {
+        super.keliling = 4 * this.hitungSisi(diagonal1Baru, diagonal2Baru);
         return super.keliling;
+    }
+
+    public double hitungLuas(int diagonal1Baru, int diagonal2Baru) {
+        try {
+            super.luas = 0.5 * diagonal1Baru * diagonal2Baru;
+            return super.luas;
+        } catch (Exception e) {
+            System.err.println("Error menghitung luas: " + e.getMessage());
+            return 0;
+        }
     }
 }
