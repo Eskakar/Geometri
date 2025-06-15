@@ -10,6 +10,7 @@ import geometri.*;
 public class MainGUI extends JFrame {
 
   public MainGUI() {
+    segitiga = new Segitiga(0, 0, 0, 0, 0);
     initComponents();
   }
 
@@ -384,12 +385,24 @@ public class MainGUI extends JFrame {
     try {
       switch (choice) {
         case 1: // Segitiga
+          // jika objek segitiga sudah tidak null maka overloading
+
           double alas = getFieldValue(inputPanel, "alas");
           double tinggi = getFieldValue(inputPanel, "tinggi");
           double s1 = getFieldValue(inputPanel, "sisi1");
           double s2 = getFieldValue(inputPanel, "sisi2");
           double s3 = getFieldValue(inputPanel, "sisi3");
-          return new Segitiga(alas, tinggi, s1, s2, s3);
+          // return new Segitiga(alas, tinggi, s1, s2, s3);
+          if (segitiga != null && segitiga instanceof Segitiga) {
+            Segitiga segitiga = (Segitiga) this.segitiga;
+            double luas = segitiga.hitungLuas(alas, tinggi);
+            // maka jalankan overloading hitungLuas
+            // maka jalankan overloading hitungKeliling
+            return segitiga;
+          } else {
+            segitiga = new Segitiga(alas, tinggi, s1, s2, s3);
+            return segitiga;
+          }
         case 2: // Persegi
           double sisi = getFieldValue(inputPanel, "sisi");
           return new Persegi(sisi);
@@ -868,4 +881,37 @@ public class MainGUI extends JFrame {
       "Prisma Belah Ketupat", "Prisma Jajar Genjang", "Prisma Trapesium",
       "Prisma Layang-Layang"
   };
+
+  private BangunDatar segitiga;
+  private BangunDatar persegi;
+  private Geometri persegiPanjang;
+  private Geometri lingkaran;
+  private Geometri trapesium;
+  private Geometri jajarGenjang;
+  private Geometri belahKetupat;
+  private Geometri layangLayang;
+  private Geometri juringLingkaran;
+  private Geometri temberengLingkaran;
+  private Geometri bola;
+  private Geometri tabung;
+  private Geometri kerucut;
+  private Geometri kerucutTerpancung;
+  private Geometri cincinBola;
+  private Geometri juringBola;
+  private Geometri temberengBola;
+  private Geometri limasPersegi;
+  private Geometri limasPersegiPanjang;
+  private Geometri limasSegitiga;
+  private Geometri limasBelahKetupat;
+  private Geometri limasJajarGenjang;
+  private Geometri limasTrapesium;
+  private Geometri limasLayangLayang;
+  private Geometri prismaPersegi;
+  private Geometri prismaPersegiPanjang;
+  private Geometri prismaSegitiga;
+  private Geometri prismaBelahKetupat;
+  private Geometri prismaJajarGenjang;
+  private Geometri prismaTrapesium;
+  private Geometri prismaLayangLayang;
+
 }
