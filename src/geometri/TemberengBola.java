@@ -5,8 +5,8 @@ public class TemberengBola extends Bola {
   protected double volume;
   protected double luasPermukaan;
 
-  public TemberengBola(double tinggi, double jarijari) {
-    super(jarijari);
+  public TemberengBola(double tinggi, double jariJari) {
+    super(jariJari, "Tembereng Bola");
     this.tinggi = tinggi;
   }
 

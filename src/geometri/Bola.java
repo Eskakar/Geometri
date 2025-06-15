@@ -14,7 +14,6 @@ public class Bola extends Lingkaran {
 
   public Bola(double jariJari, String nama) {
     super(jariJari, nama);
-
   }
 
   public double hitungVolume() {
