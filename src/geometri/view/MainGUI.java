@@ -665,8 +665,8 @@ public class MainGUI extends JFrame {
             double panjangTaliBusurTL = getFieldValue(inputPanel, "panjangTaliBusur");
             double sudutPusatTL = getFieldValue(inputPanel, "sudutPusat");
             if (temberengLingkaran != null && temberengLingkaran.getLuas() != 0) {
-                ((TemberengLingkaran) temberengLingkaran).hitungLuas(sudutPusatTL, jariJariTL, tinggiTemberengTL);
-                ((TemberengLingkaran) temberengLingkaran).hitungKeliling(sudutPusatTL, jariJariTL, panjangTaliBusurTL);
+                ((TemberengLingkaran) temberengLingkaran).hitungLuas(jariJariTL, tinggiTemberengTL);
+                ((TemberengLingkaran) temberengLingkaran).hitungKeliling(jariJariTL, panjangTaliBusurTL);
                 return temberengLingkaran;
             } else {
                 temberengLingkaran = new TemberengLingkaran(sudutPusatTL, tinggiTemberengTL, panjangTaliBusurTL, jariJariTL);

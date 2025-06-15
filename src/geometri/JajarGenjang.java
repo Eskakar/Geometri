@@ -39,7 +39,7 @@ public class JajarGenjang extends BangunDatar {
         }
     }
 
-    public double hitungKeliling(int alasBaru, int sisiMiringBaru) {
+    public double hitungKeliling(double alasBaru, double sisiMiringBaru) {
         try {
             super.keliling =  2 * (alasBaru + sisiMiringBaru);
             return super.keliling;
@@ -49,7 +49,7 @@ public class JajarGenjang extends BangunDatar {
         }
     }
 
-    public double hitungLuas(int alasBaru, int tinggiBaru) {
+    public double hitungLuas(double alasBaru, double tinggiBaru) {
         try {
             super.luas =  alasBaru * tinggiBaru;
             return super.luas;

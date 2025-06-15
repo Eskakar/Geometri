@@ -36,7 +36,7 @@ public class PersegiPanjang extends BangunDatar {
         }
     }
 
-    public double hitungKeliling(int panjangBaru, int lebarBaru) {
+    public double hitungKeliling(double panjangBaru, double lebarBaru) {
         try {
             super.keliling = 2 * (panjangBaru + lebarBaru);
             return super.keliling;
@@ -46,7 +46,7 @@ public class PersegiPanjang extends BangunDatar {
         }
     }
 
-    public double hitungLuas(int panjangBaru, int lebarBaru) {
+    public double hitungLuas(double panjangBaru, double lebarBaru) {
         try {
             super.luas = panjangBaru * lebarBaru;
             return super.luas;

@@ -42,7 +42,7 @@ public class Trapesium extends BangunDatar {
         }
     }
 
-    public double hitungKeliling(int sisiAtasBaru, int sisiBawahBaru, int sisiKananBaru, int sisiKiriBaru) {
+    public double hitungKeliling(double sisiAtasBaru, double sisiBawahBaru, double sisiKananBaru, double sisiKiriBaru) {
         try {
             super.keliling = sisiAtasBaru + sisiBawahBaru + sisiKananBaru + sisiKiriBaru;
             return super.keliling;
@@ -52,7 +52,7 @@ public class Trapesium extends BangunDatar {
         }
     }
 
-    public double hitungLuas(int sisiAtasBaru, int sisiBawahBaru, int tinggiBaru) {
+    public double hitungLuas(double sisiAtasBaru, double sisiBawahBaru, double tinggiBaru) {
         try {
             super.luas = 0.5 * (sisiAtasBaru + sisiBawahBaru) * tinggiBaru;
             return super.luas;

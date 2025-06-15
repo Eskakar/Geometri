@@ -27,7 +27,7 @@ public class BelahKetupat extends BangunDatar {
         }
     }
 
-    public double hitungSisi(int diagonal1Baru, int diagonal2Baru) {
+    public double hitungSisi(double diagonal1Baru, double diagonal2Baru) {
         try {
             double setengahD1 = diagonal1Baru / 2.0;
             double setengahD2 = diagonal2Baru / 2.0;
@@ -57,12 +57,12 @@ public class BelahKetupat extends BangunDatar {
         }
     }
 
-    public double hitungKeliling(int diagonal1Baru, int diagonal2Baru) {
+    public double hitungKeliling(double diagonal1Baru, double diagonal2Baru) {
         super.keliling = 4 * this.hitungSisi(diagonal1Baru, diagonal2Baru);
         return super.keliling;
     }
 
-    public double hitungLuas(int diagonal1Baru, int diagonal2Baru) {
+    public double hitungLuas(double diagonal1Baru, double diagonal2Baru) {
         try {
             super.luas = 0.5 * diagonal1Baru * diagonal2Baru;
             return super.luas;
