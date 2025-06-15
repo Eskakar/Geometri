@@ -18,17 +18,33 @@ public class Bola extends Lingkaran {
   }
 
   public double hitungVolume() {
-    this.volume = (4.0 / 3) * super.PI * Math.pow(super.jariJari, 3);
-    return this.volume;
+    try {
+      this.volume = (4.0 / 3) * super.PI * Math.pow(super.jariJari, 3);
+      return this.volume;
+    } catch (Exception e) {
+        System.err.println("Error menghitung volume: " + e.getMessage());
+        return 0;
+    }
   }
 
   public double hitungLuasPermukaan() {
-    this.luasPermukaan = 4 * super.PI * super.jariJari * super.jariJari;
-    return this.luasPermukaan;
+    try {
+      this.luasPermukaan = 4 * super.PI * super.jariJari * super.jariJari;
+      return this.luasPermukaan;
+    } catch (Exception e) {
+        System.err.println("Error menghitung luas permukaan: " + e.getMessage());
+        return 0;
+    }
   }
   @Override
   public double hitungKeliling() {
     return 0;
+  }
+  double getVolume(){
+    return this.volume;
+  }
+  double getLuasPermukaan(){
+    return this.luasPermukaan;
   }
 
 }

@@ -12,16 +12,32 @@ public class PrismaPersegiPanjang extends PersegiPanjang {
     }
 
     public double hitungVolume() {
-        this.volume = super.hitungLuas() * this.tinggiPrisma;
-        return this.volume;
+        try {
+            this.volume = super.hitungLuas() * this.tinggiPrisma;
+            return this.volume;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung volume  : " + e.getMessage());
+          return 0;
+        }
     }
 
     public double hitungLuasPermukaan() {
-        this.luasPermukaan = 2 * super.hitungLuas() + 2 * this.tinggiPrisma * super.panjang + 2 * this.tinggiPrisma * super.lebar;
-        return this.luasPermukaan;
+        try {
+            this.luasPermukaan = 2 * super.hitungLuas() + 2 * this.tinggiPrisma * super.panjang + 2 * this.tinggiPrisma * super.lebar;
+            return this.luasPermukaan;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung luas permukaan  : " + e.getMessage());
+          return 0;
+        }
     }
     @Override
     public double hitungKeliling() {
         return 0;
+    }
+    double getVolume(){
+        return this.volume;
+    }
+    double getLuasPermukaan(){
+        return this.luasPermukaan;
     }
 }

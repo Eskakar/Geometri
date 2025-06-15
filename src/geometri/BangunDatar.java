@@ -1,21 +1,29 @@
 package geometri;
 
 public abstract class BangunDatar implements Geometri {
-    protected double keliling;
-    protected double luas;
-    protected String nama;
+  protected double keliling;
+  protected double luas;
+  protected String nama;
 
-    public BangunDatar(String nama) {
-        this.nama = nama;
-    }
-    public abstract double hitungKeliling();
-    @Override
-    public abstract double hitungLuas();
+  public BangunDatar(String nama) {
+    this.nama = nama;
+  }
 
-    public double getLuas() {
-        return this.luas;
-    }
-    public double getKeliling() {
-        return this.keliling;
-    }
+  @Override
+  public abstract double hitungKeliling();
+
+  @Override
+  public abstract double hitungLuas();
+
+  public String getNama() {
+    return this.nama;
+  }
+
+  public double getLuas() {
+    return this.luas;
+  }
+
+  public double getKeliling() {
+    return this.keliling;
+  }
 }

@@ -2,7 +2,7 @@ package geometri;
 
 public class Persegi extends BangunDatar {
     protected double sisi;
-
+    
     public Persegi(double sisi) {
         this(sisi, "Persegi");
     }
@@ -14,13 +14,43 @@ public class Persegi extends BangunDatar {
     
     @Override
     public double hitungLuas() {
-        super.luas = this.sisi * this.sisi;
-        return super.luas;
+        try {
+            super.luas = this.sisi * this.sisi;
+            return super.luas;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung luas  : " + e.getMessage());
+            return 0;
+        }
     }
 
     @Override
     public double hitungKeliling() {
-        super.keliling = 4 * this.sisi;
-        return super.keliling;
+        try {
+            super.keliling = 4 * this.sisi;
+            return super.keliling;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung keliling  : " + e.getMessage());
+            return 0;
+        }
+    }
+
+    public double hitungLuas(int sisiBaru) {
+        try {
+            super.luas = sisiBaru * sisiBaru;
+            return super.luas;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung luas  : " + e.getMessage());
+            return 0;
+        }
+    }
+
+    public double hitungKeliling(int sisiBaru) {
+        try {
+            super.keliling = 4 * sisiBaru;
+            return super.keliling;
+        } catch (RuntimeException e) {
+            System.err.println("Error menghitung keliling  : " + e.getMessage());
+            return 0;
+        }
     }
 }

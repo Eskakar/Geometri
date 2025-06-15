@@ -22,13 +22,43 @@ public class Trapesium extends BangunDatar {
 
     @Override
     public double hitungKeliling() {
-        super.keliling = this.sisiAtas + this.sisiBawah + this.sisiKanan + this.sisiKiri;
-        return super.keliling;
+        try {
+            super.keliling = this.sisiAtas + this.sisiBawah + this.sisiKanan + this.sisiKiri;
+            return super.keliling;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung keliling  : " + e.getMessage());
+          return 0;
+        }
     }
 
     @Override
     public double hitungLuas() {
-        super.luas = 0.5 * (this.sisiAtas + this.sisiBawah) * this.tinggi;
-        return super.luas;
+        try {
+            super.luas = 0.5 * (this.sisiAtas + this.sisiBawah) * this.tinggi;
+            return super.luas;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung luas  : " + e.getMessage());
+          return 0;
+        }
+    }
+
+    public double hitungKeliling(int sisiAtasBaru, int sisiBawahBaru, int sisiKananBaru, int sisiKiriBaru) {
+        try {
+            super.keliling = sisiAtasBaru + sisiBawahBaru + sisiKananBaru + sisiKiriBaru;
+            return super.keliling;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung keliling  : " + e.getMessage());
+          return 0;
+        }
+    }
+
+    public double hitungLuas(int sisiAtasBaru, int sisiBawahBaru, int tinggiBaru) {
+        try {
+            super.luas = 0.5 * (sisiAtasBaru + sisiBawahBaru) * tinggiBaru;
+            return super.luas;
+        } catch (RuntimeException e) {
+          System.err.println("Error menghitung luas  : " + e.getMessage());
+          return 0;
+        }
     }
 }
