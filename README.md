@@ -1,8 +1,4 @@
-Of course. Based on the provided Java Swing code, here is a comprehensive `README.md` file that would fit the entire project. It explains the features, architecture, and how to run the application.
-
------
-
-# Aplikasi Kalkulator Geometri 📐
+----# Aplikasi Kalkulator Geometri 📐
 
   
 
