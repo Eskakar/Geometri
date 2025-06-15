@@ -40,7 +40,7 @@ public class LayangLayang extends BangunDatar {
         }
     }
 
-    public double hitungKeliling(int sisiABaru, int sisiBBaru){
+    public double hitungKeliling(double sisiABaru, double sisiBBaru){
         try {
             super.keliling = 2 * (sisiABaru + sisiBBaru);
             return super.keliling;
@@ -50,7 +50,7 @@ public class LayangLayang extends BangunDatar {
         }
     }
 
-    public double hitungLuas(int diagonal1Baru, int diagonal2Baru){
+    public double hitungLuas(double diagonal1Baru, double diagonal2Baru){
         try {
             super.luas = 0.5 * diagonal2Baru * diagonal2Baru;
             return super.luas;

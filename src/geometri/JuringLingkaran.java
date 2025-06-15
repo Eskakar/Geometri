@@ -34,7 +34,7 @@ public class JuringLingkaran extends Lingkaran {
         }
     };
 
-    public double hitungKeliling(int jariJariBaru, int sudutPusatBaru){
+    public double hitungKeliling(double jariJariBaru, double sudutPusatBaru){
         try {
             this.keliling = 2 * jariJariBaru + (sudutPusatBaru / 360.0) * 2 * super.PI * jariJariBaru;
             return this.keliling;
@@ -45,7 +45,7 @@ public class JuringLingkaran extends Lingkaran {
         
     };
 
-    public double hitungLuas(int jariJariBaru, int sudutPusatBaru){
+    public double hitungLuas(double jariJariBaru, double sudutPusatBaru){
         try {
             this.luas = (sudutPusatBaru / 360.0) * super.hitungLuas(jariJariBaru);
             return this.luas;

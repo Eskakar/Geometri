@@ -35,7 +35,7 @@ public class Lingkaran extends BangunDatar {
     }
   }
 
-  public double hitungKeliling(int diameter) {
+  public double hitungKeliling(double diameter) {
     try {
       super.keliling = this.PI * diameter;
       return super.keliling;
@@ -45,7 +45,7 @@ public class Lingkaran extends BangunDatar {
     }
   }
 
-  public double hitungLuas(int jariJariBaru) {
+  public double hitungLuas(double jariJariBaru) {
     try {
       super.luas = this.PI * jariJariBaru * jariJariBaru; 
       return super.luas;

@@ -40,7 +40,7 @@ public class TemberengLingkaran extends Lingkaran {
     }
   }
 
-  public double hitungKeliling(int jariJariBaru, int tinggiBaru) {
+  public double hitungKeliling(double jariJariBaru, double tinggiBaru) {
     try {
       this.sudut = 2 * Math.acos((jariJariBaru - tinggiBaru) / jariJariBaru);
       this.keliling = sudut * jariJariBaru 
@@ -52,7 +52,7 @@ public class TemberengLingkaran extends Lingkaran {
     }
   }
 
-  public double hitungLuas(int jariJariBaru, int tinggiBaru) {
+  public double hitungLuas(double jariJariBaru, double tinggiBaru) {
     try {
       this.luas = (jariJariBaru * jariJariBaru * Math.acos((jariJariBaru - tinggiBaru) / jariJariBaru)
           - (jariJariBaru - tinggiBaru) * Math.sqrt(2 * jariJariBaru * tinggiBaru - tinggiBaru * tinggiBaru));
