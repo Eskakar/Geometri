@@ -527,69 +527,154 @@ public class MainGUI extends JFrame {
     try {
       switch (choice) {
         case 1: // Segitiga
-          // jika objek segitiga sudah tidak null maka overloading
+            double alas = getFieldValue(inputPanel, "alas");
+            double tinggi = getFieldValue(inputPanel, "tinggi");
+            double s1 = getFieldValue(inputPanel, "sisi1");
+            double s2 = getFieldValue(inputPanel, "sisi2");
+            double s3 = getFieldValue(inputPanel, "sisi3");
+            if (segitiga != null && segitiga.getLuas() != 0) {
+                ((Segitiga) segitiga).hitungLuas(alas, tinggi);
+                ((Segitiga) segitiga).hitungKeliling(s1, s2, s3);
+                return segitiga;
+            } else {
+                segitiga = new Segitiga(alas, tinggi, s1, s2, s3);
+                segitiga.hitungLuas();
+                segitiga.hitungKeliling();
+                return segitiga;
+            }
 
-          double alas = getFieldValue(inputPanel, "alas");
-          double tinggi = getFieldValue(inputPanel, "tinggi");
-          double s1 = getFieldValue(inputPanel, "sisi1");
-          double s2 = getFieldValue(inputPanel, "sisi2");
-          double s3 = getFieldValue(inputPanel, "sisi3");
-          // return new Segitiga(alas, tinggi, s1, s2, s3);
-          if (segitiga != null && segitiga.getLuas() != 0) {
-            ((Segitiga) segitiga).hitungLuas(alas, tinggi);
-            ((Segitiga) segitiga).hitungKeliling(s1, s2, s3);
-            return segitiga;
-            // maka jalankan overloading hitungLuas
-            // maka jalankan overloading hitungKeliling
-          } else {
-            segitiga = new Segitiga(alas, tinggi, s1, s2, s3);
-            segitiga.hitungLuas();
-            segitiga.hitungKeliling();
-            return segitiga;
-          }
         case 2: // Persegi
-          double sisi = getFieldValue(inputPanel, "sisi");
-          return new Persegi(sisi);
+            double sisi = getFieldValue(inputPanel, "sisi");
+            if (persegi != null && persegi.getLuas() != 0) {
+                ((Persegi) persegi).hitungLuas(sisi);
+                ((Persegi) persegi).hitungKeliling(sisi);
+                return persegi;
+            } else {
+                persegi = new Persegi(sisi);
+                persegi.hitungLuas();
+                persegi.hitungKeliling();
+                return persegi;
+            }
+
         case 3: // Persegi Panjang
-          double p = getFieldValue(inputPanel, "panjang");
-          double l = getFieldValue(inputPanel, "lebar");
-          return new PersegiPanjang(p, l);
+            double p = getFieldValue(inputPanel, "panjang");
+            double l = getFieldValue(inputPanel, "lebar");
+            if (persegiPanjang != null && persegiPanjang.getLuas() != 0) {
+                ((PersegiPanjang) persegiPanjang).hitungLuas(p, l);
+                ((PersegiPanjang) persegiPanjang).hitungKeliling(p, l);
+                return persegiPanjang;
+            } else {
+                persegiPanjang = new PersegiPanjang(p, l);
+                persegiPanjang.hitungLuas();
+                persegiPanjang.hitungKeliling();
+                return persegiPanjang;
+            }
+
         case 4: // Lingkaran
-          double r = getFieldValue(inputPanel, "jariJari");
-          return new Lingkaran(r);
+            double r = getFieldValue(inputPanel, "jariJari");
+            if (lingkaran != null && lingkaran.getLuas() != 0) {
+                ((Lingkaran) lingkaran).hitungLuas(r);
+                ((Lingkaran) lingkaran).hitungKeliling(r);
+                return lingkaran;
+            } else {
+                lingkaran = new Lingkaran(r);
+                lingkaran.hitungLuas();
+                lingkaran.hitungKeliling();
+                return lingkaran;
+            }
+
         case 5: // Trapesium
-          double sisiAtas = getFieldValue(inputPanel, "sisiAtas");
-          double sisiBawah = getFieldValue(inputPanel, "sisiBawah");
-          double sisiKanan = getFieldValue(inputPanel, "sisiKanan");
-          double sisiKiri = getFieldValue(inputPanel, "sisiKiri");
-          double tinggiTrapesium = getFieldValue(inputPanel, "tinggi");
-          return new Trapesium(sisiAtas, sisiBawah, sisiKanan, sisiKiri, tinggiTrapesium);
+            double sisiAtas = getFieldValue(inputPanel, "sisiAtas");
+            double sisiBawah = getFieldValue(inputPanel, "sisiBawah");
+            double sisiKanan = getFieldValue(inputPanel, "sisiKanan");
+            double sisiKiri = getFieldValue(inputPanel, "sisiKiri");
+            double tinggiTrapesium = getFieldValue(inputPanel, "tinggi");
+            if (trapesium != null && trapesium.getLuas() != 0) {
+                ((Trapesium) trapesium).hitungLuas(sisiAtas, sisiBawah, tinggiTrapesium);
+                ((Trapesium) trapesium).hitungKeliling(sisiAtas, sisiBawah, sisiKanan, sisiKiri);
+                return trapesium;
+            } else {
+                trapesium = new Trapesium(sisiAtas, sisiBawah, sisiKanan, sisiKiri, tinggiTrapesium);
+                trapesium.hitungLuas();
+                trapesium.hitungKeliling();
+                return trapesium;
+            }
+
         case 6: // Jajar Genjang
-          double alasJG = getFieldValue(inputPanel, "alas");
-          double tinggiJG = getFieldValue(inputPanel, "tinggi");
-          double sisiMiringJG = getFieldValue(inputPanel, "sisiMiring");
-          return new JajarGenjang(alasJG, tinggiJG, sisiMiringJG);
+            double alasJG = getFieldValue(inputPanel, "alas");
+            double tinggiJG = getFieldValue(inputPanel, "tinggi");
+            double sisiMiringJG = getFieldValue(inputPanel, "sisiMiring");
+            if (jajarGenjang != null && jajarGenjang.getLuas() != 0) {
+                ((JajarGenjang) jajarGenjang).hitungLuas(alasJG, tinggiJG);
+                ((JajarGenjang) jajarGenjang).hitungKeliling(alasJG, sisiMiringJG);
+                return jajarGenjang;
+            } else {
+                jajarGenjang = new JajarGenjang(alasJG, tinggiJG, sisiMiringJG);
+                jajarGenjang.hitungLuas();
+                jajarGenjang.hitungKeliling();
+                return jajarGenjang;
+            }
+
         case 7: // Belah Ketupat
-          double d1 = getFieldValue(inputPanel, "d1");
-          double d2 = getFieldValue(inputPanel, "d2");
-          return new BelahKetupat(d1, d2);
+            double d1 = getFieldValue(inputPanel, "d1");
+            double d2 = getFieldValue(inputPanel, "d2");
+            if (belahKetupat != null && belahKetupat.getLuas() != 0) {
+                ((BelahKetupat) belahKetupat).hitungLuas(d1, d2);
+                ((BelahKetupat) belahKetupat).hitungKeliling(d1, d2);
+                return belahKetupat;
+            } else {
+                belahKetupat = new BelahKetupat(d1, d2);
+                belahKetupat.hitungLuas();
+                belahKetupat.hitungKeliling();
+                return belahKetupat;
+            }
+
         case 8: // Layang-Layang
-          double d1LL = getFieldValue(inputPanel, "d1");
-          double d2LL = getFieldValue(inputPanel, "d2");
-          double sisiALL = getFieldValue(inputPanel, "sisiA");
-          double sisiBLL = getFieldValue(inputPanel, "sisiB");
-          return new LayangLayang(d1LL, d2LL, sisiALL, sisiBLL);
+            double d1LL = getFieldValue(inputPanel, "d1");
+            double d2LL = getFieldValue(inputPanel, "d2");
+            double sisiALL = getFieldValue(inputPanel, "sisiA");
+            double sisiBLL = getFieldValue(inputPanel, "sisiB");
+            if (layangLayang != null && layangLayang.getLuas() != 0) {
+                ((LayangLayang) layangLayang).hitungLuas(d1LL, d2LL);
+                ((LayangLayang) layangLayang).hitungKeliling(sisiALL, sisiBLL);
+                return layangLayang;
+            } else {
+                layangLayang = new LayangLayang(d1LL, d2LL, sisiALL, sisiBLL);
+                layangLayang.hitungLuas();
+                layangLayang.hitungKeliling();
+                return layangLayang;
+            }
+
         case 9: // Juring Lingkaran
-          double rJL = getFieldValue(inputPanel, "jariJari");
-          double sudutPusatJL = getFieldValue(inputPanel, "sudutPusat");
-          // double busurJL = getFieldValue(inputPanel, "busur"); // Busur sering dihitung
-          return new JuringLingkaran(sudutPusatJL, 0, rJL); // Busur diisi 0 jika dihitung
+            double rJL = getFieldValue(inputPanel, "jariJari");
+            double sudutPusatJL = getFieldValue(inputPanel, "sudutPusat");
+            if (juringLingkaran != null && juringLingkaran.getLuas() != 0) {
+                ((JuringLingkaran) juringLingkaran).hitungLuas(sudutPusatJL, rJL);
+                ((JuringLingkaran) juringLingkaran).hitungKeliling(sudutPusatJL, rJL);
+                return juringLingkaran;
+            } else {
+                juringLingkaran = new JuringLingkaran(sudutPusatJL, 0, rJL);
+                juringLingkaran.hitungLuas();
+                juringLingkaran.hitungKeliling();
+                return juringLingkaran;
+            }
+
         case 10: // Tembereng Lingkaran
-          double jariJariTL = getFieldValue(inputPanel, "jariJari");
-          double tinggiTemberengTL = getFieldValue(inputPanel, "tinggiTembereng");
-          double panjangTaliBusurTL = getFieldValue(inputPanel, "panjangTaliBusur");
-          double sudutPusatTL = getFieldValue(inputPanel, "sudutPusat");
-          return new TemberengLingkaran(sudutPusatTL, tinggiTemberengTL, panjangTaliBusurTL, jariJariTL);
+            double jariJariTL = getFieldValue(inputPanel, "jariJari");
+            double tinggiTemberengTL = getFieldValue(inputPanel, "tinggiTembereng");
+            double panjangTaliBusurTL = getFieldValue(inputPanel, "panjangTaliBusur");
+            double sudutPusatTL = getFieldValue(inputPanel, "sudutPusat");
+            if (temberengLingkaran != null && temberengLingkaran.getLuas() != 0) {
+                ((TemberengLingkaran) temberengLingkaran).hitungLuas(sudutPusatTL, jariJariTL, tinggiTemberengTL);
+                ((TemberengLingkaran) temberengLingkaran).hitungKeliling(sudutPusatTL, jariJariTL, panjangTaliBusurTL);
+                return temberengLingkaran;
+            } else {
+                temberengLingkaran = new TemberengLingkaran(sudutPusatTL, tinggiTemberengTL, panjangTaliBusurTL, jariJariTL);
+                temberengLingkaran.hitungLuas();
+                temberengLingkaran.hitungKeliling();
+                return temberengLingkaran;
+            }
+
         case 11: // Bola
           double rBola = getFieldValue(inputPanel, "jariJari");
           return new Bola(rBola);
