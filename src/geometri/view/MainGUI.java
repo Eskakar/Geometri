@@ -135,34 +135,34 @@ public class MainGUI extends JFrame {
           resultsTextArea.append(shape.getNama() + ":\n");
           //resultsTextArea.append("  Luas: " + String.format("%.2f", shape.hitungLuas()) + "\n");
           // Menggunakan instanceof untuk memeriksa tipe dan memanggil method yang sesuai
-        if (shape instanceof BelahKetupat) {
+        if (shape instanceof BelahKetupat && shape.getNama().equals("Belah Ketupat")) {
             resultsTextArea.append("  Luas: " + String.format("%.2f", belahKetupat.getLuas()) + "\n");
             resultsTextArea.append("  Keliling: " + String.format("%.2f", belahKetupat.getKeliling()) + "\n");
-        } else if (shape instanceof JajarGenjang) {
+        } else if (shape instanceof JajarGenjang && shape.getNama().equals("Jajar Genjang")) {
             resultsTextArea.append("  Luas: " + String.format("%.2f", jajarGenjang.getLuas()) + "\n");
             resultsTextArea.append("  Keliling: " + String.format("%.2f", jajarGenjang.getKeliling()) + "\n");
-        } else if (shape instanceof JuringLingkaran) {
+        } else if (shape instanceof JuringLingkaran && shape.getNama().equals("Juring Lingkaran")) {
             resultsTextArea.append("  Luas: " + String.format("%.2f", juringLingkaran.getLuas()) + "\n");
             resultsTextArea.append("  Keliling: " + String.format("%.2f", juringLingkaran.getKeliling()) + "\n");
-        } else if (shape instanceof LayangLayang) {
+        } else if (shape instanceof LayangLayang && shape.getNama().equals("Layang-Layang")) {
             resultsTextArea.append("  Luas: " + String.format("%.2f", layangLayang.getLuas()) + "\n");
             resultsTextArea.append("  Keliling: " + String.format("%.2f", layangLayang.getKeliling()) + "\n");
-        } else if (shape instanceof Lingkaran) {
+        } else if (shape instanceof Lingkaran && shape.getNama().equals("Lingkaran") ) {
             resultsTextArea.append("  Luas: " + String.format("%.2f", lingkaran.getLuas()) + "\n");
             resultsTextArea.append("  Keliling: " + String.format("%.2f", lingkaran.getKeliling()) + "\n");
-        } else if (shape instanceof Persegi) {
+        } else if (shape instanceof Persegi && shape.getNama().equals("Persegi") ) {
             resultsTextArea.append("  Luas: " + String.format("%.2f", persegi.getLuas()) + "\n");
             resultsTextArea.append("  Keliling: " + String.format("%.2f", persegi.getKeliling()) + "\n");
-        } else if (shape instanceof PersegiPanjang) {
+        } else if (shape instanceof PersegiPanjang && shape.getNama().equals("Persegi Panjang")) {
             resultsTextArea.append("  Luas: " + String.format("%.2f", persegiPanjang.getLuas()) + "\n");
             resultsTextArea.append("  Keliling: " + String.format("%.2f", persegiPanjang.getKeliling()) + "\n");
-        } else if (shape instanceof Segitiga) {
+        } else if (shape instanceof Segitiga && shape.getNama().equals("Segitiga")) {
             resultsTextArea.append("  Luas: " + String.format("%.2f", segitiga.getLuas()) + "\n");
             resultsTextArea.append("  Keliling: " + String.format("%.2f", segitiga.getKeliling()) + "\n");
-        } else if (shape instanceof TemberengLingkaran) {
+        } else if (shape instanceof TemberengLingkaran && shape.getNama().equals("Tembereng Lingkaran")) {
             resultsTextArea.append("  Luas: " + String.format("%.2f", temberengLingkaran.getLuas()) + "\n");
             resultsTextArea.append("  Keliling: " + String.format("%.2f", temberengLingkaran.getKeliling()) + "\n");
-        } else if (shape instanceof Trapesium) {
+        } else if (shape instanceof Trapesium && shape.getNama().equals("Trapesium")) {
             resultsTextArea.append("  Luas: " + String.format("%.2f", trapesium.getLuas()) + "\n");
             resultsTextArea.append("  Keliling: " + String.format("%.2f", trapesium.getKeliling()) + "\n");
         }
@@ -677,7 +677,8 @@ public class MainGUI extends JFrame {
 
         case 11: // Bola
           double rBola = getFieldValue(inputPanel, "jariJari");
-          return new Bola(rBola);
+          bola = new Bola(rBola);
+          return bola;
         case 12: // Tabung
           double rTabung = getFieldValue(inputPanel, "jariJari");
           double tinggiTabung = getFieldValue(inputPanel, "tinggi");
@@ -1125,26 +1126,26 @@ public class MainGUI extends JFrame {
     private BangunDatar layangLayang;
     private BangunDatar juringLingkaran;
     private BangunDatar temberengLingkaran;
-    private Geometri bola;
-    private Geometri tabung;
-    private Geometri kerucut;
-    private Geometri kerucutTerpancung;
-    private Geometri cincinBola;
-    private Geometri juringBola;
-    private Geometri temberengBola;
-    private Geometri limasPersegi;
-    private Geometri limasPersegiPanjang;
-    private Geometri limasSegitiga;
-    private Geometri limasBelahKetupat;
-    private Geometri limasJajarGenjang;
-    private Geometri limasTrapesium;
-    private Geometri limasLayangLayang;
-    private Geometri prismaPersegi;
-    private Geometri prismaPersegiPanjang;
-    private Geometri prismaSegitiga;
-    private Geometri prismaBelahKetupat;
-    private Geometri prismaJajarGenjang;
-    private Geometri prismaTrapesium;
-    private Geometri prismaLayangLayang;
+    private Bola bola;
+    private Tabung tabung;
+    private Kerucut kerucut;
+    private KerucutTerpancung kerucutTerpancung;
+    private CincinBola cincinBola;
+    private JuringBola juringBola;
+    private TemberengBola temberengBola;
+    private LimasPersegi limasPersegi;
+    private LimasPersegiPanjang limasPersegiPanjang;
+    private LimasSegitiga limasSegitiga;
+    private LimasBelahKetupat limasBelahKetupat;
+    private LimasJajarGenjang limasJajarGenjang;    
+    private LimasTrapesium limasTrapesium;
+    private LimasLayangLayang limasLayangLayang;
+    private PrismaPersegi prismaPersegi;
+    private PrismaPersegiPanjang prismaPersegiPanjang;
+    private PrismaSegitiga prismaSegitiga;
+    private PrismaBelahKetupat prismaBelahKetupat;
+    private PrismaJajarGenjang prismaJajarGenjang;
+    private PrismaTrapesium prismaTrapesium;
+    private PrismaLayangLayang prismaLayangLayang;
 
 }
