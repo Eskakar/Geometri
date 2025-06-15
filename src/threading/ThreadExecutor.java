@@ -1,35 +1,58 @@
 package threading;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
+import java.util.ArrayList;
 
 import geometri.BangunDatar;
 import geometri.Geometri;
 
-public class ThreadExecutor {
+import geometri.TemberengLingkaran;
+import geometri.JuringLingkaran;
 
-    public static void processShapes(List<Geometri> shapes) {
+public class ThreadExecutor {
+    
+     public static List<String> processShapes(List<Geometri> shapes) {
         ExecutorService executor = Executors.newFixedThreadPool(4);
+        
+        List<Future<String>> futures = new ArrayList<>();
+        
+        List<String> results = new ArrayList<>();
 
         for (Geometri shape : shapes) {
-            executor.submit(() -> processShape(shape));
+            Future<String> future = executor.submit(() -> processShape(shape));
+            futures.add(future);
         }
 
         executor.shutdown();
+
+        for (Future<String> future : futures) {
+            try {
+                String result = future.get();
+                if (result != null) {
+                    results.add(result);
+                }
+            } catch (InterruptedException | ExecutionException e) {
+                System.err.println("Error retrieving shape processing result: " + e.getMessage());
+            }
+        }
+
+        return results;
     }
 
-    private static void processShape(Geometri shape) {
+    private static String processShape(Geometri shape) {
         String threadName = Thread.currentThread().getName();
 
         try {
-            if (shape.getClass().getSuperclass().equals(BangunDatar.class)) {
-                // direct subclass of bangun datar
+            if (shape.getClass().getSuperclass().equals(BangunDatar.class) || shape.getClass().equals(TemberengLingkaran.class) || shape.getClass().equals(JuringLingkaran.class)) {
                 BangunDatar bd = (BangunDatar) shape;
                 double keliling = bd.hitungKeliling();
                 double luas = bd.hitungLuas();
-                System.out.printf("%s - [%s] 2D -> Keliling: %.2f, Luas: %.2f%n",
-                        threadName, shape.getClass().getSimpleName(), keliling, luas);
+                return String.format("""
+                        %s - [%s] 2D ->
+                            %-16s: %.2f
+                            %-16s: %.2f\n""",
+                        threadName, shape.getClass().getSimpleName(), "Keliling", keliling, "Luas", luas);
             }
 
             try {
@@ -39,8 +62,12 @@ public class ThreadExecutor {
                 double volume = (double) volumeMethod.invoke(shape);
                 double luasPermukaan = (double) luasPermukaanMethod.invoke(shape);
 
-                System.out.printf("%s - [%s] Volume: %.2f, Luas Permukaan: %.2f%n",
-                        threadName, shape.getClass().getSimpleName(), volume, luasPermukaan);
+                return String.format("""
+                        %s - [%s] 3D ->
+                            %-16s: %.2f
+                            %-16s: %.2f\n""",
+                        threadName, shape.getClass().getSimpleName(), "Volume", volume, "Luas Permukaan",
+                        luasPermukaan);
             } catch (NoSuchMethodException ignored) {
                 // gpp kalo 2d dan ga punya vol sm area
             }
@@ -48,5 +75,7 @@ public class ThreadExecutor {
         } catch (Exception e) {
             System.err.println("Error processing shape " + shape.getClass().getSimpleName() + ": " + e.getMessage());
         }
+        
+        return null;
     }
 }
