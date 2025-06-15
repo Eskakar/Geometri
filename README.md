@@ -1,4 +1,4 @@
-----# Aplikasi Kalkulator Geometri 📐
+# Aplikasi Kalkulator Geometri 📐
 
   
 
