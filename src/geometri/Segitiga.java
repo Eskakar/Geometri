@@ -57,6 +57,19 @@ public class Segitiga extends BangunDatar {
       return 0;
     }
   }
+  public double hitungKeliling(Double sisiA,Double sisiB,Double sisiC){
+      try {
+      if (!isValidTriangle()) {
+        throw new IllegalArgumentException("Sisi-sisi tidak membentuk segitiga yang valid.");
+      }
+      super.keliling = sisiA + sisiB + sisiC;
+      return super.keliling;
+    } catch (RuntimeException e) {
+      System.err.println("Error menghitung keliling  : " + e.getMessage());
+      super.keliling = sisiA + sisiB + sisiC;
+      return super.keliling;
+    }
+  }
 
   public boolean isValidTriangle() {
     boolean ok = (sisiA + sisiB > sisiC) && (sisiA + sisiC > sisiB) && (sisiB + sisiC > sisiA);
